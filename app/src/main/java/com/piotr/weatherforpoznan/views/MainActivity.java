@@ -1,4 +1,4 @@
-package com.piotr.weatherforpoznan;
+package com.piotr.weatherforpoznan.views;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
