@@ -1,6 +1,7 @@
 package com.piotr.weatherforpoznan.api;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,19 +46,30 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
         }
 
         vHolder.itemDate.setText(item.getDt_txt().toString());
-        vHolder.itemTemperature.setText(item.getMain().getTemp().toString());
-        vHolder.itemPressure.setText(item.getMain().getPressure().toString());
-        vHolder.itemHumidity.setText(item.getMain().getHumidity().toString());
-        vHolder.itemWind.setText(item.getWind().getSpeed().toString());
+        vHolder.itemTemperature.setText(item.getMain().getTemp().toString() + " °C");
+        vHolder.itemPressure.setText(item.getMain().getPressure().toString() + " hPa");
+        vHolder.itemHumidity.setText(item.getMain().getHumidity().toString() + " %");
+        vHolder.itemWind.setText(item.getWind().getSpeed().toString() + " m/s");
 
         if (item.getWeather().size() > 0) {
-            vHolder.itemDescription.setText(item.getWeather().get(0).getDescription().toString());
+            String description = item.getWeather().get(0).getDescription().toString();
+            description = capitalizeString(description);
+
+            vHolder.itemDescription.setText("Description: " + description);
         } else {
-            vHolder.itemDescription.setText("Opis");
+            vHolder.itemDescription.setText("Description is unavailable");
         }
         ;
 
         return convertView;
+    }
+
+    @NonNull
+    private String capitalizeString(String description) {
+        StringBuilder descriptionSb = new StringBuilder(description);
+        descriptionSb.setCharAt(0, Character.toUpperCase(descriptionSb.charAt(0)));
+        description = descriptionSb.toString();
+        return description;
     }
 
     static class ViewHolder {
