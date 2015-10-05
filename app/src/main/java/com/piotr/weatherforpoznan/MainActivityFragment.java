@@ -23,6 +23,7 @@ import retrofit.converter.GsonConverter;
 public class MainActivityFragment extends Fragment {
 
     ForecastAdapter mForecastAdapter;
+
     private ListView listView;
 
     public MainActivityFragment() {

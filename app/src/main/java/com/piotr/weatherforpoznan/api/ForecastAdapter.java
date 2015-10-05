@@ -18,9 +18,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by piotr on 02.10.15.
  */
+
 public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
     public ForecastAdapter(Context context, int resource, List<ForecastItem> objects) {
@@ -36,9 +40,9 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_forecast, null);
-            vHolder = new ViewHolder();
-            vHolder.forecastIcon = (ImageView) convertView.findViewById(R.id.itemWeatherIcon);
-            vHolder.itemDate = (TextView) convertView.findViewById(R.id.itemForecastDate);
+            vHolder = new ViewHolder(convertView);
+            vHolder.forecastIcon = (ImageView) convertView.findViewById(R.id.forecastIcon);
+            vHolder.itemDate = (TextView) convertView.findViewById(R.id.itemtDate);
             vHolder.itemTemperature = (TextView) convertView.findViewById(R.id.itemTemperature);
             vHolder.itemPressure = (TextView) convertView.findViewById(R.id.itemPressure);
             vHolder.itemHumidity = (TextView) convertView.findViewById(R.id.itemHumidity);
@@ -80,17 +84,23 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
     }
 
     static class ViewHolder {
+        @Bind(R.id.forecastIcon)
         ImageView forecastIcon;
-
+        @Bind(R.id.itemtDate)
         TextView itemDate;
+        @Bind(R.id.itemDescription)
         TextView itemDescription;
+        @Bind(R.id.itemTemperature)
         TextView itemTemperature;
+        @Bind(R.id.itemPressure)
         TextView itemPressure;
+        @Bind(R.id.itemWind)
         TextView itemWind;
+        @Bind(R.id.itemHumidity)
         TextView itemHumidity;
 
-        public ViewHolder() {
+        public ViewHolder(View view) {
+            ButterKnife.bind(view);
         }
     }
-
 }

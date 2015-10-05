@@ -1,0 +1,21 @@
+language: android
+
+android:
+  components:
+    - build-tools-23.0.0
+    - android-23
+    - extra-android-support
+    - extra-google-google_play_services
+    - extra-android-m2repository
+    - extra-google-m2repository
+    - addon-google_apis-google-21
+
+before_install:
+ - chmod +x gradlew
+
+after_success:
+ - chmod +x ./upload-gh-pages.sh
+ - ./upload-gh-pages.sh
+
+script:
+ - ./gradlew clean build

@@ -7,13 +7,13 @@
 
 
     <LinearLayout
-        android:id="@+id/itemForecastItem"
+        android:id="@+id/forecastItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/itemWeatherIcon"
+            android:id="@+id/forecastIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -21,13 +21,13 @@
             android:src="@mipmap/ic_launcher" />
 
         <LinearLayout
-            android:id="@+id/itemForecastTable"
+            android:id="@+id/itemTable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/itemForecastDate"
+                android:id="@+id/itemtDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
