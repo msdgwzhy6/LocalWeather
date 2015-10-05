@@ -12,10 +12,10 @@ public class Forecast {
     City city;
 
     @SerializedName("list")
-    java.util.List<ForecastItem> forecastItem;
+    java.util.List<ForecastItem> forecastList;
 
-    public List<ForecastItem> getForecastItem() {
-        return forecastItem;
+    public List<ForecastItem> getForecastList() {
+        return forecastList;
     }
 
     public City getCity() {
@@ -26,7 +26,7 @@ public class Forecast {
     public String toString() {
         return "Forecast{" +
                 "city=" + city +
-                ", list=" + forecastItem +
+                ", list=" + forecastList +
                 '}';
     }
 }

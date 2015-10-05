@@ -6,17 +6,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.piotr.weatherforpoznan.api.ForecastAdapter;
 import com.piotr.weatherforpoznan.api.WeatherService;
 import com.piotr.weatherforpoznan.model.Forecast;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -29,7 +25,7 @@ import retrofit.converter.GsonConverter;
  */
 public class MainActivityFragment extends Fragment {
 
-    ArrayAdapter<String> mForecastAdapter;
+    ForecastAdapter mForecastAdapter;
     int i = 0;
     String temperature, weatherDescription;
     private ListView listView;
@@ -58,12 +54,8 @@ public class MainActivityFragment extends Fragment {
             public void success(Forecast forecast, Response response) {
                 Log.d("SUCCESS", "Success result: " + forecast);
 
-                List<String> weekForecast = new ArrayList<>(Arrays.asList(forecast.getForecastItem().get(0).getMain().getTemp().toString()));
-
-                mForecastAdapter = new ArrayAdapter<>(getActivity(),
-                        R.layout.list_item_forecast,
-                        R.id.list_item_forecast,
-                        weekForecast);
+                mForecastAdapter = new ForecastAdapter(getActivity(),
+                        R.layout.list_item_forecast, forecast.getForecastList());
                 listView.setAdapter(mForecastAdapter);
             }
 
