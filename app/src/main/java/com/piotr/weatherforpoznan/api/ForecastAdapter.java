@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.model.ForecastItem;
+import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,7 +48,10 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
             vHolder = (ViewHolder) convertView.getTag();
         }
 
-        vHolder.itemDate.setText(item.getDt_txt().toString());
+        Date date = item.getDt_txt();
+        String stringDate = DateFormat.getDateTimeInstance().format(date);
+
+        vHolder.itemDate.setText(stringDate);
         vHolder.itemTemperature.setText(item.getMain().getTemp().toString() + " °C");
         vHolder.itemPressure.setText(item.getMain().getPressure().toString() + " hPa");
         vHolder.itemHumidity.setText(item.getMain().getHumidity().toString() + " %");
@@ -58,6 +64,8 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
             vHolder.itemDescription.setText("Description is unavailable");
         }
         ;
+        String iconName = item.getWeather().get(0).getIcon().toString();
+        Picasso.with(getContext()).load("http://openweathermap.org/img/w/" + iconName + ".png").into(vHolder.forecastIcon);
 
         return convertView;
     }

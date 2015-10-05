@@ -15,5 +15,5 @@ public interface WeatherService {
     //Weather getWeather(@Query("cityId") int id, @Query("mode") String mode, @Query("units") String units, @Query("type") String type);
 
     @GET("/data/2.5/forecast/city")
-    void getForecast(@Query("id") int id, @Query("mode") String mode, @Query("units") String units, @Query("type") String type, Callback<Forecast> cb);
+    void getForecast(@Query("id") int id, @Query("mode") String mode, @Query("units") String units, @Query("type") String type, @Query("lang") String lang, Callback<Forecast> cb);
 }

@@ -14,6 +14,8 @@ import com.piotr.weatherforpoznan.api.ForecastAdapter;
 import com.piotr.weatherforpoznan.api.WeatherService;
 import com.piotr.weatherforpoznan.model.Forecast;
 
+import java.util.Locale;
+
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -49,11 +51,12 @@ public class MainActivityFragment extends Fragment {
                 .build();
 
         final WeatherService weatherAPI = restAdapter.create(WeatherService.class);
-        weatherAPI.getForecast(3088171, "json", "metric", "hour", new Callback<Forecast>() {
+        String lang = "en";
+        String language = Locale.getDefault().getDisplayLanguage().toString();
+        if (language == "pl") lang = "pl";
+        weatherAPI.getForecast(3088171, "json", "metric", "hour", lang, new Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
-                Log.d("SUCCESS", "Success result: " + forecast);
-
                 mForecastAdapter = new ForecastAdapter(getActivity(),
                         R.layout.list_item_forecast, forecast.getForecastList());
                 listView.setAdapter(mForecastAdapter);
