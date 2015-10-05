@@ -3,6 +3,7 @@ package com.piotr.weatherforpoznan.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by piotrek on 15-10-01.
@@ -15,7 +16,7 @@ public class ForecastItem {
     Main main;
 
     @SerializedName("weather")
-    Weather weather;
+    List<Weather> weather;
 
     @SerializedName("clouds")
     Clouds clouds;
@@ -31,7 +32,7 @@ public class ForecastItem {
         return main;
     }
 
-    public Weather getWeather() {
+    public List<Weather> getWeather() {
         return weather;
     }
 

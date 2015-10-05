@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">WeatherForPoznan</string>
     <string name="action_settings">Settings</string>
+    <string name="defaultTemperature">16°C</string>
+    <string name="defaultPressure">1000 hPa</string>
+    <string name="defaultWind">2.88 km/h</string>
+    <string name="defaultHumidity">34 %</string>
+    <string name="defaultDescription">\"It\'s cloudy\"</string>
+    <string name="defaultActualDate">\"2015-10-05 09:00:00\"</string>
 </resources>
