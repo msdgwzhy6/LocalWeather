@@ -53,9 +53,7 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
         if (item.getWeather().size() > 0) {
             String description = item.getWeather().get(0).getDescription().toString();
-            description = capitalizeString(description);
-
-            vHolder.itemDescription.setText("Description: " + description);
+            vHolder.itemDescription.setText(capitalizeString(description));
         } else {
             vHolder.itemDescription.setText("Description is unavailable");
         }

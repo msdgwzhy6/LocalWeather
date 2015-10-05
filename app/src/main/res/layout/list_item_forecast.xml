@@ -16,72 +16,130 @@
             android:id="@+id/itemWeatherIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:padding="5dp"
             android:src="@mipmap/ic_launcher" />
 
-        <TableLayout
+        <LinearLayout
             android:id="@+id/itemForecastTable"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/itemForecastHeader"
+            <TextView
+                android:id="@+id/itemForecastDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:padding="5dp"
+                android:text="@string/defaultActualDate" />
+
+            <LinearLayout
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/itemForecastDate"
+                    android:id="@+id/itemDescriptionHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/defaultActualDate" />
+                    android:padding="5dp"
+                    android:text="Description: " />
 
                 <TextView
                     android:id="@+id/itemDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:padding="5dp"
                     android:text="@string/defaultDescription" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/itemForecastData"
+                android:id="@+id/temperature"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/itemTemperatureHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Temperature: " />
 
                 <TextView
                     android:id="@+id/itemTemperature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/defaultTemperature" />
+                    android:padding="5dp"
+                    android:text="@string/defaultTemperature"
+                    android:textSize="@dimen/abc_text_size_small_material" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pressure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/itemPressurenHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Pressure: " />
 
                 <TextView
                     android:id="@+id/itemPressure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/defaultPressure" />
+                    android:padding="5dp"
+                    android:text="@string/defaultPressure"
+                    android:textSize="@dimen/abc_text_size_small_material" />
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Wind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/itemWindHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Wind: " />
 
                 <TextView
                     android:id="@+id/itemWind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/defaultWind" />
+                    android:padding="5dp"
+                    android:text="@string/defaultWind"
+                    android:textSize="@dimen/abc_text_size_small_material" />
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/humidity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/itemHumidityHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Humidity: " />
 
                 <TextView
                     android:id="@+id/itemHumidity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/defaultHumidity" />
+                    android:padding="5dp"
+                    android:text="@string/defaultHumidity"
+                    android:textSize="@dimen/abc_text_size_small_material" />
+                />
             </LinearLayout>
-        </TableLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
