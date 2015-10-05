@@ -12,4 +12,5 @@
     <string name="windDescription">Wind: \</string>
     <string name="description">Description: \</string>
     <string name="humidityDescription">Humidity: \</string>
+    <string name="noDescription">Description is not available</string>
 </resources>

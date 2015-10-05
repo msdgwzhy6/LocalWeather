@@ -18,9 +18,6 @@ public class ForecastItem {
     @SerializedName("weather")
     List<Weather> weather;
 
-    @SerializedName("clouds")
-    Clouds clouds;
-
     @SerializedName("wind")
     Wind wind;
 
@@ -36,10 +33,6 @@ public class ForecastItem {
         return weather;
     }
 
-    public Clouds getClouds() {
-        return clouds;
-    }
-
     public Wind getWind() {
         return wind;
     }
@@ -50,7 +43,6 @@ public class ForecastItem {
                 "dt_txt='" + dt_txt + '\'' +
                 ", main=" + main +
                 ", weather=" + weather +
-                ", clouds=" + clouds +
                 ", wind=" + wind +
                 '}';
     }

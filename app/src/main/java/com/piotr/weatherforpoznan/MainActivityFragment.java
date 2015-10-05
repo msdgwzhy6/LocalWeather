@@ -14,26 +14,18 @@ import com.piotr.weatherforpoznan.api.ForecastAdapter;
 import com.piotr.weatherforpoznan.api.WeatherService;
 import com.piotr.weatherforpoznan.model.Forecast;
 
-import java.util.Locale;
-
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class MainActivityFragment extends Fragment {
 
     ForecastAdapter mForecastAdapter;
-    int i = 0;
-    String temperature, weatherDescription;
     private ListView listView;
 
     public MainActivityFragment() {
-
     }
 
     @Override
@@ -46,15 +38,11 @@ public class MainActivityFragment extends Fragment {
 
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint("http://api.openweathermap.org")
-                .setLogLevel(RestAdapter.LogLevel.BASIC)
                 .setConverter(new GsonConverter(gson))
                 .build();
 
         final WeatherService weatherAPI = restAdapter.create(WeatherService.class);
-        String lang = "en";
-        String language = Locale.getDefault().getDisplayLanguage().toString();
-        if (language == "pl") lang = "pl";
-        weatherAPI.getForecast(3088171, "json", "metric", "hour", lang, new Callback<Forecast>() {
+        weatherAPI.getForecast(3088171, "json", "metric", "hour", new Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
                 mForecastAdapter = new ForecastAdapter(getActivity(),

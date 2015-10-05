@@ -30,34 +30,13 @@ public class Main {
     @SerializedName("temp_kf")
     Double tempKf;
 
-    public Double getTempKf() {
-        return tempKf;
-    }
-
     public Double getTemp() {
         return temp;
-    }
-
-    public Double getTempMin() {
-        return tempMin;
-    }
-
-    public Double getTempMax() {
-        return tempMax;
     }
 
     public Double getPressure() {
         return pressure;
     }
-
-    public Double getSeaLevel() {
-        return seaLevel;
-    }
-
-    public Double getGrndLevel() {
-        return grndLevel;
-    }
-
     public Double getHumidity() {
         return humidity;
     }

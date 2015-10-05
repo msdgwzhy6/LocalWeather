@@ -9,22 +9,14 @@ public class Wind {
     @SerializedName("speed")
     Double speed;
 
-    @SerializedName("deg")
-    Double deg;
-
     public Double getSpeed() {
         return speed;
-    }
-
-    public Double getDeg() {
-        return deg;
     }
 
     @Override
     public String toString() {
         return "Wind{" +
                 "speed=" + speed +
-                ", deg=" + deg +
                 '}';
     }
 }

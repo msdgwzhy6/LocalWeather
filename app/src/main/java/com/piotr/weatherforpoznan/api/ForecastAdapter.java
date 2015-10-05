@@ -14,6 +14,7 @@ import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -50,8 +51,8 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
         Date date = item.getDt_txt();
         String stringDate = DateFormat.getDateTimeInstance().format(date);
-
-        vHolder.itemDate.setText(stringDate);
+        String day = new SimpleDateFormat("EEE").format(date);
+        vHolder.itemDate.setText(day + ' ' + stringDate);
         vHolder.itemTemperature.setText(item.getMain().getTemp().toString() + " °C");
         vHolder.itemPressure.setText(item.getMain().getPressure().toString() + " hPa");
         vHolder.itemHumidity.setText(item.getMain().getHumidity().toString() + " %");
@@ -61,7 +62,7 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
             String description = item.getWeather().get(0).getDescription().toString();
             vHolder.itemDescription.setText(capitalizeString(description));
         } else {
-            vHolder.itemDescription.setText("Description is unavailable");
+            vHolder.itemDescription.setText(R.string.noDescription);
         }
         ;
         String iconName = item.getWeather().get(0).getIcon().toString();

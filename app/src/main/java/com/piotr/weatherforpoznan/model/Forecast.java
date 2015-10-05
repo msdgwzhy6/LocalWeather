@@ -8,9 +8,6 @@ import java.util.List;
  * Created by piotrek on 15-10-01.
  */
 public class Forecast {
-    @SerializedName("city")
-    City city;
-
     @SerializedName("list")
     java.util.List<ForecastItem> forecastList;
 
@@ -18,15 +15,9 @@ public class Forecast {
         return forecastList;
     }
 
-    public City getCity() {
-        return city;
-    }
-
     @Override
     public String toString() {
-        return "Forecast{" +
-                "city=" + city +
-                ", list=" + forecastList +
+        return "Forecast:{" + forecastList +
                 '}';
     }
 }
