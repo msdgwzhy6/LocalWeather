@@ -22,6 +22,17 @@ public class Main {
     @SerializedName("humidity")
     Double humidity;
 
+    public Main() {
+
+    }
+
+    public Main(Double temp, Double pressure, Double humidity) {
+        super();
+        this.temp = temp;
+        this.pressure = pressure;
+        this.humidity = humidity;
+    }
+
     public Double getTemp() {
         return temp;
     }
@@ -29,6 +40,7 @@ public class Main {
     public Double getPressure() {
         return pressure;
     }
+
     public Double getHumidity() {
         return humidity;
     }

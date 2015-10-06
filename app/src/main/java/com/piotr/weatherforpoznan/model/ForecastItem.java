@@ -29,6 +29,19 @@ public class ForecastItem {
     @SerializedName("wind")
     Wind wind;
 
+    public ForecastItem() {
+
+    }
+
+    public ForecastItem(Date dt_txt, Main main, List<Weather> weather, Wind wind) {
+        super();
+        this.dt_txt = dt_txt;
+        this.main = main;
+        this.weather = weather;
+        this.wind = wind;
+
+    }
+
     public Date getDt_txt() {
         return dt_txt;
     }

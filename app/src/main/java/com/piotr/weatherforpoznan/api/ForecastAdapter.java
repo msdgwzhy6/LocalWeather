@@ -18,8 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 /**
  * Created by piotr on 02.10.15.
  */
@@ -40,27 +38,55 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_forecast, null);
             vHolder = new ViewHolder(convertView);
-            vHolder.forecastIcon = (ImageView) convertView.findViewById(R.id.forecastIcon);
-            vHolder.itemDate = (TextView) convertView.findViewById(R.id.itemtDate);
-            vHolder.itemTemperature = (TextView) convertView.findViewById(R.id.itemTemperature);
-            vHolder.itemPressure = (TextView) convertView.findViewById(R.id.itemPressure);
-            vHolder.itemHumidity = (TextView) convertView.findViewById(R.id.itemHumidity);
-            vHolder.itemWind = (TextView) convertView.findViewById(R.id.itemWind);
-            vHolder.itemDescription = (TextView) convertView.findViewById(R.id.itemDescription);
             convertView.setTag(vHolder);
         } else {
             vHolder = (ViewHolder) convertView.getTag();
         }
 
+        initConvertView(item, vHolder);
+
+        return convertView;
+    }
+
+    private void initConvertView(ForecastItem item, ViewHolder vHolder) {
+        initDateValue(item, vHolder);
+        initTemperatureValue(item, vHolder);
+        initPressureValue(item, vHolder);
+        initHumidityValue(item, vHolder);
+        initWindValue(item, vHolder);
+        initWeatherValue(item, vHolder);
+        initIconDrawable(item, vHolder);
+    }
+
+    private void initDateValue(ForecastItem item, ViewHolder vHolder) {
         Date date = item.getDt_txt();
         String stringDate = DateFormat.getDateTimeInstance().format(date);
         String day = new SimpleDateFormat("EEE").format(date);
         vHolder.itemDate.setText(day + ' ' + stringDate);
-        vHolder.itemTemperature.setText(item.getMain().getTemp().toString() + " °C");
-        vHolder.itemPressure.setText(item.getMain().getPressure().toString() + " hPa");
-        vHolder.itemHumidity.setText(item.getMain().getHumidity().toString() + " %");
-        vHolder.itemWind.setText(item.getWind().getSpeed().toString() + " m/s");
+    }
 
+    private void initTemperatureValue(ForecastItem item, ViewHolder vHolder) {
+        vHolder.itemTemperature.setText(item.getMain().getTemp().toString() + " °C");
+    }
+
+    private void initPressureValue(ForecastItem item, ViewHolder vHolder) {
+        vHolder.itemPressure.setText(item.getMain().getPressure().toString() + " hPa");
+    }
+
+    private void initHumidityValue(ForecastItem item, ViewHolder vHolder) {
+        vHolder.itemHumidity.setText(item.getMain().getHumidity().toString() + " %");
+    }
+
+    private void initWindValue(ForecastItem item, ViewHolder vHolder) {
+        vHolder.itemWind.setText(item.getWind().getSpeed().toString() + " m/s");
+    }
+
+    private void initIconDrawable(ForecastItem item, ViewHolder vHolder) {
+        String iconName = item.getWeather().get(0).getIcon().toString();
+        Picasso.with(getContext()).load("http://openweathermap.org/img/w/" + iconName + ".png").into(vHolder.forecastIcon);
+    }
+
+    private void initWeatherValue(ForecastItem item, ViewHolder vHolder) {
         if (item.getWeather().size() > 0) {
             String description = item.getWeather().get(0).getDescription().toString();
             vHolder.itemDescription.setText(capitalizeString(description));
@@ -68,10 +94,6 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
             vHolder.itemDescription.setText(R.string.noDescription);
         }
         ;
-        String iconName = item.getWeather().get(0).getIcon().toString();
-        Picasso.with(getContext()).load("http://openweathermap.org/img/w/" + iconName + ".png").into(vHolder.forecastIcon);
-
-        return convertView;
     }
 
     @NonNull
@@ -92,7 +114,13 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
         TextView itemHumidity;
 
         public ViewHolder(View view) {
-            ButterKnife.bind(view);
+            this.forecastIcon = (ImageView) view.findViewById(R.id.forecastIcon);
+            this.itemDate = (TextView) view.findViewById(R.id.itemtDate);
+            this.itemTemperature = (TextView) view.findViewById(R.id.itemTemperature);
+            this.itemPressure = (TextView) view.findViewById(R.id.itemPressure);
+            this.itemHumidity = (TextView) view.findViewById(R.id.itemHumidity);
+            this.itemWind = (TextView) view.findViewById(R.id.itemWind);
+            this.itemDescription = (TextView) view.findViewById(R.id.itemDescription);
         }
     }
 }

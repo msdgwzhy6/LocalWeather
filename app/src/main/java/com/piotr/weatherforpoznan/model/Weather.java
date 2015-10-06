@@ -19,6 +19,17 @@ public class Weather {
     @SerializedName("icon")
     String icon;
 
+    public Weather() {
+        // of our Model subclass
+        super();
+    }
+
+    public Weather(String description, String icon) {
+        super();
+        this.icon = icon;
+        this.description = description;
+    }
+
     public String getDescription() {
         return description;
     }

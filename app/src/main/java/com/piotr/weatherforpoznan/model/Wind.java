@@ -14,6 +14,16 @@ public class Wind {
     @SerializedName("speed")
     Double speed;
 
+    public Wind() {
+
+    }
+
+    public Wind(Double speed) {
+        super();
+        this.speed = speed;
+
+    }
+
     public Double getSpeed() {
         return speed;
     }
