@@ -20,7 +20,6 @@ public class Weather {
     String icon;
 
     public Weather() {
-        // of our Model subclass
         super();
     }
 

@@ -49,6 +49,7 @@ public class MainActivityFragment extends Fragment {
                 mForecastAdapter = new ForecastAdapter(getActivity(),
                         R.layout.list_item_forecast, forecast.getForecastList());
                 listView.setAdapter(mForecastAdapter);
+
             }
 
             @Override

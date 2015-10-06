@@ -1,9 +1,11 @@
 package com.piotr.weatherforpoznan.model;
 
+import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +14,7 @@ import java.util.List;
  */
 
 @Table(name = "ForecastItem")
-public class ForecastItem {
+public class ForecastItem extends Model implements Serializable {
     @Column
     @SerializedName("dt_txt")
     Date dt_txt;
@@ -30,7 +32,7 @@ public class ForecastItem {
     Wind wind;
 
     public ForecastItem() {
-
+        super();
     }
 
     public ForecastItem(Date dt_txt, Main main, List<Weather> weather, Wind wind) {
