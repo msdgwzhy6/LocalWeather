@@ -1,34 +1,26 @@
 package com.piotr.weatherforpoznan.model;
 
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by piotrek on 15-10-01.
  */
+
+@Table(name = "Main")
 public class Main {
+    @Column
     @SerializedName("temp")
     Double temp;
 
-    @SerializedName("temp_min")
-    Double tempMin;
-
-    @SerializedName("temp_max")
-    Double tempMax;
-
+    @Column
     @SerializedName("pressure")
     Double pressure;
 
-    @SerializedName("sea_level")
-    Double seaLevel;
-
-    @SerializedName("grnd_level")
-    Double grndLevel;
-
+    @Column
     @SerializedName("humidity")
     Double humidity;
-
-    @SerializedName("temp_kf")
-    Double tempKf;
 
     public Double getTemp() {
         return temp;
@@ -45,13 +37,8 @@ public class Main {
     public String toString() {
         return "Main{" +
                 "temp=" + temp +
-                ", tempMin=" + tempMin +
-                ", tempMax=" + tempMax +
                 ", pressure=" + pressure +
-                ", seaLevel=" + seaLevel +
-                ", grndLevel=" + grndLevel +
                 ", humidity=" + humidity +
-                ", tempKf=" + tempKf +
                 '}';
     }
 }

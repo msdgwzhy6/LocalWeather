@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -84,19 +83,12 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.forecastIcon)
         ImageView forecastIcon;
-        @Bind(R.id.itemtDate)
         TextView itemDate;
-        @Bind(R.id.itemDescription)
         TextView itemDescription;
-        @Bind(R.id.itemTemperature)
         TextView itemTemperature;
-        @Bind(R.id.itemPressure)
         TextView itemPressure;
-        @Bind(R.id.itemWind)
         TextView itemWind;
-        @Bind(R.id.itemHumidity)
         TextView itemHumidity;
 
         public ViewHolder(View view) {

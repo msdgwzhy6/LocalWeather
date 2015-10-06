@@ -1,11 +1,16 @@
 package com.piotr.weatherforpoznan.model;
 
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by piotrek on 15-10-01.
  */
+
+@Table(name = "Wind")
 public class Wind {
+    @Column
     @SerializedName("speed")
     Double speed;
 
