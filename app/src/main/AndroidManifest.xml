@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
-        android:name=".api.DatabaseInit"
+        android:name=".api.Database"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,7 +22,7 @@
         <!-- Notice this tag which provides the database version -->
         <meta-data
             android:name="AA_DB_NAME"
-            android:value="ForecastItem.db" />
+            android:value="Database.db" />
 
     </application>
 

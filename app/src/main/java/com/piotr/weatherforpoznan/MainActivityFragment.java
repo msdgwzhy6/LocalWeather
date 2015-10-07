@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.activeandroid.ActiveAndroid;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.piotr.weatherforpoznan.api.ForecastAdapter;
 import com.piotr.weatherforpoznan.api.WeatherService;
 import com.piotr.weatherforpoznan.model.Forecast;
+import com.piotr.weatherforpoznan.model.ForecastItem;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -22,8 +24,8 @@ import retrofit.converter.GsonConverter;
 
 public class MainActivityFragment extends Fragment {
 
+    protected ForecastItem forecastItem;
     ForecastAdapter mForecastAdapter;
-
     private ListView listView;
 
     public MainActivityFragment() {
@@ -50,6 +52,14 @@ public class MainActivityFragment extends Fragment {
                         R.layout.list_item_forecast, forecast.getForecastList());
                 listView.setAdapter(mForecastAdapter);
 
+                int i = 0;
+                ActiveAndroid.beginTransaction();
+                while (i < forecast.getForecastList().size()) {
+                    forecast.getForecastList().get(i).save();
+                    i++;
+                }
+
+                //    Log.d("DATABASE", new Database().getRandom(forecastItem).toString());
             }
 
             @Override
@@ -61,6 +71,7 @@ public class MainActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         listView = (ListView) rootView.findViewById(R.id.listview_forecast);
         return rootView;
+
     }
 }
 

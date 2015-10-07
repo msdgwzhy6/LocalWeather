@@ -11,6 +11,8 @@ android:
     - addon-google_apis-google-21
 
 before_install:
+ - android list sdk -a
+ - android update sdk -u -a
  - chmod +x gradlew
 
 after_success:
