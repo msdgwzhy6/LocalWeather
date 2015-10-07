@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.piotr.weatherforpoznan" >
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".api.Database"
@@ -15,6 +15,7 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -23,7 +24,17 @@
         <meta-data
             android:name="AA_DB_NAME"
             android:value="Database.db" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.piotr.weatherforpoznan.DetailsActivity" />
 
+        <activity
+            android:name=".DetailsActivity"
+            android:label="@string/title_activity_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="a9c7e38bb2356fc4872464570cc2154518830002" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-# WeatherforPoznan  [![Build Status](https://travis-ci.org/piotrek1543/WeatherforPoznan.svg?branch=master)](https://travis-ci.org/piotrek1543/WeatherforPoznan)
+# WeatherforPoznan 
 
 Practice app to learn retrofit, gson, AndroidAnnotations and ActiveAndroid
  

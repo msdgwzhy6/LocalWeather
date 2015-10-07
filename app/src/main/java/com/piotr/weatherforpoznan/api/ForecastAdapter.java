@@ -52,10 +52,6 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
         initDateValue(item, vHolder);
         initTemperatureMaxValue(item, vHolder);
         initTemperatureMinValue(item, vHolder);
-        //initTemperatureValue(item, vHolder);
-        //initPressureValue(item, vHolder);
-        //initHumidityValue(item, vHolder);
-        //initWindValue(item, vHolder);
         initWeatherValue(item, vHolder);
         initIconDrawable(item, vHolder);
     }
@@ -129,12 +125,8 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
         public ViewHolder(View view) {
             this.forecastIcon = (ImageView) view.findViewById(R.id.forecastIcon);
             this.itemDate = (TextView) view.findViewById(R.id.itemtDate);
-            this.itemTemperature = (TextView) view.findViewById(R.id.itemTemperature);
             this.itemTemperatureMin = (TextView) view.findViewById(R.id.itemTemperatureMin);
             this.itemTemperatureMax = (TextView) view.findViewById(R.id.itemTemperatureMax);
-            this.itemPressure = (TextView) view.findViewById(R.id.itemPressure);
-            this.itemHumidity = (TextView) view.findViewById(R.id.itemHumidity);
-            this.itemWind = (TextView) view.findViewById(R.id.itemWind);
             this.itemDescription = (TextView) view.findViewById(R.id.itemDescription);
         }
     }
