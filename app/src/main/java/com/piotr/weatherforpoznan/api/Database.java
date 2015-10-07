@@ -3,7 +3,10 @@ package com.piotr.weatherforpoznan.api;
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.app.Application;
 import com.activeandroid.query.Select;
+import com.crashlytics.android.Crashlytics;
 import com.piotr.weatherforpoznan.model.ForecastItem;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by Piotr on 06.10.2015.
@@ -21,6 +24,7 @@ public class Database extends Application {
     public void onCreate() {
         // TODO Auto-generated method stub
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         //Notice this initialization code here
         ActiveAndroid.initialize(this);

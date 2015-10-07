@@ -8,10 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.crashlytics.android.Crashlytics;
+import com.piotr.weatherforpoznan.api.DetailAdapter;
+import com.piotr.weatherforpoznan.model.ForecastItem;
 
 import io.fabric.sdk.android.Fabric;
 
 public class DetailsActivity extends AppCompatActivity {
+
+    protected ForecastItem forecastItem;
+    DetailAdapter mForecastAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
