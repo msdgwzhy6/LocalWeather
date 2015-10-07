@@ -18,6 +18,14 @@ public class Main extends Model implements Serializable {
     Double temp;
 
     @Column
+    @SerializedName("temp_min")
+    Double temp_min;
+
+    @Column
+    @SerializedName("temp_max")
+    Double temp_max;
+
+    @Column
     @SerializedName("pressure")
     Double pressure;
 
@@ -32,8 +40,18 @@ public class Main extends Model implements Serializable {
     public Main(Double temp, Double pressure, Double humidity) {
         super();
         this.temp = temp;
+        this.temp_max = temp_max;
+        this.temp_min = temp_min;
         this.pressure = pressure;
         this.humidity = humidity;
+    }
+
+    public Double getTempMax() {
+        return temp_max;
+    }
+
+    public Double getTempMin() {
+        return temp_min;
     }
 
     public Double getTemp() {
@@ -52,6 +70,8 @@ public class Main extends Model implements Serializable {
     public String toString() {
         return "Main{" +
                 "temp=" + temp +
+                ", temp_max=" + temp_max +
+                ", temp_min=" + temp_min +
                 ", pressure=" + pressure +
                 ", humidity=" + humidity +
                 '}';

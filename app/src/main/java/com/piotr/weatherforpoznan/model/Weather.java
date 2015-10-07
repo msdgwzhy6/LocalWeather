@@ -12,36 +12,35 @@ import com.google.gson.annotations.SerializedName;
 public class Weather {
 
     @Column
+    @SerializedName("id")
+    Integer id;
+    @Column
     @SerializedName("description")
     String description;
-
-    @Column
-    @SerializedName("icon")
-    String icon;
 
     public Weather() {
         super();
     }
 
-    public Weather(String description, String icon) {
+    public Weather(Integer id, String description, String icon) {
         super();
-        this.icon = icon;
+        this.id = id;
         this.description = description;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public String getIcon() {
-        return icon;
-    }
-
     @Override
     public String toString() {
         return "Weather{" +
+                "id='" + id + '\'' +
                 ", description='" + description + '\'' +
-                ", icon='" + icon + '\'' +
                 '}';
     }
 }

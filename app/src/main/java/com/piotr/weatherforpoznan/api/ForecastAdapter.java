@@ -50,10 +50,12 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
     private void initConvertView(ForecastItem item, ViewHolder vHolder) {
         initDateValue(item, vHolder);
-        initTemperatureValue(item, vHolder);
-        initPressureValue(item, vHolder);
-        initHumidityValue(item, vHolder);
-        initWindValue(item, vHolder);
+        initTemperatureMaxValue(item, vHolder);
+        initTemperatureMinValue(item, vHolder);
+        //initTemperatureValue(item, vHolder);
+        //initPressureValue(item, vHolder);
+        //initHumidityValue(item, vHolder);
+        //initWindValue(item, vHolder);
         initWeatherValue(item, vHolder);
         initIconDrawable(item, vHolder);
     }
@@ -66,7 +68,15 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
     }
 
     private void initTemperatureValue(ForecastItem item, ViewHolder vHolder) {
-        vHolder.itemTemperature.setText(item.getMain().getTemp().toString() + " °C");
+        vHolder.itemTemperature.setText(Math.round(item.getMain().getTemp()) + " °C");
+    }
+
+    private void initTemperatureMaxValue(ForecastItem item, ViewHolder vHolder) {
+        vHolder.itemTemperatureMax.setText(Math.round(item.getMain().getTempMax()) + " °C");
+    }
+
+    private void initTemperatureMinValue(ForecastItem item, ViewHolder vHolder) {
+        vHolder.itemTemperatureMin.setText(Math.round(item.getMain().getTempMin()) + " °C");
     }
 
     private void initPressureValue(ForecastItem item, ViewHolder vHolder) {
@@ -82,8 +92,9 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
     }
 
     private void initIconDrawable(ForecastItem item, ViewHolder vHolder) {
-        String iconName = item.getWeather().get(0).getIcon().toString();
-        Picasso.with(getContext()).load("http://openweathermap.org/img/w/" + iconName + ".png").into(vHolder.forecastIcon);
+        int iconName = item.getWeather().get(0).getId();
+        int icon = Utility.getIconResourceForWeatherCondition(iconName);
+        Picasso.with(getContext()).load(icon).into(vHolder.forecastIcon);
     }
 
     private void initWeatherValue(ForecastItem item, ViewHolder vHolder) {
@@ -109,6 +120,8 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
         TextView itemDate;
         TextView itemDescription;
         TextView itemTemperature;
+        TextView itemTemperatureMin;
+        TextView itemTemperatureMax;
         TextView itemPressure;
         TextView itemWind;
         TextView itemHumidity;
@@ -117,6 +130,8 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
             this.forecastIcon = (ImageView) view.findViewById(R.id.forecastIcon);
             this.itemDate = (TextView) view.findViewById(R.id.itemtDate);
             this.itemTemperature = (TextView) view.findViewById(R.id.itemTemperature);
+            this.itemTemperatureMin = (TextView) view.findViewById(R.id.itemTemperatureMin);
+            this.itemTemperatureMax = (TextView) view.findViewById(R.id.itemTemperatureMax);
             this.itemPressure = (TextView) view.findViewById(R.id.itemPressure);
             this.itemHumidity = (TextView) view.findViewById(R.id.itemHumidity);
             this.itemWind = (TextView) view.findViewById(R.id.itemWind);

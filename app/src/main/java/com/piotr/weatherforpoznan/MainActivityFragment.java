@@ -53,10 +53,18 @@ public class MainActivityFragment extends Fragment {
                 listView.setAdapter(mForecastAdapter);
 
                 int i = 0;
+                // ActiveAndroid.beginTransaction();
+
+
                 ActiveAndroid.beginTransaction();
-                while (i < forecast.getForecastList().size()) {
-                    forecast.getForecastList().get(i).save();
-                    i++;
+                try {
+                    while (i < forecast.getForecastList().size()) {
+                        forecast.getForecastList().get(i).save();
+                        i++;
+                    }
+                    ActiveAndroid.setTransactionSuccessful();
+                } finally {
+                    ActiveAndroid.endTransaction();
                 }
 
                 //    Log.d("DATABASE", new Database().getRandom(forecastItem).toString());
