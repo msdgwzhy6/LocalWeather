@@ -19,7 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!-- Notice this tag which provides the database version -->
         <meta-data
             android:name="AA_DB_NAME"

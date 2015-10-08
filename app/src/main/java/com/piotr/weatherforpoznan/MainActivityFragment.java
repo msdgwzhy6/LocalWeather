@@ -14,7 +14,6 @@ import com.google.gson.GsonBuilder;
 import com.piotr.weatherforpoznan.api.ForecastAdapter;
 import com.piotr.weatherforpoznan.api.WeatherService;
 import com.piotr.weatherforpoznan.model.Forecast;
-import com.piotr.weatherforpoznan.model.ForecastItem;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -24,7 +23,6 @@ import retrofit.converter.GsonConverter;
 
 public class MainActivityFragment extends Fragment {
 
-    protected ForecastItem forecastItem;
     ForecastAdapter mForecastAdapter;
     private ListView listView;
 
@@ -53,9 +51,6 @@ public class MainActivityFragment extends Fragment {
                 listView.setAdapter(mForecastAdapter);
 
                 int i = 0;
-                // ActiveAndroid.beginTransaction();
-
-
                 ActiveAndroid.beginTransaction();
                 try {
                     while (i < forecast.getForecastList().size()) {

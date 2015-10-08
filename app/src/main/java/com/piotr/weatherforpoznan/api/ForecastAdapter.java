@@ -26,7 +26,6 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
     public ForecastAdapter(Context context, int resource, List<ForecastItem> objects) {
         super(context, resource, objects);
-
     }
 
     @Override
@@ -63,28 +62,12 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
         vHolder.itemDate.setText(day + ' ' + stringDate);
     }
 
-    private void initTemperatureValue(ForecastItem item, ViewHolder vHolder) {
-        vHolder.itemTemperature.setText(Math.round(item.getMain().getTemp()) + " °C");
-    }
-
     private void initTemperatureMaxValue(ForecastItem item, ViewHolder vHolder) {
         vHolder.itemTemperatureMax.setText(Math.round(item.getMain().getTempMax()) + " °C");
     }
 
     private void initTemperatureMinValue(ForecastItem item, ViewHolder vHolder) {
         vHolder.itemTemperatureMin.setText(Math.round(item.getMain().getTempMin()) + " °C");
-    }
-
-    private void initPressureValue(ForecastItem item, ViewHolder vHolder) {
-        vHolder.itemPressure.setText(item.getMain().getPressure().toString() + " hPa");
-    }
-
-    private void initHumidityValue(ForecastItem item, ViewHolder vHolder) {
-        vHolder.itemHumidity.setText(item.getMain().getHumidity().toString() + " %");
-    }
-
-    private void initWindValue(ForecastItem item, ViewHolder vHolder) {
-        vHolder.itemWind.setText(item.getWind().getSpeed().toString() + " m/s");
     }
 
     private void initIconDrawable(ForecastItem item, ViewHolder vHolder) {
@@ -115,12 +98,8 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
         ImageView forecastIcon;
         TextView itemDate;
         TextView itemDescription;
-        TextView itemTemperature;
         TextView itemTemperatureMin;
         TextView itemTemperatureMax;
-        TextView itemPressure;
-        TextView itemWind;
-        TextView itemHumidity;
 
         public ViewHolder(View view) {
             this.forecastIcon = (ImageView) view.findViewById(R.id.forecastIcon);
