@@ -88,7 +88,7 @@ public class DetailAdapter extends ArrayAdapter<ForecastItem> {
     }
 
     private void initIconDrawable(ForecastItem item, ViewHolder vHolder) {
-        int iconName = item.getWeather().get(0).getId();
+        int iconName = item.getWeather().get(0).getWeatherId();
         int icon = Utility.getIconResourceForWeatherCondition(iconName);
         Picasso.with(getContext()).load(icon).into(vHolder.forecastIcon);
     }

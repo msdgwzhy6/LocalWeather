@@ -1,19 +1,22 @@
 package com.piotr.weatherforpoznan.model;
 
+import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 
 /**
  * Created by piotrek on 15-10-01.
  */
 
 @Table(name = "Weather")
-public class Weather {
+public class Weather extends Model implements Serializable {
 
     @Column
     @SerializedName("id")
-    Integer id;
+    Integer weatherId;
     @Column
     @SerializedName("description")
     String description;
@@ -24,12 +27,12 @@ public class Weather {
 
     public Weather(Integer id, String description, String icon) {
         super();
-        this.id = id;
+        this.weatherId = id;
         this.description = description;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getWeatherId() {
+        return weatherId;
     }
 
     public String getDescription() {
@@ -39,7 +42,7 @@ public class Weather {
     @Override
     public String toString() {
         return "Weather{" +
-                "id='" + id + '\'' +
+                "id='" + weatherId + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

@@ -1,10 +1,13 @@
-package com.piotr.weatherforpoznan.api;
+package com.piotr.weatherforpoznan;
 
 import com.activeandroid.ActiveAndroid;
+import com.activeandroid.Model;
 import com.activeandroid.app.Application;
 import com.activeandroid.query.Select;
 import com.crashlytics.android.Crashlytics;
 import com.piotr.weatherforpoznan.model.ForecastItem;
+
+import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -18,6 +21,10 @@ public class Database extends Application {
                 .where("dt_txt = ?", forecastItem.getId())
                 .orderBy("RANDOM()")
                 .executeSingle();
+    }
+
+    public static List<Model> getObjectsList() {
+        return new Select().from(ForecastItem.class).execute();
     }
 
     @Override

@@ -2,10 +2,10 @@ package com.piotr.weatherforpoznan.model;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Column.ForeignKeyAction;
 import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -14,20 +14,20 @@ import java.util.List;
  */
 
 @Table(name = "ForecastItem")
-public class ForecastItem extends Model implements Serializable {
-    @Column
+public class ForecastItem extends Model {
+    @Column(name = "dt_txt", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     @SerializedName("dt_txt")
     Date dt_txt;
 
-    @Column
+    @Column(name = "main", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
     @SerializedName("main")
     Main main;
 
-    @Column
+    @Column(name = "weather", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
     @SerializedName("weather")
     List<Weather> weather;
 
-    @Column
+    @Column(name = "wind", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
     @SerializedName("wind")
     Wind wind;
 
@@ -42,6 +42,10 @@ public class ForecastItem extends Model implements Serializable {
         this.weather = weather;
         this.wind = wind;
 
+    }
+
+    public List<ForecastItem> items() {
+        return getMany(ForecastItem.class, "Main");
     }
 
     public Date getDt_txt() {
