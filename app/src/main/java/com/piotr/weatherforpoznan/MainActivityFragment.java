@@ -1,5 +1,6 @@
 package com.piotr.weatherforpoznan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.activeandroid.ActiveAndroid;
@@ -32,7 +34,6 @@ public class MainActivityFragment extends Fragment {
     WeatherService weatherAPI;
     private ListView listView;
 
-
     public MainActivityFragment() {
     }
 
@@ -42,6 +43,17 @@ public class MainActivityFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         listView = (ListView) rootView.findViewById(R.id.listview_forecast);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                long forecastItemId = mForecastAdapter.getItem(position).getId();
+                Intent intent = new Intent(getContext(), DetailsActivity.class);
+                intent.putExtra("id", forecastItemId);
+                startActivity(intent);
+
+
+            }
+        });
         mySwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swiperefresh);
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
@@ -83,13 +95,7 @@ public class MainActivityFragment extends Fragment {
                 try {
                     while (i < forecast.getForecastList().size()) {
 
-                        forecast.getForecastList().get(i).getMain().save();
-                        for (int k = 0; k < forecast.getForecastList().get(k).getWeather().size(); k++) {
-                            forecast.getForecastList().get(i).getWeather().get(k).save();
-                        }
-                        forecast.getForecastList().get(i).getWind().save();
-                        forecast.getForecastList().get(i).save();
-                        //TODO: Make forecast.getForecastList().get(i).save(saveWind, saveMain, saveWeather);
+                        forecast.getForecastList().get(i).saveItemToDatabase();
                         i++;
                     }
                     ActiveAndroid.setTransactionSuccessful();

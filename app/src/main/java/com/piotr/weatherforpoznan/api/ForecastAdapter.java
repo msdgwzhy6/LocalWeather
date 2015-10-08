@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.piotr.weatherforpoznan.R;
+import com.piotr.weatherforpoznan.Utility;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.squareup.picasso.Picasso;
 
@@ -30,7 +31,6 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         ForecastItem item = getItem(position);
         ViewHolder vHolder = null;
 

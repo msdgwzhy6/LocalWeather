@@ -44,8 +44,14 @@ public class ForecastItem extends Model {
 
     }
 
-    public List<ForecastItem> items() {
-        return getMany(ForecastItem.class, "Main");
+    public Long saveItemToDatabase() {
+        getMain().save();
+
+        for (int k = 0; k < getWeather().size(); k++) {
+            getWeather().get(k).save();
+        }
+        getWind().save();
+        return save();
     }
 
     public Date getDt_txt() {

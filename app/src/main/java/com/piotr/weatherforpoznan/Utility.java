@@ -1,10 +1,8 @@
-package com.piotr.weatherforpoznan.api;
+package com.piotr.weatherforpoznan;
 
 /**
  * Created by piotr on 23.08.15.
  */
-
-import com.piotr.weatherforpoznan.R;
 
 public class Utility {
     // Format used for storing dates in the database.  ALso used for converting those strings
