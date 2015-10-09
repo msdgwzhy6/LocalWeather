@@ -18,6 +18,7 @@ import com.google.gson.GsonBuilder;
 import com.piotr.weatherforpoznan.api.ForecastAdapter;
 import com.piotr.weatherforpoznan.api.WeatherService;
 import com.piotr.weatherforpoznan.model.Forecast;
+import com.piotr.weatherforpoznan.utils.Database;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -102,6 +103,7 @@ public class MainActivityFragment extends Fragment {
                 } finally {
                     ActiveAndroid.endTransaction();
                 }
+
                 Log.d("Database", "Forecast: " + forecast.getForecastList());
                 Log.d("DATABASE", "Database: " + Database.getObjectsList());
             }

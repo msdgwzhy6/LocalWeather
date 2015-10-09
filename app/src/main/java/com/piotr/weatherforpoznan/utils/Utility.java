@@ -1,4 +1,6 @@
-package com.piotr.weatherforpoznan;
+package com.piotr.weatherforpoznan.utils;
+
+import com.piotr.weatherforpoznan.R;
 
 /**
  * Created by piotr on 23.08.15.

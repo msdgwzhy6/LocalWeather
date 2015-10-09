@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.piotr.weatherforpoznan.R;
-import com.piotr.weatherforpoznan.Utility;
 import com.piotr.weatherforpoznan.model.ForecastItem;
+import com.piotr.weatherforpoznan.utils.Utility;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;

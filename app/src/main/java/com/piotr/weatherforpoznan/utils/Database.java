@@ -1,4 +1,4 @@
-package com.piotr.weatherforpoznan;
+package com.piotr.weatherforpoznan.utils;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Model;

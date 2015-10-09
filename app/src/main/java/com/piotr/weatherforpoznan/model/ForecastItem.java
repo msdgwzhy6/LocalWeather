@@ -39,17 +39,16 @@ public class ForecastItem extends Model {
         super();
         this.dt_txt = dt_txt;
         this.main = main;
-        this.weather = weather;
         this.wind = wind;
-
     }
+
 
     public Long saveItemToDatabase() {
         getMain().save();
-
         for (int k = 0; k < getWeather().size(); k++) {
             getWeather().get(k).save();
         }
+
         getWind().save();
         return save();
     }
@@ -69,6 +68,7 @@ public class ForecastItem extends Model {
     public Wind getWind() {
         return wind;
     }
+
 
     @Override
     public String toString() {
