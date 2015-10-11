@@ -62,14 +62,12 @@ public class DetailsActivity extends AppCompatActivity {
         detailDate.setText("");
         highTemperature.setText("" + Math.round(item.getMain().getTempMax()) + " °C");
         lowTemperature.setText("" + Math.round(item.getMain().getTempMin()) + " °C");
-
-        //int iconName = item.getWeather().get(0).getWeatherId();
-        //int iconDrawable = Utility.getArtResourceForWeatherCondition(iconName);
-        //Picasso.with(getApplicationContext()).load(iconDrawable).into(icon);
-        //forecast.setText(""+item.getWeather().get(0).getDescription());
         humidity.setText("Humidity: " + Math.round(item.getMain().getHumidity()) + " %");
         pressure.setText("Pressure: " + Math.round(item.getMain().getPressure()) + " hPa");
         wind.setText("Wind: " + Math.round(item.getWind().getSpeed()) + " km/h");
+
+        //TODO: Fix problems with loading icon and description from database
+        //FIXME: Change format of date
     }
 
     private void setDetailsActionBar(Toolbar toolbar) {

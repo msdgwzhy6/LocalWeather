@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            Intent others = new Intent(this, DetailsActivity.class);
+            Intent others = new Intent(this, SettingsActivity.class);
             startActivity(others);
         }
         return super.onOptionsItemSelected(item);

@@ -16,4 +16,5 @@
     <string name="defaultTemperatureMax">14°C</string>
     <string name="defaultTemperatureMin">12°C</string>
     <string name="title_activity_details">DetailsActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 </resources>

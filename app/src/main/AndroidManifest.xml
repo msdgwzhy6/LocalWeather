@@ -31,16 +31,24 @@
         <activity
             android:name=".DetailsActivity"
             android:label="@string/title_activity_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a9c7e38bb2356fc4872464570cc2154518830002" />
-
-
         <meta-data
             android:name="AA_SERIALIZERS"
             android:value="com.piotr.weatherforpoznan.utils.UtilWeatherSerializer" />
 
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity_"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.piotr.weatherforpoznan.MainActivity_" />
+        </activity>
     </application>
 
 </manifest>
