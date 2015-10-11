@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.activeandroid.query.Select;
 import com.crashlytics.android.Crashlytics;
 import com.piotr.weatherforpoznan.model.ForecastItem;
+import com.piotr.weatherforpoznan.utils.Utility;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -58,16 +59,16 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
         ForecastItem item = new Select().from(ForecastItem.class).where("Id = ?", itemId).executeSingle();
-        detailDay.setText("" + item.getDt_txt());
-        detailDate.setText("");
+        detailDay.setText(Utility.getDayName(getApplicationContext(), item.getDt_txt().getTime()));
+        detailDate.setText("" + item.getDt_txt());
         highTemperature.setText("" + Math.round(item.getMain().getTempMax()) + " °C");
         lowTemperature.setText("" + Math.round(item.getMain().getTempMin()) + " °C");
         humidity.setText("Humidity: " + Math.round(item.getMain().getHumidity()) + " %");
         pressure.setText("Pressure: " + Math.round(item.getMain().getPressure()) + " hPa");
-        wind.setText("Wind: " + Math.round(item.getWind().getSpeed()) + " km/h");
+        wind.setText("Wind: " + Math.round(item.getWind().getSpeed()) + " km/h \t" + Utility.getFormattedWind(item.getWind().getDeg()));
 
         //TODO: Fix problems with loading icon and description from database
-        //FIXME: Change format of date
+        //FIXME: Change format of date and metrics
     }
 
     private void setDetailsActionBar(Toolbar toolbar) {

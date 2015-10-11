@@ -29,8 +29,8 @@ import retrofit.converter.GsonConverter;
 
 public class MainActivityFragment extends Fragment {
 
-
     private static final String API_ID = "f1570c3640caf0e5f96358d802933e40";
+
     SwipeRefreshLayout mySwipeRefreshLayout;
     ForecastAdapter mForecastAdapter;
     WeatherService weatherAPI;
@@ -74,6 +74,7 @@ public class MainActivityFragment extends Fragment {
 
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint("http://api.openweathermap.org")
+                .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setConverter(new GsonConverter(gson))
                 .build();
         weatherAPI = restAdapter.create(WeatherService.class);

@@ -17,13 +17,18 @@ public class Wind extends Model implements Serializable {
     @SerializedName("speed")
     Double speed;
 
+    @Column
+    @SerializedName("deg")
+    float deg;
+
     public Wind() {
         super();
     }
 
-    public Wind(Double speed) {
+    public Wind(Double speed, float deg) {
         super();
         this.speed = speed;
+        this.deg = deg;
 
     }
 
@@ -31,10 +36,15 @@ public class Wind extends Model implements Serializable {
         return speed;
     }
 
+    public float getDeg() {
+        return deg;
+    }
+
     @Override
     public String toString() {
         return "Wind{" +
                 "speed=" + speed +
+                "deg" + deg +
                 '}';
     }
 }

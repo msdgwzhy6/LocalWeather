@@ -17,4 +17,6 @@
     <string name="defaultTemperatureMin">12°C</string>
     <string name="title_activity_details">DetailsActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
 </resources>
