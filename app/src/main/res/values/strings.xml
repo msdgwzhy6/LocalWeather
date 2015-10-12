@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">WeatherForPoznan</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Weather for Poznan</string>
+    <string name="hello_world">Hello world!</string>
     <string name="defaultTemperature">16°C</string>
     <string name="defaultPressure">1000 hPa</string>
     <string name="defaultWind">2.88 km/h</string>
@@ -15,8 +15,9 @@
     <string name="noDescription">Description is not available</string>
     <string name="defaultTemperatureMax">14°C</string>
     <string name="defaultTemperatureMin">12°C</string>
-    <string name="title_activity_details">DetailsActivity</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_details">Details</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="function_not_available">This function is not available.</string>
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
 </resources>

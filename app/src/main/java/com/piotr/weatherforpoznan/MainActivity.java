@@ -3,7 +3,6 @@ package com.piotr.weatherforpoznan;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,17 +24,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
-        getSupportActionBar().setTitle("Weather for Poznan");
-        getSupportActionBar().setSubtitle("Hello world!");
+        setMainActivityActionBar();
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new MainActivityFragment())
                     .commit();
     }
+    }
+
+    private void setMainActivityActionBar() {
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+        getSupportActionBar().setTitle(R.string.app_name);
+        getSupportActionBar().setSubtitle(R.string.hello_world);
     }
 
     @Override

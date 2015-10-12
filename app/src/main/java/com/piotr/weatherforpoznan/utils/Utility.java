@@ -1,6 +1,7 @@
 package com.piotr.weatherforpoznan.utils;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.format.Time;
 
 import com.piotr.weatherforpoznan.R;
@@ -115,5 +116,13 @@ public class Utility {
             return R.drawable.art_clouds;
         }
         return -1;
+    }
+
+    @NonNull
+    public static String capitalizeString(String description) {
+        StringBuilder descriptionSb = new StringBuilder(description);
+        descriptionSb.setCharAt(0, Character.toUpperCase(descriptionSb.charAt(0)));
+        description = descriptionSb.toString();
+        return description;
     }
 }

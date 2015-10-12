@@ -17,10 +17,10 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Fabric.with(this, new Crashlytics());
-        setDetailsActionBar(toolbar);
+        setSettingsActionBar(toolbar);
     }
 
-    private void setDetailsActionBar(Toolbar toolbar) {
+    private void setSettingsActionBar(Toolbar toolbar) {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -30,6 +30,6 @@ public class SettingsActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        getSupportActionBar().setTitle("Settings");
+        getSupportActionBar().setTitle(R.string.title_activity_settings);
     }
 }

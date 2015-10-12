@@ -1,7 +1,6 @@
 package com.piotr.weatherforpoznan.api;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
 
 /**
  * Created by piotr on 02.10.15.
@@ -84,14 +85,6 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
             vHolder.itemDescription.setText(R.string.noDescription);
         }
         ;
-    }
-
-    @NonNull
-    private String capitalizeString(String description) {
-        StringBuilder descriptionSb = new StringBuilder(description);
-        descriptionSb.setCharAt(0, Character.toUpperCase(descriptionSb.charAt(0)));
-        description = descriptionSb.toString();
-        return description;
     }
 
     static class ViewHolder {

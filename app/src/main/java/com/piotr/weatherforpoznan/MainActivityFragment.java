@@ -53,7 +53,6 @@ public class MainActivityFragment extends Fragment {
                 intent.putExtra("id", forecastItemId);
                 startActivity(intent);
 
-
             }
         });
         mySwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swiperefresh);
@@ -72,8 +71,9 @@ public class MainActivityFragment extends Fragment {
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
 
+        final String API_ENDPOINT = "http://api.openweathermap.org";
         RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint("http://api.openweathermap.org")
+                .setEndpoint(API_ENDPOINT)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setConverter(new GsonConverter(gson))
                 .build();
