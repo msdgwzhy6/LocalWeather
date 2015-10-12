@@ -27,6 +27,11 @@ public class ForecastItem extends Model {
     @SerializedName("weather")
     List<Weather> weather;
 
+    @Column(name = "weatherData", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
+    Weather weatherData;
+
+
+
     @Column(name = "wind", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
     @SerializedName("wind")
     Wind wind;
@@ -49,8 +54,17 @@ public class ForecastItem extends Model {
             getWeather().get(k).save();
         }
 
+        if (getWeather() != null && getWeather().size() >= 1) {
+            weatherData = getWeather().get(0);
+            weatherData.save();
+        }
+
         getWind().save();
         return save();
+    }
+
+    public Weather getWeatherData() {
+        return weatherData;
     }
 
     public Date getDt_txt() {
@@ -69,13 +83,13 @@ public class ForecastItem extends Model {
         return wind;
     }
 
-
     @Override
     public String toString() {
         return "ForecastItem{" +
-                "dt_txt='" + dt_txt + '\'' +
+                "dt_txt=" + dt_txt +
                 ", main=" + main +
                 ", weather=" + weather +
+                ", weatherData=" + weatherData +
                 ", wind=" + wind +
                 '}';
     }

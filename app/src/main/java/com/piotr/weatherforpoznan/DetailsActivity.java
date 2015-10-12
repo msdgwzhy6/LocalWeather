@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,12 +13,14 @@ import android.widget.TextView;
 import com.activeandroid.query.Select;
 import com.crashlytics.android.Crashlytics;
 import com.piotr.weatherforpoznan.model.ForecastItem;
-import com.piotr.weatherforpoznan.utils.Utility;
+import com.squareup.picasso.Picasso;
 
 import io.fabric.sdk.android.Fabric;
 
 import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
+import static com.piotr.weatherforpoznan.utils.Utility.getArtResourceForWeatherCondition;
 import static com.piotr.weatherforpoznan.utils.Utility.getDayName;
+import static com.piotr.weatherforpoznan.utils.Utility.getFormattedWind;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -29,7 +32,7 @@ public class DetailsActivity extends AppCompatActivity {
     TextView humidity;
     TextView pressure;
     TextView wind;
-    ImageView icon;
+    ImageView forecast_icon;
 
     String dayName;
     String date;
@@ -39,6 +42,8 @@ public class DetailsActivity extends AppCompatActivity {
     String pressureValue;
     String windSpeed;
     String windDeg;
+    String description;
+    int icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,7 @@ public class DetailsActivity extends AppCompatActivity {
         detailDate = (TextView) findViewById(R.id.detail_date_textview);
         highTemperature = (TextView) findViewById(R.id.detail_high_textview);
         lowTemperature = (TextView) findViewById(R.id.detail_low_textview);
-        icon = (ImageView) findViewById(R.id.detail_icon);
+        forecast_icon = (ImageView) findViewById(R.id.detail_icon);
         forecast = (TextView) findViewById(R.id.detail_forecast_textview);
         humidity = (TextView) findViewById(R.id.detail_humidity_textview);
         pressure = (TextView) findViewById(R.id.detail_pressure_textview);
@@ -71,6 +76,7 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
         ForecastItem item = new Select().from(ForecastItem.class).where("Id = ?", itemId).executeSingle();
+        Log.d("DetailsActivity", item.toString());
         getDetailActivityViewsValues(item);
         setDetailActivityViewsValues();
 
@@ -86,6 +92,8 @@ public class DetailsActivity extends AppCompatActivity {
         this.humidity.setText("Humidity: " + humidityValue);
         this.pressure.setText("Pressure: " + pressureValue);
         wind.setText("Wind: " + windSpeed + " \t" + windDeg);
+        Picasso.with(getApplicationContext()).load(icon).into(forecast_icon);
+        forecast.setText(capitalizeString(description));
     }
 
     private void getDetailActivityViewsValues(ForecastItem item) {
@@ -96,7 +104,9 @@ public class DetailsActivity extends AppCompatActivity {
         humidityValue = Math.round(item.getMain().getHumidity()) + " %";
         pressureValue = Math.round(item.getMain().getPressure()) + " hPa";
         windSpeed = Math.round(item.getWind().getSpeed()) + " km/h";
-        windDeg = Utility.getFormattedWind(item.getWind().getDeg());
+        windDeg = getFormattedWind(item.getWind().getDeg());
+        icon = getArtResourceForWeatherCondition(item.getWeatherData().getWeatherId());
+        description = item.getWeatherData().getDescription();
     }
 
     private void setDetailsActionBar(Toolbar toolbar) {

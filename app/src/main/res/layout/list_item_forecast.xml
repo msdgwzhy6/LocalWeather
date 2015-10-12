@@ -5,25 +5,25 @@
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal">
 
-
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/forecastItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:orientation="horizontal">
         <ImageView
             android:id="@+id/forecastIcon"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:padding="5dp"
             android:src="@mipmap/ic_launcher" />
         </LinearLayout>
@@ -32,7 +32,7 @@
             android:id="@+id/itemTable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_centerHorizontal="true"
             android:orientation="vertical">
 
             <TextView
@@ -50,6 +50,7 @@
                     android:id="@+id/itemDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="left"
                     android:padding="5dp"
                     android:text="@string/defaultDescription"
                     android:textSize="@dimen/abc_text_size_small_material" />
@@ -58,9 +59,10 @@
         <LinearLayout
             android:id="@+id/temperature"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right|center_horizontal"
             android:orientation="vertical">
 
             <TextView
@@ -87,5 +89,5 @@
                 android:text="@string/defaultTemperatureMin"
                 android:textSize="@dimen/abc_text_size_small_material" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

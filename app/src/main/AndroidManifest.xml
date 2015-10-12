@@ -36,9 +36,6 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a9c7e38bb2356fc4872464570cc2154518830002" />
-        <meta-data
-            android:name="AA_SERIALIZERS"
-            android:value="com.piotr.weatherforpoznan.utils.UtilWeatherSerializer" />
 
         <activity
             android:name=".SettingsActivity"
