@@ -1,6 +1,5 @@
 package com.piotr.weatherforpoznan;
 
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,27 +10,46 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
-import com.crashlytics.android.Crashlytics;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.squareup.picasso.Picasso;
 
-import io.fabric.sdk.android.Fabric;
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
 
 import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
 import static com.piotr.weatherforpoznan.utils.Utility.getArtResourceForWeatherCondition;
 import static com.piotr.weatherforpoznan.utils.Utility.getDayName;
 import static com.piotr.weatherforpoznan.utils.Utility.getFormattedWind;
 
+@EActivity(R.layout.activity_details)
 public class DetailsActivity extends AppCompatActivity {
 
+    @ViewById
+    Toolbar toolbar;
+    @ViewById
+    FloatingActionButton fab;
+
+    @ViewById(R.id.detail_day_textview)
     TextView detailDay;
+    @ViewById(R.id.detail_date_textview)
     TextView detailDate;
+    @ViewById(R.id.detail_high_textview)
     TextView highTemperature;
+    @ViewById(R.id.detail_low_textview)
     TextView lowTemperature;
+    @ViewById(R.id.detail_forecast_textview)
     TextView forecast;
+    @ViewById(R.id.detail_humidity_textview)
     TextView humidity;
+    @ViewById(R.id.detail_pressure_textview)
     TextView pressure;
+    @ViewById(R.id.detail_wind_textview)
     TextView wind;
+    @ViewById(R.id.detail_icon)
     ImageView forecast_icon;
 
     String dayName;
@@ -45,46 +63,28 @@ public class DetailsActivity extends AppCompatActivity {
     String description;
     int icon;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
-        setContentView(R.layout.activity_details);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    @Extra
+    long id;
+
+    @Click(R.id.fab)
+    public void onClick(View view) {
+        Snackbar.make(view, R.string.function_not_available, Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+
+    @AfterViews
+    protected void onCreateView() {
         setDetailsActionBar(toolbar);
-
-        Bundle b = getIntent().getExtras();
-        long itemId = (long) b.get("id");
-
-        detailDay = (TextView) findViewById(R.id.detail_day_textview);
-        detailDate = (TextView) findViewById(R.id.detail_date_textview);
-        highTemperature = (TextView) findViewById(R.id.detail_high_textview);
-        lowTemperature = (TextView) findViewById(R.id.detail_low_textview);
-        forecast_icon = (ImageView) findViewById(R.id.detail_icon);
-        forecast = (TextView) findViewById(R.id.detail_forecast_textview);
-        humidity = (TextView) findViewById(R.id.detail_humidity_textview);
-        pressure = (TextView) findViewById(R.id.detail_pressure_textview);
-        this.wind = (TextView) findViewById(R.id.detail_wind_textview);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, R.string.function_not_available, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+        setSupportActionBar(toolbar);
+        long itemId = id;
         ForecastItem item = new Select().from(ForecastItem.class).where("Id = ?", itemId).executeSingle();
         Log.d("DetailsActivity", item.toString());
         getDetailActivityViewsValues(item);
         setDetailActivityViewsValues();
-
-        //TODO: Fix problems with loading icon and description from database
-        //FIXME: Change format of date and metrics
     }
 
-    private void setDetailActivityViewsValues() {
+    @UiThread
+    protected void setDetailActivityViewsValues() {
         detailDay.setText(dayName);
         detailDate.setText(date);
         highTemperature.setText(highTemp);
@@ -96,7 +96,8 @@ public class DetailsActivity extends AppCompatActivity {
         forecast.setText(capitalizeString(description));
     }
 
-    private void getDetailActivityViewsValues(ForecastItem item) {
+    @UiThread
+    protected void getDetailActivityViewsValues(ForecastItem item) {
         dayName = capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = item.getDt_txt().toString();
         highTemp = Math.round(item.getMain().getTempMax()) + " °C";
@@ -109,8 +110,8 @@ public class DetailsActivity extends AppCompatActivity {
         description = item.getWeatherData().getDescription();
     }
 
-    private void setDetailsActionBar(Toolbar toolbar) {
-        setSupportActionBar(toolbar);
+    @UiThread
+    protected void setDetailsActionBar(Toolbar toolbar) {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -119,6 +120,6 @@ public class DetailsActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        getSupportActionBar().setTitle(R.string.title_activity_details);
+        getSupportActionBar().setTitle(R.string.title_activity_settings);
     }
 }

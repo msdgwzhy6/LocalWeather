@@ -49,7 +49,7 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 long forecastItemId = mForecastAdapter.getItem(position).getId();
-                Intent intent = new Intent(getContext(), DetailsActivity.class);
+                Intent intent = new Intent(getContext(), DetailsActivity_.class);
                 intent.putExtra("id", forecastItemId);
                 startActivity(intent);
 

@@ -26,10 +26,10 @@
             android:value="Database.db" />
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.piotr.weatherforpoznan.DetailsActivity" />
+            android:value="com.piotr.weatherforpoznan.DetailsActivity_" />
 
         <activity
-            android:name=".DetailsActivity"
+            android:name=".DetailsActivity_"
             android:label="@string/title_activity_details"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -38,7 +38,7 @@
             android:value="a9c7e38bb2356fc4872464570cc2154518830002" />
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".SettingsActivity_"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity_"
             android:theme="@style/AppTheme.NoActionBar">

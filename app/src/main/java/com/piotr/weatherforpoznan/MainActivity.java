@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OptionsItem(R.id.action_settings)
     void firstMenuItemCalled() {
-        Intent others = new Intent(this, SettingsActivity.class);
+        Intent others = new Intent(this, SettingsActivity_.class);
         startActivity(others);
     }
 
