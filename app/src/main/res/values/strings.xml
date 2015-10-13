@@ -13,15 +13,14 @@
     <string name="default_date">\"2015-10-05 09:00:00\"</string>
     <string name="default_temperature_max">14°C</string>
     <string name="default_temperature_min">12°C</string>
+    <string name="default_city">Poznan</string>
+    <!--Date templates-->
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
-    <!--If something goes wrong-->
-    <string name="description_not_available">Description is not available</string>
-    <string name="function_not_available">This function is not available.</string>
-
     <!--Details Activity values-->
     <string name="day"></string>
     <string name="date"></string>
+    <string name="city_name"></string>
     <string name="high_temperature"></string>
     <string name="low_temperature"></string>
     <string name="humidity"></string>
@@ -30,6 +29,9 @@
     <string name="wind_deg"></string>
     <string name="wind_description"></string>
     <string name="description"></string>
-
+    <!--If something goes wrong-->
+    <string name="description_not_available">Description is not available</string>
+    <string name="function_not_available">This function is not available.</string>
+    <!--OpenWeatherMAp API Key-->
     <string name="API_ID">f1570c3640caf0e5f96358d802933e40</string>
 </resources>

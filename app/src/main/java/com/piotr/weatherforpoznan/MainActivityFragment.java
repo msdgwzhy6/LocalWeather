@@ -78,6 +78,7 @@ public class MainActivityFragment extends Fragment {
                 .setConverter(new GsonConverter(gson))
                 .build();
         weatherAPI = restAdapter.create(WeatherService.class);
+        downloadCityData(weatherAPI);
         downloadForecastData(weatherAPI);
 
         return rootView;
@@ -108,6 +109,37 @@ public class MainActivityFragment extends Fragment {
 
                 Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
                 Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("Failure", "error: " + error);
+                mySwipeRefreshLayout.setRefreshing(false);
+                Snackbar.make(getView(), "Error caused when trying to download forecast data!", Snackbar.LENGTH_LONG)
+                        .setAction("Try again", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                downloadForecastData(weatherAPI);
+                            }
+                        }).show();
+            }
+        });
+    }
+
+    private void downloadCityData(final WeatherService weatherAPI) {
+        weatherAPI.getForecast(3088171, "json", "metric", "hour", API_ID, new Callback<Forecast>() {
+            @Override
+            public void success(Forecast forecast, Response response) {
+                ActiveAndroid.beginTransaction();
+                try {
+                    forecast.getCity().getCoord().save();
+                    forecast.getCity().save();
+                    ActiveAndroid.setTransactionSuccessful();
+                } finally {
+                    ActiveAndroid.endTransaction();
+                }
+                Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getCityList());
+
             }
 
             @Override

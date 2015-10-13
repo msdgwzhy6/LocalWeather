@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
+import com.piotr.weatherforpoznan.model.City;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +41,8 @@ public class DetailsActivity extends AppCompatActivity {
     @ViewById
     TextView detail_date_textview;
     @ViewById
+    TextView detail_city;
+    @ViewById
     TextView detail_high_textview;
     @ViewById
     TextView detail_low_textview;
@@ -58,6 +61,8 @@ public class DetailsActivity extends AppCompatActivity {
     String day;
     @StringRes
     String date;
+    @StringRes
+    String city_name;
     @StringRes
     String high_temperature;
     @StringRes
@@ -90,9 +95,10 @@ public class DetailsActivity extends AppCompatActivity {
     @AfterViews
     protected void onCreateView() {
         setDetailsActionBar(toolbar);
+        City city = new Select().from(City.class).executeSingle();
         ForecastItem item = new Select().from(ForecastItem.class).where("Id = ?", id).executeSingle();
         Log.d("DetailsActivity", item.toString());
-        getDetailActivityViewsValues(item);
+        getDetailActivityViewsValues(item, city);
         setDetailActivityViewsValues();
     }
 
@@ -100,6 +106,7 @@ public class DetailsActivity extends AppCompatActivity {
     protected void setDetailActivityViewsValues() {
         detail_day_textview.setText(day);
         detail_date_textview.setText(date);
+        detail_city.setText(city_name);
         detail_high_textview.setText(high_temperature);
         detail_low_textview.setText(low_temperature);
         detail_humidity_textview.setText(humidity);
@@ -110,9 +117,10 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     @UiThread
-    protected void getDetailActivityViewsValues(ForecastItem item) {
+    protected void getDetailActivityViewsValues(ForecastItem item, City city) {
         day = capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = item.getDt_txt().toString();
+        city_name = city.getName().toString();
         high_temperature = Math.round(item.getMain().getTempMax()) + " °C";
         low_temperature = Math.round(item.getMain().getTempMin()) + " °C";
         humidity = "Humidity: " + Math.round(item.getMain().getHumidity()) + " %";

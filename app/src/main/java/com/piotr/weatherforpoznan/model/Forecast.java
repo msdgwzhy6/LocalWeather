@@ -12,13 +12,22 @@ public class Forecast {
     @SerializedName("list")
     java.util.List<ForecastItem> forecastList;
 
-    public List<ForecastItem> getForecastList() {
-        return forecastList;
-    }
+    @SerializedName("city")
+    City city;
 
     @Override
     public String toString() {
-        return "Forecast:{" + forecastList +
+        return "Forecast{" +
+                "forecastList=" + forecastList +
+                ", city=" + city +
                 '}';
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public List<ForecastItem> getForecastList() {
+        return forecastList;
     }
 }
