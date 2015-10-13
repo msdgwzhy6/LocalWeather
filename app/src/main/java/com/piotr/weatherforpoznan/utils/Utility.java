@@ -37,8 +37,6 @@ public class Utility {
 
     public static String getFormattedWind(float degrees) {
         // From wind direction in degrees, determine compass direction as a string (e.g NW)
-        // You know what's fun, writing really long if/else statements with tons of possible
-        // conditions.  Seriously, try it!
         String direction = "Unknown";
         if (degrees >= 337.5 || degrees < 22.5) {
             direction = "N";

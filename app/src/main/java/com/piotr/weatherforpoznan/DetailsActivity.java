@@ -35,24 +35,24 @@ public class DetailsActivity extends AppCompatActivity {
     @ViewById
     FloatingActionButton fab;
 
-    @ViewById(R.id.detail_day_textview)
-    TextView detailDay;
-    @ViewById(R.id.detail_date_textview)
-    TextView detailDate;
-    @ViewById(R.id.detail_high_textview)
-    TextView highTemperature;
-    @ViewById(R.id.detail_low_textview)
-    TextView lowTemperature;
-    @ViewById(R.id.detail_forecast_textview)
-    TextView forecast;
-    @ViewById(R.id.detail_humidity_textview)
-    TextView humidityTextview;
-    @ViewById(R.id.detail_pressure_textview)
-    TextView pressureTextview;
-    @ViewById(R.id.detail_wind_textview)
-    TextView wind;
-    @ViewById(R.id.detail_icon)
-    ImageView forecastIcon;
+    @ViewById
+    TextView detail_day_textview;
+    @ViewById
+    TextView detail_date_textview;
+    @ViewById
+    TextView detail_high_textview;
+    @ViewById
+    TextView detail_low_textview;
+    @ViewById
+    TextView detail_forecast_textview;
+    @ViewById
+    TextView detail_humidity_textview;
+    @ViewById
+    TextView detail_pressure_textview;
+    @ViewById
+    TextView detail_wind_textview;
+    @ViewById
+    ImageView detail_icon;
 
     @StringRes
     String day;
@@ -90,8 +90,7 @@ public class DetailsActivity extends AppCompatActivity {
     @AfterViews
     protected void onCreateView() {
         setDetailsActionBar(toolbar);
-        long itemId = id;
-        ForecastItem item = new Select().from(ForecastItem.class).where("Id = ?", itemId).executeSingle();
+        ForecastItem item = new Select().from(ForecastItem.class).where("Id = ?", id).executeSingle();
         Log.d("DetailsActivity", item.toString());
         getDetailActivityViewsValues(item);
         setDetailActivityViewsValues();
@@ -99,15 +98,15 @@ public class DetailsActivity extends AppCompatActivity {
 
     @UiThread
     protected void setDetailActivityViewsValues() {
-        detailDay.setText(day);
-        detailDate.setText(date);
-        highTemperature.setText(high_temperature);
-        lowTemperature.setText(low_temperature);
-        humidityTextview.setText(humidity);
-        pressureTextview.setText(pressure);
-        wind.setText(wind_speed);
-        Picasso.with(getApplicationContext()).load(icon).into(forecastIcon);
-        forecast.setText(capitalizeString(description));
+        detail_day_textview.setText(day);
+        detail_date_textview.setText(date);
+        detail_high_textview.setText(high_temperature);
+        detail_low_textview.setText(low_temperature);
+        detail_humidity_textview.setText(humidity);
+        detail_pressure_textview.setText(pressure);
+        detail_wind_textview.setText(wind_speed);
+        Picasso.with(getApplicationContext()).load(icon).into(detail_icon);
+        detail_forecast_textview.setText(capitalizeString(description));
     }
 
     @UiThread
@@ -136,6 +135,6 @@ public class DetailsActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        getSupportActionBar().setTitle(R.string.title_activity_settings);
+        getSupportActionBar().setTitle(R.string.title_activity_details);
     }
 }

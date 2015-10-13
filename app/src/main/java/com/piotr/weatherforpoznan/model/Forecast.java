@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Created by piotrek on 15-10-01.
  */
+
 public class Forecast {
     @SerializedName("list")
     java.util.List<ForecastItem> forecastList;

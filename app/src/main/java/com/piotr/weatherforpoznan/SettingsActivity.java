@@ -18,12 +18,12 @@ public class SettingsActivity extends AppCompatActivity {
     @AfterViews
     protected void onCreate() {
         setSettingsActionBar(toolbar);
-        setSupportActionBar(toolbar);
-
     }
 
     @UiThread
     protected void setSettingsActionBar(Toolbar toolbar) {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
