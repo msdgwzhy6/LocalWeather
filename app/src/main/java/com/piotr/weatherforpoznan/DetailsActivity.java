@@ -19,6 +19,8 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.IntegerRes;
+import org.androidannotations.annotations.res.StringRes;
 
 import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
 import static com.piotr.weatherforpoznan.utils.Utility.getArtResourceForWeatherCondition;
@@ -44,23 +46,36 @@ public class DetailsActivity extends AppCompatActivity {
     @ViewById(R.id.detail_forecast_textview)
     TextView forecast;
     @ViewById(R.id.detail_humidity_textview)
-    TextView humidity;
+    TextView humidityTextview;
     @ViewById(R.id.detail_pressure_textview)
-    TextView pressure;
+    TextView pressureTextview;
     @ViewById(R.id.detail_wind_textview)
     TextView wind;
     @ViewById(R.id.detail_icon)
-    ImageView forecast_icon;
+    ImageView forecastIcon;
 
-    String dayName;
+    @StringRes
+    String day;
+    @StringRes
     String date;
-    String highTemp;
-    String lowTemp;
-    String humidityValue;
-    String pressureValue;
-    String windSpeed;
-    String windDeg;
+    @StringRes
+    String high_temperature;
+    @StringRes
+    String low_temperature;
+    @StringRes
+    String humidity;
+    @StringRes
+    String pressure;
+    @StringRes
+    String wind_speed;
+    @StringRes
+    String wind_deg;
+    @StringRes
+    String wind_description;
+    @StringRes
     String description;
+
+    @IntegerRes
     int icon;
 
     @Extra
@@ -75,7 +90,6 @@ public class DetailsActivity extends AppCompatActivity {
     @AfterViews
     protected void onCreateView() {
         setDetailsActionBar(toolbar);
-        setSupportActionBar(toolbar);
         long itemId = id;
         ForecastItem item = new Select().from(ForecastItem.class).where("Id = ?", itemId).executeSingle();
         Log.d("DetailsActivity", item.toString());
@@ -85,33 +99,35 @@ public class DetailsActivity extends AppCompatActivity {
 
     @UiThread
     protected void setDetailActivityViewsValues() {
-        detailDay.setText(dayName);
+        detailDay.setText(day);
         detailDate.setText(date);
-        highTemperature.setText(highTemp);
-        lowTemperature.setText(lowTemp);
-        this.humidity.setText("Humidity: " + humidityValue);
-        this.pressure.setText("Pressure: " + pressureValue);
-        wind.setText("Wind: " + windSpeed + " \t" + windDeg);
-        Picasso.with(getApplicationContext()).load(icon).into(forecast_icon);
+        highTemperature.setText(high_temperature);
+        lowTemperature.setText(low_temperature);
+        humidityTextview.setText(humidity);
+        pressureTextview.setText(pressure);
+        wind.setText(wind_speed);
+        Picasso.with(getApplicationContext()).load(icon).into(forecastIcon);
         forecast.setText(capitalizeString(description));
     }
 
     @UiThread
     protected void getDetailActivityViewsValues(ForecastItem item) {
-        dayName = capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
+        day = capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = item.getDt_txt().toString();
-        highTemp = Math.round(item.getMain().getTempMax()) + " °C";
-        lowTemp = Math.round(item.getMain().getTempMin()) + " °C";
-        humidityValue = Math.round(item.getMain().getHumidity()) + " %";
-        pressureValue = Math.round(item.getMain().getPressure()) + " hPa";
-        windSpeed = Math.round(item.getWind().getSpeed()) + " km/h";
-        windDeg = getFormattedWind(item.getWind().getDeg());
+        high_temperature = Math.round(item.getMain().getTempMax()) + " °C";
+        low_temperature = Math.round(item.getMain().getTempMin()) + " °C";
+        humidity = "Humidity: " + Math.round(item.getMain().getHumidity()) + " %";
+        pressure = "Pressure: " + Math.round(item.getMain().getPressure()) + " hPa";
+        wind_speed = Math.round(item.getWind().getSpeed()) + " km/h";
+        wind_deg = getFormattedWind(item.getWind().getDeg());
+        wind_description = "Wind: " + wind_speed + " \t" + wind_deg;
         icon = getArtResourceForWeatherCondition(item.getWeatherData().getWeatherId());
         description = item.getWeatherData().getDescription();
     }
 
     @UiThread
     protected void setDetailsActionBar(Toolbar toolbar) {
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

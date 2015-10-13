@@ -82,7 +82,7 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
             String description = item.getWeather().get(0).getDescription().toString();
             vHolder.itemDescription.setText(capitalizeString(description));
         } else {
-            vHolder.itemDescription.setText(R.string.noDescription);
+            vHolder.itemDescription.setText(R.string.description_not_available);
         }
         ;
     }
