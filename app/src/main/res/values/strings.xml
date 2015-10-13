@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Weather for Poznan</string>
-    <string name="hello_world">Hello world!</string>
     <!--Activities-->
     <string name="title_activity_details">Details</string>
     <string name="title_activity_settings">Settings</string>
@@ -18,17 +17,21 @@
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
     <!--Details Activity values-->
-    <string name="day"></string>
-    <string name="date"></string>
-    <string name="city_name"></string>
-    <string name="high_temperature"></string>
-    <string name="low_temperature"></string>
-    <string name="humidity"></string>
-    <string name="pressure"></string>
+    <string name="day">Wednesday</string>
+    <string name="date">2015-10-05 09:00:00</string>
+    <string name="city_name">Poznan</string>
+    <string name="high_temperature">14°C</string>
+    <string name="low_temperature">12°C</string>
+    <string name="humidity">Humidity: 84 %</string>
+    <string name="pressure">Pressure: 1020 hPa</string>
     <string name="wind_speed"></string>
     <string name="wind_deg"></string>
-    <string name="wind_description"></string>
-    <string name="description"></string>
+    <string name="wind_description">Wind: 10 km/h E</string>
+    <string name="description">\Rain</string>
+    <!--Main Activity values-->
+    <string name="latitude"></string>
+    <string name="longitude"></string>
+    <string name="geo_coord">52.4167 | 16.9667</string>
     <!--If something goes wrong-->
     <string name="description_not_available">Description is not available</string>
     <string name="function_not_available">This function is not available.</string>

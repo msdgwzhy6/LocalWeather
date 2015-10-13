@@ -4,15 +4,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.activeandroid.query.Select;
+import com.piotr.weatherforpoznan.model.City;
+
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.res.StringRes;
 
 @OptionsMenu(R.menu.menu_main)
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
+
+    @StringRes
+    String geo_coord;
+
+    @StringRes
+    String latitude;
+
+    @StringRes
+    String longitude;
 
     @OptionsItem(R.id.action_settings)
     void firstMenuItemCalled() {
@@ -31,10 +45,21 @@ public class MainActivity extends AppCompatActivity {
 
     @AfterViews
     public void setMainActivityActionBar() {
+        getGeoCoordinates();
+
         setWeatherFragments(null);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         getSupportActionBar().setTitle(R.string.app_name);
-        getSupportActionBar().setSubtitle(R.string.hello_world);
+
+        getSupportActionBar().setSubtitle(geo_coord);
+    }
+
+    @AfterInject
+    protected void getGeoCoordinates() {
+        City city = new Select().from(City.class).executeSingle();
+        latitude = "Lat: " + city.getCoord().getLat().toString();
+        longitude = "Long: " + city.getCoord().getLon().toString();
+        geo_coord = latitude + "\t|\t" + longitude;
     }
 }

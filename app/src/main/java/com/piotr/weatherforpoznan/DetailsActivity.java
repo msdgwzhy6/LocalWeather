@@ -111,7 +111,7 @@ public class DetailsActivity extends AppCompatActivity {
         detail_low_textview.setText(low_temperature);
         detail_humidity_textview.setText(humidity);
         detail_pressure_textview.setText(pressure);
-        detail_wind_textview.setText(wind_speed);
+        detail_wind_textview.setText(wind_description);
         Picasso.with(getApplicationContext()).load(icon).into(detail_icon);
         detail_forecast_textview.setText(capitalizeString(description));
     }
