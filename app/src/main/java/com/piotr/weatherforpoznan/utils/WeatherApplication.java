@@ -14,7 +14,7 @@ import io.fabric.sdk.android.Fabric;
 /**
  * Created by Piotr on 06.10.2015.
  */
-public class Database extends Application {
+public class WeatherApplication extends Application {
     public static ForecastItem getRandom(ForecastItem forecastItem) {
         return new Select()
                 .from(ForecastItem.class)

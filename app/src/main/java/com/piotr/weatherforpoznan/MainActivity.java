@@ -3,60 +3,38 @@ package com.piotr.weatherforpoznan;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 
-import com.crashlytics.android.Crashlytics;
-
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenu;
+import org.androidannotations.annotations.UiThread;
 
-import io.fabric.sdk.android.Fabric;
-
+@OptionsMenu(R.menu.menu_main)
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
 
-    public void viewDetails(View v) {
-        Intent Intent = new Intent(this, DetailsActivity.class);
-        this.startActivity(Intent);
+    @OptionsItem(R.id.action_settings)
+    void firstMenuItemCalled() {
+        Intent others = new Intent(this, SettingsActivity.class);
+        startActivity(others);
     }
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
-        setMainActivityActionBar();
-
+    @UiThread
+    protected void setWeatherFragments(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new MainActivityFragment())
                     .commit();
-    }
+        }
     }
 
-    private void setMainActivityActionBar() {
+    @AfterViews
+    public void setMainActivityActionBar() {
+        setWeatherFragments(null);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         getSupportActionBar().setTitle(R.string.app_name);
         getSupportActionBar().setSubtitle(R.string.hello_world);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            Intent others = new Intent(this, SettingsActivity.class);
-            startActivity(others);
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
