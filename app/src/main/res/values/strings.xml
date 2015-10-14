@@ -31,7 +31,7 @@
     <!--Main Activity values-->
     <string name="latitude"></string>
     <string name="longitude"></string>
-    <string name="geo_coord">52.4167 | 16.9667</string>
+    <string name="geo_coord"></string>
     <!--If something goes wrong-->
     <string name="description_not_available">Description is not available</string>
     <string name="function_not_available">This function is not available.</string>

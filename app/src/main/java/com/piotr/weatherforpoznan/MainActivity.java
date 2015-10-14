@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.activeandroid.query.Select;
 import com.piotr.weatherforpoznan.model.City;
 
-import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
@@ -45,21 +44,21 @@ public class MainActivity extends AppCompatActivity {
 
     @AfterViews
     public void setMainActivityActionBar() {
-        getGeoCoordinates();
 
         setWeatherFragments(null);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         getSupportActionBar().setTitle(R.string.app_name);
-
-        getSupportActionBar().setSubtitle(geo_coord);
+        getSupportActionBar().setSubtitle(getGeoCoordinates());
     }
 
-    @AfterInject
-    protected void getGeoCoordinates() {
+    protected String getGeoCoordinates() {
         City city = new Select().from(City.class).executeSingle();
-        latitude = "Lat: " + city.getCoord().getLat().toString();
-        longitude = "Long: " + city.getCoord().getLon().toString();
-        geo_coord = latitude + "\t|\t" + longitude;
+        if (city != null) {
+            latitude = "Lat: " + city.getCoord().getLat().toString();
+            longitude = "Long: " + city.getCoord().getLon().toString();
+            geo_coord = latitude + "\t|\t" + longitude;
+        }
+        return geo_coord;
     }
 }

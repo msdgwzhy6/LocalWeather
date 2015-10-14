@@ -16,7 +16,7 @@
         android:layout_gravity="left"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="10dp">
 
         <!-- Header: Day, Date -->
         <TextView
