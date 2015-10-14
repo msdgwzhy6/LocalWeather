@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
     @AfterViews
     public void setMainActivityActionBar() {
-
         setWeatherFragments(null);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);

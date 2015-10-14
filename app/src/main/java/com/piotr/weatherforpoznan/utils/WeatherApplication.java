@@ -8,6 +8,7 @@ import com.crashlytics.android.Crashlytics;
 import com.piotr.weatherforpoznan.model.City;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.EApplication;
 
 import java.util.List;
@@ -28,12 +29,9 @@ public class WeatherApplication extends Application {
         return new Select().from(City.class).execute();
     }
 
-    public void onCreate() {
-        // TODO Auto-generated method stub
-        super.onCreate();
+        @AfterInject
+        public void onCreateApplication(){
         Fabric.with(this, new Crashlytics());
-
-        //Notice this initialization code here
         ActiveAndroid.initialize(this);
     }
 }

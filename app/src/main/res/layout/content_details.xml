@@ -8,7 +8,6 @@
     tools:context="com.piotr.weatherforpoznan.DetailsActivity"
     tools:showIn="@layout/activity_details">
 
-
     <LinearLayout
         android:id="@+id/details"
         android:layout_width="match_parent"

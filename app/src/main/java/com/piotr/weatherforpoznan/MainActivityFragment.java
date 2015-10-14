@@ -29,7 +29,7 @@ import retrofit.converter.GsonConverter;
 
 public class MainActivityFragment extends Fragment {
 
-    private static final String API_ID = "f1570c3640caf0e5f96358d802933e40";
+    String API_ID = "f1570c3640caf0e5f96358d802933e40";
 
     SwipeRefreshLayout mySwipeRefreshLayout;
     ForecastAdapter mForecastAdapter;
@@ -84,7 +84,7 @@ public class MainActivityFragment extends Fragment {
         return rootView;
     }
 
-    private void downloadForecastData(final WeatherService weatherAPI) {
+    protected void downloadForecastData(final WeatherService weatherAPI) {
         weatherAPI.getForecast(3088171, "json", "metric", "hour", API_ID, new Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
@@ -126,7 +126,7 @@ public class MainActivityFragment extends Fragment {
         });
     }
 
-    private void downloadCityData(final WeatherService weatherAPI) {
+    protected void downloadCityData(final WeatherService weatherAPI) {
         weatherAPI.getForecast(3088171, "json", "metric", "hour", API_ID, new Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
