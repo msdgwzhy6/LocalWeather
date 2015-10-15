@@ -33,6 +33,9 @@ public class MainActivityFragment extends Fragment {
     @StringRes
     String API_ID;
 
+    @StringRes
+    String lang;
+
     @ViewById
     ListView listview_forecast;
 
@@ -67,7 +70,7 @@ public class MainActivityFragment extends Fragment {
 
     @UiThread
     protected void downloadForecastData(final WeatherService weatherAPI) {
-        weatherAPI.getForecast(3088171, "json", "metric", "hour", "f1570c3640caf0e5f96358d802933e40", new Callback<Forecast>() {
+        weatherAPI.getForecast(3088171, "json", "metric", "hour",  lang, "f1570c3640caf0e5f96358d802933e40", new Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
                 mForecastAdapter = new ForecastAdapter(getActivity(),
@@ -114,7 +117,7 @@ public class MainActivityFragment extends Fragment {
 
     @UiThread
     protected void downloadCityData(final WeatherService weatherAPI) {
-        weatherAPI.getForecast(3088171, "json", "metric", "hour", "f1570c3640caf0e5f96358d802933e40", new Callback<Forecast>() {
+        weatherAPI.getForecast(3088171, "json", "metric", "hour", lang, "f1570c3640caf0e5f96358d802933e40", new Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
                 saveCityDataToDatabase(forecast);

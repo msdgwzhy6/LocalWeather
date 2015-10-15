@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
     protected String getGeoCoordinates() {
         City city = new Select().from(City.class).executeSingle();
         if (city != null) {
-            latitude = "Lat: " + city.getCoord().getLat().toString();
-            longitude = "Long: " + city.getCoord().getLon().toString();
-            geo_coord = latitude + "\t|\t" + longitude;
+            latitude = city.getCoord().getLat().toString();
+            longitude = city.getCoord().getLon().toString();
+            geo_coord = latitude + " | " + longitude;
         }
         return geo_coord;
     }

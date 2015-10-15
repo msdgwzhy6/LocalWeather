@@ -52,11 +52,11 @@ public class DetailsActivity extends AppCompatActivity {
     @ViewById
     TextView detail_forecast_textview;
     @ViewById
-    TextView detail_humidity_textview;
+    TextView detail_humidity_val_textview;
     @ViewById
-    TextView detail_pressure_textview;
+    TextView detail_pressure_val_textview;
     @ViewById
-    TextView detail_wind_textview;
+    TextView detail_wind_val_textview;
     @ViewById
     ImageView detail_icon;
 
@@ -67,19 +67,19 @@ public class DetailsActivity extends AppCompatActivity {
     @StringRes
     String city_name;
     @StringRes
-    String high_temperature;
+    String high_temp;
     @StringRes
-    String low_temperature;
+    String low_temp;
     @StringRes
-    String humidity;
+    String humidity_val;
     @StringRes
-    String pressure;
+    String pressure_val;
     @StringRes
     String wind_speed;
     @StringRes
-    String wind_deg;
+    String wind_val;
     @StringRes
-    String wind_description;
+    String wind_deg;
     @StringRes
     String description;
 
@@ -115,11 +115,11 @@ public class DetailsActivity extends AppCompatActivity {
         detail_day_textview.setText(day);
         detail_date_textview.setText(date);
         detail_city.setText(city_name);
-        detail_high_textview.setText(high_temperature);
-        detail_low_textview.setText(low_temperature);
-        detail_humidity_textview.setText(humidity);
-        detail_pressure_textview.setText(pressure);
-        detail_wind_textview.setText(wind_description);
+        detail_high_textview.setText(high_temp);
+        detail_low_textview.setText(low_temp);
+        detail_humidity_val_textview.setText(humidity_val);
+        detail_pressure_val_textview.setText(pressure_val);
+        detail_wind_val_textview.setText(wind_val);
         Picasso.with(getApplicationContext()).load(icon).into(detail_icon);
         detail_forecast_textview.setText(capitalizeString(description));
     }
@@ -129,13 +129,13 @@ public class DetailsActivity extends AppCompatActivity {
         day = capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = getFormattedDate(item.getDt_txt());
         city_name = city.getName().toString();
-        high_temperature = Math.round(item.getMain().getTempMax()) + " °C";
-        low_temperature = Math.round(item.getMain().getTempMin()) + " °C";
-        humidity = "Humidity: " + Math.round(item.getMain().getHumidity()) + " %";
-        pressure = "Pressure: " + Math.round(item.getMain().getPressure()) + " hPa";
+        high_temp = Math.round(item.getMain().getTempMax()) + " °C";
+        low_temp =  Math.round(item.getMain().getTempMin()) + " °C";
+        humidity_val =  Math.round(item.getMain().getHumidity()) + " %";
+        pressure_val =  Math.round(item.getMain().getPressure()) + " hPa";
         wind_speed = Math.round(item.getWind().getSpeed()) + " km/h";
         wind_deg = getFormattedWind(item.getWind().getDeg());
-        wind_description = "Wind: " + wind_speed + " \t" + wind_deg;
+        wind_val = wind_speed + " \t" + wind_deg;
         icon = getArtResourceForWeatherCondition(item.getWeatherData().getWeatherId());
         description = item.getWeatherData().getDescription();
     }
