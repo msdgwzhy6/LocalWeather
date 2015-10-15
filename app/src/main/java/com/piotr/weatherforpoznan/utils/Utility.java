@@ -35,6 +35,7 @@ public class Utility {
         }
     }
 
+
     public static String getFormattedWind(float degrees) {
         // From wind direction in degrees, determine compass direction as a string (e.g NW)
         String direction = "Unknown";

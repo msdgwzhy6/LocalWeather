@@ -23,6 +23,9 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.IntegerRes;
 import org.androidannotations.annotations.res.StringRes;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
 import static com.piotr.weatherforpoznan.utils.Utility.getArtResourceForWeatherCondition;
 import static com.piotr.weatherforpoznan.utils.Utility.getDayName;
@@ -86,6 +89,11 @@ public class DetailsActivity extends AppCompatActivity {
     @Extra
     long id;
 
+    private static String getFormattedDate(Date date) {
+        String formattedDay = new SimpleDateFormat("d MMMM y hh:mm a").format(date);
+        return formattedDay;
+    }
+
     @Click(R.id.fab)
     public void onClick(View view) {
         Snackbar.make(view, R.string.function_not_available, Snackbar.LENGTH_LONG)
@@ -119,7 +127,7 @@ public class DetailsActivity extends AppCompatActivity {
     @UiThread
     protected void getDetailActivityViewsValues(ForecastItem item, City city) {
         day = capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
-        date = item.getDt_txt().toString();
+        date = getFormattedDate(item.getDt_txt());
         city_name = city.getName().toString();
         high_temperature = Math.round(item.getMain().getTempMax()) + " °C";
         low_temperature = Math.round(item.getMain().getTempMin()) + " °C";

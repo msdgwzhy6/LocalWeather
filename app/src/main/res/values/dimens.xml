@@ -5,7 +5,9 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="no_padding">0dp</dimen>
-    <dimen name="padding_very_small">2dp</dimen>
-    <dimen name="padding_small">5dp</dimen>
-    <dimen name="padding_medium">10dp</dimen>
+    <dimen name="dimen_very_small">2dp</dimen>
+    <dimen name="dimen_small">5dp</dimen>
+    <dimen name="dimen_medium">10dp</dimen>
+    <dimen name="dimen_big">15dp</dimen>
+
 </resources>

@@ -13,7 +13,6 @@ import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.piotr.weatherforpoznan.utils.Utility;
 import com.squareup.picasso.Picasso;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +27,11 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
     public ForecastAdapter(Context context, int resource, List<ForecastItem> objects) {
         super(context, resource, objects);
+    }
+
+    private static String getFormattedDate(Date date) {
+        String formattedDay = new SimpleDateFormat("E d MMM y hh:mm a").format(date);
+        return formattedDay;
     }
 
     @Override
@@ -58,9 +62,7 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
     private void initDateValue(ForecastItem item, ViewHolder vHolder) {
         Date date = item.getDt_txt();
-        String stringDate = DateFormat.getDateTimeInstance().format(date);
-        String day = new SimpleDateFormat("EEE").format(date);
-        vHolder.itemDate.setText(day + ' ' + stringDate);
+        vHolder.itemDate.setText(getFormattedDate(date));
     }
 
     private void initTemperatureMaxValue(ForecastItem item, ViewHolder vHolder) {

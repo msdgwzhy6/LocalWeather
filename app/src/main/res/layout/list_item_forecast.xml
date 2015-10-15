@@ -16,28 +16,28 @@
             android:id="@+id/forecastIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_small"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:padding="@dimen/dimen_small"
             android:src="@mipmap/ic_launcher" />
 
         <LinearLayout
             android:id="@+id/itemTable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/padding_medium"
-            android:layout_toRightOf="@+id/forecastIcon"
             android:layout_toLeftOf="@+id/temperature"
-            android:orientation="vertical">
+            android:layout_toRightOf="@+id/forecastIcon"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimen_medium">
 
             <TextView
                 android:id="@+id/itemtDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/no_padding"
-                android:paddingLeft="@dimen/padding_small"
-                android:paddingRight="@dimen/padding_small"
-                android:paddingTop="@dimen/padding_small"
+                android:paddingLeft="@dimen/dimen_small"
+                android:paddingRight="@dimen/dimen_small"
+                android:paddingTop="@dimen/dimen_small"
                 android:text="@string/default_date"
                 android:textSize="@dimen/abc_text_size_small_material" />
 
@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:padding="@dimen/padding_small"
+                    android:padding="@dimen/dimen_small"
                     android:text="@string/default_description"
                     android:textSize="@dimen/abc_text_size_small_material" />
         </LinearLayout>
@@ -66,9 +66,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:paddingBottom="@dimen/no_padding"
-                android:paddingLeft="@dimen/padding_small"
-                android:paddingRight="@dimen/padding_small"
-                android:paddingTop="@dimen/padding_small"
+                android:paddingLeft="@dimen/dimen_small"
+                android:paddingRight="@dimen/dimen_small"
+                android:paddingTop="@dimen/dimen_small"
                 android:text="@string/default_temperature_max"
                 android:textSize="@dimen/abc_text_size_medium_material" />
 
@@ -78,9 +78,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingBottom="@dimen/no_padding"
-                android:paddingLeft="@dimen/padding_small"
-                android:paddingRight="@dimen/padding_small"
-                android:paddingTop="@dimen/padding_very_small"
+                android:paddingLeft="@dimen/dimen_small"
+                android:paddingRight="@dimen/dimen_small"
+                android:paddingTop="@dimen/dimen_small"
                 android:text="@string/default_temperature_min"
                 android:textSize="@dimen/abc_text_size_small_material" />
         </LinearLayout>
