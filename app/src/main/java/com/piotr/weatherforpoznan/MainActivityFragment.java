@@ -1,111 +1,82 @@
 package com.piotr.weatherforpoznan;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.activeandroid.ActiveAndroid;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.piotr.weatherforpoznan.api.ForecastAdapter;
 import com.piotr.weatherforpoznan.api.WeatherService;
 import com.piotr.weatherforpoznan.model.Forecast;
 import com.piotr.weatherforpoznan.utils.WeatherApplication;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.StringRes;
+
 import retrofit.Callback;
-import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import retrofit.converter.GsonConverter;
 
+import static com.piotr.weatherforpoznan.utils.WeatherApplication.weatherAPI;
 
+@EFragment(R.layout.fragment_main)
 public class MainActivityFragment extends Fragment {
 
-    String API_ID = "f1570c3640caf0e5f96358d802933e40";
+    @StringRes
+    String API_ID;
 
-    SwipeRefreshLayout mySwipeRefreshLayout;
+    @ViewById
+    ListView listview_forecast;
+
+    @ViewById
+    SwipeRefreshLayout swiperefresh;
+
     ForecastAdapter mForecastAdapter;
-    WeatherService weatherAPI;
-    private ListView listView;
 
-    public MainActivityFragment() {
-    }
+    @AfterViews
+    public void onCreateFragment() {
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        listView = (ListView) rootView.findViewById(R.id.listview_forecast);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview_forecast.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 long forecastItemId = mForecastAdapter.getItem(position).getId();
                 Intent intent = new Intent(getContext(), DetailsActivity_.class);
                 intent.putExtra("id", forecastItemId);
                 startActivity(intent);
-
             }
         });
-        mySwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swiperefresh);
-        mySwipeRefreshLayout.setOnRefreshListener(
+        swiperefresh.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
                         downloadForecastData(weatherAPI);
-                        // This method performs the actual data-refresh operation.
-                        // The method calls setRefreshing(false) when it's finished.
                     }
                 }
         );
-
-        Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd HH:mm:ss")
-                .create();
-
-        final String API_ENDPOINT = "http://api.openweathermap.org";
-        RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint(API_ENDPOINT)
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .setConverter(new GsonConverter(gson))
-                .build();
-        weatherAPI = restAdapter.create(WeatherService.class);
-        downloadCityData(weatherAPI);
         downloadForecastData(weatherAPI);
-
-        return rootView;
+        downloadCityData(weatherAPI);
     }
 
+    @UiThread
     protected void downloadForecastData(final WeatherService weatherAPI) {
-        weatherAPI.getForecast(3088171, "json", "metric", "hour", API_ID, new Callback<Forecast>() {
+        weatherAPI.getForecast(3088171, "json", "metric", "hour", "f1570c3640caf0e5f96358d802933e40", new Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
                 mForecastAdapter = new ForecastAdapter(getActivity(),
                         R.layout.list_item_forecast, forecast.getForecastList());
-                listView.setAdapter(mForecastAdapter);
-                mySwipeRefreshLayout.setRefreshing(false);
+                listview_forecast.setAdapter(mForecastAdapter);
+                swiperefresh.setRefreshing(false);
 
                 //Active Android implementation
-                int i = 0;
-                ActiveAndroid.beginTransaction();
-                try {
-                    while (i < forecast.getForecastList().size()) {
-
-                        forecast.getForecastList().get(i).saveItemToDatabase();
-                        i++;
-                    }
-                    ActiveAndroid.setTransactionSuccessful();
-                } finally {
-                    ActiveAndroid.endTransaction();
-                }
+                saveForecastItemToDatabase(forecast);
 
                 Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
                 Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
@@ -114,7 +85,7 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void failure(RetrofitError error) {
                 Log.d("Failure", "error: " + error);
-                mySwipeRefreshLayout.setRefreshing(false);
+                swiperefresh.setRefreshing(false);
                 Snackbar.make(getView(), "Error caused when trying to download forecast data!", Snackbar.LENGTH_LONG)
                         .setAction("Try again", new View.OnClickListener() {
                             @Override
@@ -126,26 +97,34 @@ public class MainActivityFragment extends Fragment {
         });
     }
 
+    private void saveForecastItemToDatabase(Forecast forecast) {
+        int i = 0;
+        ActiveAndroid.beginTransaction();
+        try {
+            while (i < forecast.getForecastList().size()) {
+
+                forecast.getForecastList().get(i).saveItemToDatabase();
+                i++;
+            }
+            ActiveAndroid.setTransactionSuccessful();
+        } finally {
+            ActiveAndroid.endTransaction();
+        }
+    }
+
+    @UiThread
     protected void downloadCityData(final WeatherService weatherAPI) {
-        weatherAPI.getForecast(3088171, "json", "metric", "hour", API_ID, new Callback<Forecast>() {
+        weatherAPI.getForecast(3088171, "json", "metric", "hour", "f1570c3640caf0e5f96358d802933e40", new Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
-                ActiveAndroid.beginTransaction();
-                try {
-                    forecast.getCity().getCoord().save();
-                    forecast.getCity().save();
-                    ActiveAndroid.setTransactionSuccessful();
-                } finally {
-                    ActiveAndroid.endTransaction();
-                }
-                Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getCityList());
+                saveCityDataToDatabase(forecast);
 
             }
 
             @Override
             public void failure(RetrofitError error) {
                 Log.d("Failure", "error: " + error);
-                mySwipeRefreshLayout.setRefreshing(false);
+                swiperefresh.setRefreshing(false);
                 Snackbar.make(getView(), "Error caused when trying to download forecast data!", Snackbar.LENGTH_LONG)
                         .setAction("Try again", new View.OnClickListener() {
                             @Override
@@ -155,5 +134,17 @@ public class MainActivityFragment extends Fragment {
                         }).show();
             }
         });
+    }
+
+    private void saveCityDataToDatabase(Forecast forecast) {
+        ActiveAndroid.beginTransaction();
+        try {
+            forecast.getCity().getCoord().save();
+            forecast.getCity().save();
+            ActiveAndroid.setTransactionSuccessful();
+        } finally {
+            ActiveAndroid.endTransaction();
+        }
+        Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getCityList());
     }
 }

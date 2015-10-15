@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void setWeatherFragments(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new MainActivityFragment())
+                    .add(R.id.container, new MainActivityFragment_())
                     .commit();
         }
     }
