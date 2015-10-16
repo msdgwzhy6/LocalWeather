@@ -37,8 +37,8 @@
     <string name="longitude"></string>
     <string name="geo_coord"></string>
     <!--If something goes wrong-->
-    <string name="description_not_available">Description is not available</string>
-    <string name="function_not_available">This function is not available.</string>
+    <string name="description_not_available">Opis tymczasowo niedostępny</string>
+    <string name="function_not_available">Funkcja tymczasowo niedostępna</string>
     <!--OpenWeatherMAp API Key-->
     <string name="API_ID">f1570c3640caf0e5f96358d802933e40</string>
     <!-- Language of phone-->
