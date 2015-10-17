@@ -21,8 +21,12 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeDown;
+import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
@@ -34,42 +38,54 @@ public class MainActivityTest {
     public ActivityTestRule<MainActivity_> mRule = new ActivityTestRule<>(MainActivity_.class);
 
     @Test
-    public void check_01_IfAppNameIsDisplayed() throws InterruptedException {
-        Thread.sleep(20000);
+    public void check_001_ifAppNameIsDisplayed() throws InterruptedException {
         onView(withText(R.string.app_name)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void check_02_IfSettingsAreDisplayed() throws InterruptedException {
+    public void check_002_ifOverFlowMenuButtonIsDisplayed() throws InterruptedException {
+        onView(withContentDescription("More options")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void check_003_ifOverFlowMenuButtonIsEnabled() throws InterruptedException {
+        onView(withContentDescription("More options")).check(matches(isEnabled()));
+    }
+
+    @Test
+    public void check_004_ifOverFlowMenuButtonIsClickable() throws InterruptedException {
+        onView(withContentDescription("More options")).check(matches(isClickable()));
+    }
+
+    @Test
+    public void check_005_ifSettingsAreDisplayed() throws InterruptedException {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
         onView(withText(R.string.title_activity_settings)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void check_03_IfSettingsAreClickable() throws InterruptedException {
+    public void check_006_ifSettingsAreClickable() throws InterruptedException {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
         onView(withText(R.string.title_activity_settings)).perform(click());
     }
 
     @Test
-    public void check_04_IfSwipeToRefreshIsDisplayed() throws InterruptedException {
+    public void check_007_ifSwipeToRefreshIsDisplayed() throws InterruptedException {
         onView(withId(R.id.listview_forecast)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void check_05_IfListViewIsDisplayed() throws InterruptedException {
+    public void check_008_IfSwipeToRefreshIsWorking() throws InterruptedException {
+        onView(withId(R.id.swiperefresh)).perform(swipeDown()).check(matches(isEnabled()));
+    }
+
+    @Test
+    public void check_009_IfListViewIsDisplayed() throws InterruptedException {
         onView(withId(R.id.listview_forecast)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void check_06_IfSwipeToRefreshIsWorking() throws InterruptedException {
-        onView(withId(R.id.swiperefresh)).perform(swipeDown());
-    }
-
-    @Test
-    public void check_07_IfSwipeToRefreshIsWorking() throws InterruptedException {
-        onView(withId(R.id.action_bar)).check(matches(isDisplayed()));
+    public void check_010_IfNavigateButtonDoesNotExists() throws InterruptedException {
+        onView(withContentDescription("Navigate up")).check((doesNotExist()));
     }
 }
-
-

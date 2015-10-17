@@ -1,6 +1,7 @@
 # WeatherforPoznan 
 
 Practice app to learn retrofit, gson, AndroidAnnotations and ActiveAndroid
+<img src="http://i57.tinypic.com/33crpci.jpg" border="0" alt="Image and video hosting by TinyPic">
  
 ## Build Instructions
  
