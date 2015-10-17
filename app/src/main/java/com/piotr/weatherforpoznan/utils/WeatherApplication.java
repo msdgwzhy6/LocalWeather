@@ -1,5 +1,7 @@
 package com.piotr.weatherforpoznan.utils;
 
+import android.os.AsyncTask;
+
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Model;
 import com.activeandroid.app.Application;
@@ -15,6 +17,7 @@ import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
 import retrofit.RestAdapter;
+import retrofit.android.MainThreadExecutor;
 import retrofit.converter.GsonConverter;
 
 /**
@@ -44,6 +47,7 @@ public class WeatherApplication extends Application {
 
         final String API_ENDPOINT = "http://api.openweathermap.org";
         RestAdapter restAdapter = new RestAdapter.Builder()
+                .setExecutors(AsyncTask.THREAD_POOL_EXECUTOR, new MainThreadExecutor())
                 .setEndpoint(API_ENDPOINT)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setConverter(new GsonConverter(gson))
