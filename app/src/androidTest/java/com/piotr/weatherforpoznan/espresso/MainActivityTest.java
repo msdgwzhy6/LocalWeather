@@ -88,4 +88,7 @@ public class MainActivityTest {
     public void check_010_IfNavigateButtonDoesNotExists() throws InterruptedException {
         onView(withContentDescription("Navigate up")).check((doesNotExist()));
     }
+
+    //FIXME: Missing list_item_forecast tests.
+
 }

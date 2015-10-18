@@ -18,6 +18,7 @@
 
         <!-- Header: Day, Date -->
         <LinearLayout
+            android:id="@+id/day_and_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -59,7 +60,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
-            android:id="@+id/itemTable"
+            android:id="@+id/temp_and_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -80,7 +81,7 @@
                     android:layout_gravity="right"
                     android:fontFamily="sans-serif-light"
                     android:paddingLeft="5dp"
-                    android:text="@string/high_temperature"
+                    android:text="@string/high_temp"
                     android:textSize="60sp" />
 
                 <TextView
@@ -88,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="@string/low_temperature"
+                    android:text="@string/low_temp"
                     android:textColor="@color/grey_700"
                     android:textSize="30sp" />
             </LinearLayout>
@@ -110,7 +111,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/details"
+            android:id="@+id/forecast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/activity_horizontal_margin">
@@ -127,14 +128,15 @@
 
         <!-- Humidity, wind, pressure -->
         <LinearLayout
-            android:id="@+id/detail_forecast"
+            android:id="@+id/forecast_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="0dp"
+            android:layout_marginRight="@dimen/no_padding"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/humidity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -151,11 +153,12 @@
                     android:id="@+id/detail_humidity_val_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/humidity_value"
+                    android:text="@string/humidity_val"
                     android:textAppearance="?android:textAppearanceLarge" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/pressure"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -179,6 +182,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/wind"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -189,14 +193,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_small"
                     android:paddingRight="@dimen/dimen_medium"
-                    android:text="@string/wind_description"
+                    android:text="@string/wind_desc"
                     android:textAppearance="?android:textAppearanceLarge" />
                 <TextView
                     android:id="@+id/detail_wind_val_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_small"
-                    android:text="@string/wind_value"
+                    android:text="@string/wind_val"
                     android:textAppearance="?android:textAppearanceLarge" />
             </LinearLayout>
         </LinearLayout>
