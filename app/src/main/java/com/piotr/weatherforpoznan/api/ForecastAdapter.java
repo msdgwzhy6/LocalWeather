@@ -87,7 +87,6 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
         } else {
             vHolder.itemDescription.setText(R.string.description_not_available);
         }
-        ;
     }
 
     static class ViewHolder {
@@ -99,7 +98,7 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
         public ViewHolder(View view) {
             this.forecastIcon = (ImageView) view.findViewById(R.id.forecastIcon);
-            this.itemDate = (TextView) view.findViewById(R.id.itemtDate);
+            this.itemDate = (TextView) view.findViewById(R.id.itemDate);
             this.itemTemperatureMin = (TextView) view.findViewById(R.id.itemTemperatureMin);
             this.itemTemperatureMax = (TextView) view.findViewById(R.id.itemTemperatureMax);
             this.itemDescription = (TextView) view.findViewById(R.id.itemDescription);

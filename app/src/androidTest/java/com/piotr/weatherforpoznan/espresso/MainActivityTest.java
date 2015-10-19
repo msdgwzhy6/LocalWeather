@@ -33,6 +33,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withContentDesc
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -143,7 +144,7 @@ public class MainActivityTest {
     @Test
     public void check_017_ifItemDateIsDisplayed() throws InterruptedException {
         onData(anything()).inAdapterView(withId(R.id.listview_forecast)).atPosition(POSITION).
-                onChildView(withId(R.id.itemtDate)).check(matches(isDisplayed()));
+                onChildView(withId(R.id.itemDate)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -168,5 +169,38 @@ public class MainActivityTest {
     public void check_021_ifForecastItemTemperatureMinIsDisplayed() throws InterruptedException {
         onData(anything()).inAdapterView(withId(R.id.listview_forecast)).atPosition(POSITION).
                 onChildView(withId(R.id.itemTemperatureMin)).check(matches(isDisplayed()));
+    }
+    /* PART 3.
+    * These tests should check if all parts of ListView.Item has different values than default.
+    * */
+
+    @Test
+    public void check_022_ifForecastIconIsHasNoDefaultDrawable() throws InterruptedException {
+        onData(anything()).inAdapterView(withId(R.id.listview_forecast)).atPosition(POSITION).
+                onChildView(withId(R.id.forecastIcon)).check(matches(not(withId(R.mipmap.ic_launcher))));
+    }
+
+    @Test
+    public void check_023_ifForecastItemDateHasNoDefaultValue() throws InterruptedException {
+        onData(anything()).inAdapterView(withId(R.id.listview_forecast)).atPosition(POSITION).
+                onChildView(withId(R.id.itemDate)).check(matches(not(withText(R.string.default_date))));
+    }
+
+    @Test
+    public void check_024_ifForecastItemDescriptionHasNoDefaultValue() throws InterruptedException {
+        onData(anything()).inAdapterView(withId(R.id.listview_forecast)).atPosition(POSITION).
+                onChildView(withId(R.id.itemDescription)).check(matches(not(withText(R.string.default_description))));
+    }
+
+    @Test
+    public void check_025_ifForecastItemTemperatureMaxHasNoDefaultValue() throws InterruptedException {
+        onData(anything()).inAdapterView(withId(R.id.listview_forecast)).atPosition(POSITION).
+                onChildView(withId(R.id.itemTemperatureMax)).check(matches(not(withText(R.string.default_temperature_max))));
+    }
+
+    @Test
+    public void check_026_ifForecastItemTemperatureMinHasNoDefaultValue() throws InterruptedException {
+        onData(anything()).inAdapterView(withId(R.id.listview_forecast)).atPosition(POSITION).
+                onChildView(withId(R.id.itemTemperatureMin)).check(matches(not(withText(R.string.default_temperature_min))));
     }
 }
