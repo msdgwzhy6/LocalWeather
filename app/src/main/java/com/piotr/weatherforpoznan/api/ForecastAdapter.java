@@ -97,11 +97,11 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
         TextView itemTemperatureMax;
 
         public ViewHolder(View view) {
-            this.forecastIcon = (ImageView) view.findViewById(R.id.forecastIcon);
-            this.itemDate = (TextView) view.findViewById(R.id.itemDate);
-            this.itemTemperatureMin = (TextView) view.findViewById(R.id.itemTemperatureMin);
-            this.itemTemperatureMax = (TextView) view.findViewById(R.id.itemTemperatureMax);
-            this.itemDescription = (TextView) view.findViewById(R.id.itemDescription);
+            this.forecastIcon = (ImageView) view.findViewById(R.id.forecastItemIcon);
+            this.itemDate = (TextView) view.findViewById(R.id.forecastItemDate);
+            this.itemTemperatureMin = (TextView) view.findViewById(R.id.forecastItemTemperatureMin);
+            this.itemTemperatureMax = (TextView) view.findViewById(R.id.forecastItemTemperatureMax);
+            this.itemDescription = (TextView) view.findViewById(R.id.forecastItemDescription);
         }
     }
 }

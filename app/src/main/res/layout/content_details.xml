@@ -67,7 +67,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/itemTemperature"
+                android:id="@+id/forecastItemTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"

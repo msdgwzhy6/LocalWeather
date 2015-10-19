@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -32,29 +31,22 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
     @Rule
     public ActivityTestRule<SettingsActivity_> mRule = new ActivityTestRule<>(SettingsActivity_.class);
 
+    /*PART 1.
+    * Checking action bar values and navigate button
+    * */
 
     @Test
     public void check_01_IfActivityNameIsDisplayed() throws InterruptedException {
-        onView(withText(R.string.title_activity_settings)).check(matches(isDisplayed()));
+        onView(withId(R.id.toolbar)).check(matches(withText(R.string.title_activity_settings)));
     }
 
     @Test
-    public void check_02_IfToolbarIsDisplayed() throws InterruptedException {
-        onView(withId(R.id.toolbar)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_03_IfNavigateButtonIsDisplayed() throws InterruptedException {
+    public void check_02_IfNavigateButtonIsDisplayed() throws InterruptedException {
         onView(withContentDescription("Navigate up")).check(matches(isDisplayed()));
     }
 
     @Test
-    public void check_04_ifNavigateButtonIsClickable() throws InterruptedException {
+    public void check_03_ifNavigateButtonIsClickable() throws InterruptedException {
         onView(withContentDescription("Navigate up")).check(matches(isClickable()));
-    }
-
-    @Test
-    public void check_05_ifListViewIsNotDisplayed() throws InterruptedException {
-        onView(withId(R.id.listview_forecast)).check(doesNotExist());
     }
 }
