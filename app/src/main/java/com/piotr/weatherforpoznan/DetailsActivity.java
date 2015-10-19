@@ -40,25 +40,25 @@ public class DetailsActivity extends AppCompatActivity {
     FloatingActionButton fab;
 
     @ViewById
-    TextView detail_day_textview;
+    TextView detailsDay;
     @ViewById
-    TextView detail_date_textview;
+    TextView detailsDate;
     @ViewById
-    TextView detail_city;
+    TextView detailsCity;
     @ViewById
-    TextView detail_high_textview;
+    TextView detailsHighTemp;
     @ViewById
-    TextView detail_low_textview;
+    TextView detailsLowTemp;
     @ViewById
-    TextView detail_forecast_textview;
+    TextView detailsDescription;
     @ViewById
-    TextView detail_humidity_val_textview;
+    TextView detailsHumidityVal;
     @ViewById
-    TextView detail_pressure_val_textview;
+    TextView detailsPressureVal;
     @ViewById
-    TextView detail_wind_val_textview;
+    TextView detailsWindVal;
     @ViewById
-    ImageView detail_icon;
+    ImageView detailsIcon;
 
     @StringRes
     String day;
@@ -112,16 +112,16 @@ public class DetailsActivity extends AppCompatActivity {
 
     @UiThread
     protected void setDetailActivityViewsValues() {
-        detail_day_textview.setText(day);
-        detail_date_textview.setText(date);
-        detail_city.setText(city_name);
-        detail_high_textview.setText(high_temp);
-        detail_low_textview.setText(low_temp);
-        detail_humidity_val_textview.setText(humidity_val);
-        detail_pressure_val_textview.setText(pressure_val);
-        detail_wind_val_textview.setText(wind_val);
-        Picasso.with(getApplicationContext()).load(icon).into(detail_icon);
-        detail_forecast_textview.setText(capitalizeString(description));
+        detailsDay.setText(day);
+        detailsDate.setText(date);
+        detailsCity.setText(city_name);
+        detailsHighTemp.setText(high_temp);
+        detailsLowTemp.setText(low_temp);
+        detailsHumidityVal.setText(humidity_val);
+        detailsPressureVal.setText(pressure_val);
+        detailsWindVal.setText(wind_val);
+        Picasso.with(getApplicationContext()).load(icon).into(detailsIcon);
+        detailsDescription.setText(capitalizeString(description));
     }
 
     @UiThread

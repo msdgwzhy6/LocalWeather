@@ -20,6 +20,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
+import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -39,12 +40,12 @@ public class DetailsActivityTest {
     }
 
     /* PART 1.
-    * Checking action bar values and overflow menu items
-        * */
+    * Checking action bar and navigation
+    * */
     @Test
     public void check_001_IfActivityNameIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.toolbar)).check(matches(withText(R.string.title_activity_details)));
+        onView(withId(R.id.toolbar)).check(matches(withChild(withText(R.string.title_activity_details))));
     }
 
     @Test
@@ -56,8 +57,12 @@ public class DetailsActivityTest {
     @Test
     public void check_003_ifNavigateButtonIsClickable() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withContentDescription("Navigate up")).check(matches(isClickable()));
+        onView(withContentDescription("Navigate up")).check(matches(isClickable())).perform(click());
     }
+
+    /* PART 2.
+    * These tests should check if all parts of DetailsActivity are visible.
+    * */
 
     @Test
     public void check_004_ifListViewIsNotDisplayed() throws InterruptedException {
@@ -68,67 +73,67 @@ public class DetailsActivityTest {
     @Test
     public void check_005_ifDayAndDateAreDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.day_and_date)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsDayAndDate)).check(matches(isCompletelyDisplayed()));
     }
 
     @Test
     public void check_006_ifTempAndIconAreDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.temp_and_icon)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsTempAndIcon)).check(matches(isCompletelyDisplayed()));
     }
 
     @Test
     public void check_007_ifTemperatureIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.forecastItemTemperature)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsTemperature)).check(matches(isCompletelyDisplayed()));
     }
 
     @Test
     public void check_008_ifDetailIconIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detail_icon)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsIcon)).check(matches(isCompletelyDisplayed()));
     }
 
     @Test
     public void check_009_ifDetailIconIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detail_icon)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsIcon)).check(matches(isCompletelyDisplayed()));
     }
 
     @Test
     public void check_010_ifDetailCityIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detail_city)).check(matches(isDisplayed()));
+        onView(withId(R.id.detailsCity)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_011_ifForecastIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.forecast)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsDescriptionLayout)).check(matches(isCompletelyDisplayed()));
     }
 
     @Test
     public void check_012_ifForecastDetailsIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.forecast_details)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsForecast)).check(matches(isCompletelyDisplayed()));
     }
 
     @Test
     public void check_013_ifHumidityIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.humidity)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsHumidityLayout)).check(matches(isCompletelyDisplayed()));
     }
 
     @Test
     public void check_014_ifPressureIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.pressure)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsPressureLayout)).check(matches(isCompletelyDisplayed()));
     }
 
     @Test
     public void check_015_ifWindIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.wind)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsWindLayout)).check(matches(isCompletelyDisplayed()));
     }
 
     /*PART 3.

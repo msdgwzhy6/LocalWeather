@@ -17,6 +17,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -37,7 +38,7 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
 
     @Test
     public void check_01_IfActivityNameIsDisplayed() throws InterruptedException {
-        onView(withId(R.id.toolbar)).check(matches(withText(R.string.title_activity_settings)));
+        onView(withId(R.id.toolbar)).check(matches(withChild(withText(R.string.title_activity_settings))));
     }
 
     @Test

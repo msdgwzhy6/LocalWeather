@@ -25,7 +25,7 @@
             android:id="@+id/forecastItemTable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/forecastItemTemperature"
+            android:layout_toLeftOf="@+id/detailsTemperature"
             android:layout_toRightOf="@+id/forecastItemIcon"
             android:orientation="vertical"
             android:paddingLeft="@dimen/dimen_medium">
@@ -41,14 +41,14 @@
                 android:text="@string/default_date"
                 android:textSize="@dimen/abc_text_size_small_material" />
 
-                <TextView
-                    android:id="@+id/forecastItemDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:padding="@dimen/dimen_small"
-                    android:text="@string/default_description"
-                    android:textSize="@dimen/abc_text_size_small_material" />
+            <TextView
+                android:id="@+id/forecastItemDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:padding="@dimen/dimen_small"
+                android:text="@string/default_description"
+                android:textSize="@dimen/abc_text_size_small_material" />
         </LinearLayout>
 
         <LinearLayout
