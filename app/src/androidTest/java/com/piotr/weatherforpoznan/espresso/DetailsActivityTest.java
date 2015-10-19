@@ -83,7 +83,7 @@ public class DetailsActivityTest {
     @Test
     public void check_08_ifTemperatureIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.temperature)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.itemTemperature)).check(matches(isCompletelyDisplayed()));
     }
 
     @Test
