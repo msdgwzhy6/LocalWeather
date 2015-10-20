@@ -14,6 +14,7 @@ import org.junit.runners.MethodSorters;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
@@ -77,19 +78,19 @@ public class DetailsActivityTest {
     @Test
     public void check_006_ifDetailsDayIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsDay)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsDay)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void check_007_ifDetailsDayDateIsDisplayed() throws InterruptedException {
+    public void check_007_ifDetailsDateIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsDate)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsDate)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_008_ifDetailsCityIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsCity)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsCity)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -107,13 +108,13 @@ public class DetailsActivityTest {
     @Test
     public void check_011_ifDetailsHighTemperatureIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsHighTemp)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsHighTemp)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_012_ifDetailsLowTemperatureIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsLowTemp)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsLowTemp)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -125,7 +126,7 @@ public class DetailsActivityTest {
     @Test
     public void check_014_ifDetailIconIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsIcon)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsIcon)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -134,11 +135,10 @@ public class DetailsActivityTest {
         onView(withId(R.id.detailsDescriptionLayout)).check(matches(isCompletelyDisplayed()));
     }
 
-
     @Test
     public void check_016_ifDetailsDescriptionIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsDescription)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsDescription)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -156,13 +156,13 @@ public class DetailsActivityTest {
     @Test
     public void check_019_ifDetailsHumidityDescriptionIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsHumidityDesc)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsHumidityDesc)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_020_ifDetailsHumidityValueIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsHumidityVal)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsHumidityVal)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -174,13 +174,13 @@ public class DetailsActivityTest {
     @Test
     public void check_022_ifDetailsPressureDescriptionIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsPressureDesc)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsPressureDesc)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_023_ifDetailsPressureValueIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsPressureVal)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsPressureVal)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -192,13 +192,13 @@ public class DetailsActivityTest {
     @Test
     public void check_025_ifDetailsWindDescriptionIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsWindDesc)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsWindDesc)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_026_ifDetailsWindValueIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.detailsWindVal)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.detailsWindVal)).check(matches(isDisplayed()));
     }
 
     /*PART 3.
@@ -213,7 +213,7 @@ public class DetailsActivityTest {
     @Test
     public void check_028_ifFloatingActionButtonIsClickable() throws InterruptedException {
         goToDetailsActivityView();
-        onView(withId(R.id.fab)).check(matches(isClickable()));
+        onView(withId(R.id.fab)).check(matches(isClickable())).perform(longClick());
     }
 
     @Test

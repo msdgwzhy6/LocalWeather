@@ -176,7 +176,7 @@ public class MainActivityTest {
     * These tests should check if all parts of ListView.Item has different values than defaults.
     * */
     @Test
-    public void check_022_ifForecastIconIsHasNoDefaultDrawable() throws InterruptedException {
+    public void check_022_ifForecastIconHasNoDefaultDrawable() throws InterruptedException {
         onData(anything()).inAdapterView(withId(R.id.listview_forecast)).atPosition(POSITION).
                 onChildView(withId(R.id.forecastItemIcon)).check(matches(not(withId(R.mipmap.ic_launcher))));
     }
