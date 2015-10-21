@@ -3,16 +3,6 @@
     <!--Activities-->
     <string name="title_activity_details">Szczegóły</string>
     <string name="title_activity_settings">Ustawienia</string>
-    <!-- Default values-->
-    <string name="default_temperature">16°C</string>
-    <string name="default_pressure">1000 hPa</string>
-    <string name="default_wind">2.88 km/h</string>
-    <string name="default_humidity">34 %</string>
-    <string name="default_description">Pochmurnie</string>
-    <string name="default_date">\"2015-10-05 09:00:00\"</string>
-    <string name="default_temperature_max">14°C</string>
-    <string name="default_temperature_min">12°C</string>
-    <string name="default_city">Poznań</string>
     <!--Date templates-->
     <string name="today">Dzisiaj</string>
     <string name="tomorrow">Jutro</string>
@@ -20,17 +10,21 @@
     <string name="day">Środa</string>
     <string name="date">2015-10-05 09:00:00</string>
     <string name="city_name">Poznań</string>
-    <string name="high_temperature">14°C</string>
-    <string name="low_temperature">12°C</string>
+    <!--Temperature-->
+    <string name="high_temp">14°C</string>
+    <string name="low_temp">12°C</string>
+    <!--Humidity-->
     <string name="humidity_desc">Wilgotność: </string>
-    <string name="humidity_value">84 %</string>
-
+    <string name="humidity_val">84 %</string>
+    <!--Pressure-->
     <string name="pressure_desc">Ciśnienie: </string>
     <string name="pressure_val">1020 hPa</string>
+    <!--Wind-->
     <string name="wind_speed"></string>
     <string name="wind_deg"></string>
-    <string name="wind_description">Wiatr: </string>
-    <string name="wind_value">10 km/h E</string>
+    <string name="wind_desc">Wiatr: </string>
+    <string name="wind_val">10 km/h E</string>
+    <!--Description-->
     <string name="description">\Pochmurnie</string>
     <!--Main Activity values-->
     <string name="latitude"></string>

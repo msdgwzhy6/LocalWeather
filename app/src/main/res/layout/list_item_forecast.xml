@@ -38,7 +38,7 @@
                 android:paddingLeft="@dimen/dimen_small"
                 android:paddingRight="@dimen/dimen_small"
                 android:paddingTop="@dimen/dimen_small"
-                android:text="@string/default_date"
+                android:text="@string/date"
                 android:textSize="@dimen/abc_text_size_small_material" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:padding="@dimen/dimen_small"
-                android:text="@string/default_description"
+                android:text="@string/description"
                 android:textSize="@dimen/abc_text_size_small_material" />
         </LinearLayout>
 
@@ -69,7 +69,7 @@
                 android:paddingLeft="@dimen/dimen_small"
                 android:paddingRight="@dimen/dimen_small"
                 android:paddingTop="@dimen/dimen_small"
-                android:text="@string/default_temperature_max"
+                android:text="@string/high_temp"
                 android:textSize="@dimen/abc_text_size_medium_material" />
 
             <TextView
@@ -81,7 +81,7 @@
                 android:paddingLeft="@dimen/dimen_small"
                 android:paddingRight="@dimen/dimen_small"
                 android:paddingTop="@dimen/dimen_small"
-                android:text="@string/default_temperature_min"
+                android:text="@string/low_temp"
                 android:textSize="@dimen/abc_text_size_small_material" />
         </LinearLayout>
     </RelativeLayout>

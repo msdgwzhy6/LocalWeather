@@ -3,16 +3,6 @@
     <!--Activities-->
     <string name="title_activity_details">Details</string>
     <string name="title_activity_settings">Settings</string>
-    <!-- Default values-->
-    <string name="default_temperature">16°C</string>
-    <string name="default_pressure">1000 hPa</string>
-    <string name="default_wind">2.88 km/h</string>
-    <string name="default_humidity">34 %</string>
-    <string name="default_description">\"It\'s cloudy\"</string>
-    <string name="default_date">\"2015-10-05 09:00:00\"</string>
-    <string name="default_temperature_max">14°C</string>
-    <string name="default_temperature_min">12°C</string>
-    <string name="default_city">Poznan</string>
     <!--Date templates-->
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
@@ -20,16 +10,21 @@
     <string name="day">Wednesday</string>
     <string name="date">2015-10-05 09:00:00</string>
     <string name="city_name">Poznan</string>
+    <!--Temperature-->
     <string name="high_temp">14°C</string>
     <string name="low_temp">12°C</string>
+    <!--Humidity-->
     <string name="humidity_desc">Humidity: </string>
     <string name="humidity_val">84 %</string>
+    <!--Pressure-->
     <string name="pressure_desc">Pressure: </string>
     <string name="pressure_val">1020 hPa</string>
+    <!--Wind-->
     <string name="wind_speed"></string>
     <string name="wind_deg"></string>
     <string name="wind_desc">Wind: </string>
     <string name="wind_val">10 km/h E</string>
+    <!--Description-->
     <string name="description">\Rain</string>
     <!--Main Activity values-->
     <string name="latitude"></string>

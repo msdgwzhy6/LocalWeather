@@ -56,7 +56,7 @@
             android:fontFamily="sans-serif-light"
             android:padding="@dimen/dimen_small"
             android:paddingBottom="@dimen/no_padding"
-            android:text="@string/default_city"
+            android:text="@string/city_name"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
@@ -106,7 +106,7 @@
                     android:id="@+id/detailsIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/art_rain" />
+                    android:src="@drawable/art_default" />
             </LinearLayout>
         </RelativeLayout>
 
