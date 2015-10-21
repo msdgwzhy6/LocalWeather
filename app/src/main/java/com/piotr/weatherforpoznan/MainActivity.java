@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.activeandroid.query.Select;
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
 import com.piotr.weatherforpoznan.model.City;
 
 import org.androidannotations.annotations.AfterViews;
@@ -13,6 +15,8 @@ import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.res.StringRes;
+
+import io.fabric.sdk.android.Fabric;
 
 @OptionsMenu(R.menu.menu_main)
 @EActivity(R.layout.activity_main)
@@ -49,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         getSupportActionBar().setTitle(R.string.app_name);
         getSupportActionBar().setSubtitle(getGeoCoordinates());
+
+
+        /*Disable Crashlytics.
+        * Use this only for unit tests*/
+        CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build();
+        Fabric.with(this, new Crashlytics.Builder().core(core).build());
     }
 
     protected String getGeoCoordinates() {

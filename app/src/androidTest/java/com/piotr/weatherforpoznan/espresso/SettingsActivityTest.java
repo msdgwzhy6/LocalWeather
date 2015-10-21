@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -31,7 +32,6 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
 
     @Rule
     public ActivityTestRule<SettingsActivity_> mRule = new ActivityTestRule<>(SettingsActivity_.class);
-
     /*PART 1.
     * Checking action bar values and navigate button
     * */
@@ -46,8 +46,11 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
         onView(withContentDescription("Navigate up")).check(matches(isDisplayed()));
     }
 
+
+
     @Test
     public void check_03_ifNavigateButtonIsClickable() throws InterruptedException {
-        onView(withContentDescription("Navigate up")).check(matches(isClickable()));
+        onView(withContentDescription("Navigate up")).check(matches(isClickable())).perform(click());
+        onView(withId(R.id.listview_forecast)).check(matches(isDisplayed()));
     }
 }

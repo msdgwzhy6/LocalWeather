@@ -10,10 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
 import com.piotr.weatherforpoznan.model.City;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.squareup.picasso.Picasso;
 
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -25,6 +28,8 @@ import org.androidannotations.annotations.res.StringRes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import io.fabric.sdk.android.Fabric;
 
 import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
 import static com.piotr.weatherforpoznan.utils.Utility.getArtResourceForWeatherCondition;
@@ -100,6 +105,14 @@ public class DetailsActivity extends AppCompatActivity {
                 .setAction("Action", null).show();
     }
 
+    @AfterInject
+    public void stopCrashlitycs() {
+        /*Disable Crashlytics.
+        * Use this only for unit tests*/
+        CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build();
+        Fabric.with(this, new Crashlytics.Builder().core(core).build());
+    }
+
     @AfterViews
     protected void onCreateView() {
         setDetailsActionBar(toolbar);
@@ -130,9 +143,9 @@ public class DetailsActivity extends AppCompatActivity {
         date = getFormattedDate(item.getDt_txt());
         city_name = city.getName().toString();
         high_temp = Math.round(item.getMain().getTempMax()) + " °C";
-        low_temp =  Math.round(item.getMain().getTempMin()) + " °C";
-        humidity_val =  Math.round(item.getMain().getHumidity()) + " %";
-        pressure_val =  Math.round(item.getMain().getPressure()) + " hPa";
+        low_temp = Math.round(item.getMain().getTempMin()) + " °C";
+        humidity_val = Math.round(item.getMain().getHumidity()) + " %";
+        pressure_val = Math.round(item.getMain().getPressure()) + " hPa";
         wind_speed = Math.round(item.getWind().getSpeed()) + " km/h";
         wind_deg = getFormattedWind(item.getWind().getDeg());
         wind_val = wind_speed + " \t" + wind_deg;
