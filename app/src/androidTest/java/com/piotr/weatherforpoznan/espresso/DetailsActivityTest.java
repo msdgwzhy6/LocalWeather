@@ -24,6 +24,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.not;
 
 /**
  * Created by piotr on 17.10.15.
@@ -201,23 +202,86 @@ public class DetailsActivityTest {
         onView(withId(R.id.detailsWindVal)).check(matches(isDisplayed()));
     }
 
-    /*PART 3.
+    /* PART 3.
+    * These tests should check if all parts of ListView.Item has different values than defaults.
+    * */
+    @Test
+    public void check_027_ifDetailsDayHasNoDefaultValue() throws InterruptedException {
+        goToDetailsActivityView();
+        onView(withId(R.id.detailsDay)).check(matches(not(withText(R.string.day))));
+    }
+
+    @Test
+    public void check_028_ifDetailsDateHasNoDefaultValue() throws InterruptedException {
+        goToDetailsActivityView();
+        onView(withId(R.id.detailsDate)).check(matches(not(withText(R.string.date))));
+    }
+
+    @Test
+    public void check_029_ifDetailsCityHasNoDefaultValue() throws InterruptedException {
+        goToDetailsActivityView();
+        onView(withId(R.id.detailsCity)).check(matches(not(withText(R.string.city_name))));
+    }
+
+    @Test
+    public void check_030_ifDetailsHighTempHasNoDefaultValue() throws InterruptedException {
+        goToDetailsActivityView();
+        onView(withId(R.id.detailsHighTemp)).check(matches(not(withText(R.string.high_temp))));
+    }
+
+    @Test
+    public void check_031_ifDetailsLowTempHasNoDefaultValue() throws InterruptedException {
+        goToDetailsActivityView();
+        onView(withId(R.id.detailsLowTemp)).check(matches(not(withText(R.string.low_temp))));
+    }
+
+    @Test
+    public void check_032_ifDetailsIconHasNoDefaultValue() throws InterruptedException {
+        goToDetailsActivityView();
+        onView(withId(R.id.detailsIcon)).check(matches(not(withText(R.drawable.art_default))));
+    }
+
+    @Test
+    public void check_033_ifDetailsDayHasNoDefaultValue() throws InterruptedException {
+        goToDetailsActivityView();
+        onView(withId(R.id.detailsDescription)).check(matches(not(withText(R.string.description))));
+    }
+
+    @Test
+    public void check_034_ifDetailsHumidityValueHasNoDefaultValue() throws InterruptedException {
+        goToDetailsActivityView();
+        onView(withId(R.id.detailsHumidityVal)).check(matches(not(withText(R.string.humidity_val))));
+    }
+
+    @Test
+    public void check_035_ifDetailsPressureValueHasNoDefaultValue() throws InterruptedException {
+        goToDetailsActivityView();
+        onView(withId(R.id.detailsPressureVal)).check(matches(not(withText(R.string.pressure_val))));
+    }
+
+    @Test
+    public void check_036_ifDetailsWindValueHasNoDefaultValue() throws InterruptedException {
+        goToDetailsActivityView();
+        onView(withId(R.id.detailsWindVal)).check(matches(not(withText(R.string.wind_val))));
+    }
+
+    /*PART 4.
     * Checking action bar values and navigate button
     * */
     @Test
-    public void check_027_ifFloatingActionButtonIsDisplayed() throws InterruptedException {
+    public void check_037_ifFloatingActionButtonIsDisplayed() throws InterruptedException {
         goToDetailsActivityView();
         onView(withId(R.id.fab)).check(matches(isDisplayed())).check(matches(isEnabled()));
     }
 
     @Test
-    public void check_028_ifFloatingActionButtonIsClickable() throws InterruptedException {
+    public void check_038_ifFloatingActionButtonIsClickable() throws InterruptedException {
         goToDetailsActivityView();
         onView(withId(R.id.fab)).check(matches(isClickable())).perform(longClick());
     }
 
     @Test
-    public void check_029_ifSnackbarIsProperlyDisplayed() throws InterruptedException {
+    public void check_039_ifSnackbarIsProperlyDisplayed() throws InterruptedException {
         goToDetailsActivityView();
         onView(withId(R.id.fab)).perform(click());
         onView(withText(R.string.function_not_available)).check(matches(isDisplayed()));

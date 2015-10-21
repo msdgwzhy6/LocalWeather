@@ -8,22 +8,22 @@
     <string name="tomorrow">Tomorrow</string>
     <!--Details Activity values-->
     <string name="day">Wednesday</string>
-    <string name="date">2015-10-05 09:00:00</string>
-    <string name="city_name">Poznan</string>
+    <string name="date">2015-10-05 09:30:00</string>
+    <string name="city_name">City</string>
     <!--Temperature-->
-    <string name="high_temp">14°C</string>
-    <string name="low_temp">12°C</string>
+    <string name="high_temp"> °C</string>
+    <string name="low_temp"> °C</string>
     <!--Humidity-->
     <string name="humidity_desc">Humidity: </string>
-    <string name="humidity_val">84 %</string>
+    <string name="humidity_val"> %</string>
     <!--Pressure-->
     <string name="pressure_desc">Pressure: </string>
-    <string name="pressure_val">1020 hPa</string>
+    <string name="pressure_val"> hPa</string>
     <!--Wind-->
     <string name="wind_speed"></string>
     <string name="wind_deg"></string>
     <string name="wind_desc">Wind: </string>
-    <string name="wind_val">10 km/h E</string>
+    <string name="wind_val"> km/h E</string>
     <!--Description-->
     <string name="description">\Rain</string>
     <!--Main Activity values-->

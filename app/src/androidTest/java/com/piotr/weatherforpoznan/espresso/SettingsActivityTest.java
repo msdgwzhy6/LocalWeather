@@ -32,10 +32,10 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
 
     @Rule
     public ActivityTestRule<SettingsActivity_> mRule = new ActivityTestRule<>(SettingsActivity_.class);
+
     /*PART 1.
     * Checking action bar values and navigate button
     * */
-
     @Test
     public void check_01_IfActivityNameIsDisplayed() throws InterruptedException {
         onView(withId(R.id.toolbar)).check(matches(withChild(withText(R.string.title_activity_settings))));
@@ -45,8 +45,6 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
     public void check_02_IfNavigateButtonIsDisplayed() throws InterruptedException {
         onView(withContentDescription("Navigate up")).check(matches(isDisplayed()));
     }
-
-
 
     @Test
     public void check_03_ifNavigateButtonIsClickable() throws InterruptedException {
