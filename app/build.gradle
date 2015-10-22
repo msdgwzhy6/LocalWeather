@@ -93,4 +93,5 @@ dependencies {
         transitive = true;
     }
 
+    compile 'junit:junit:4.12'
 }

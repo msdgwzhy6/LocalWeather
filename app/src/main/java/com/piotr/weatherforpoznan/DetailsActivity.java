@@ -10,13 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
 import com.piotr.weatherforpoznan.model.City;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.squareup.picasso.Picasso;
 
-import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -28,8 +25,6 @@ import org.androidannotations.annotations.res.StringRes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import io.fabric.sdk.android.Fabric;
 
 import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
 import static com.piotr.weatherforpoznan.utils.Utility.getArtResourceForWeatherCondition;
@@ -105,22 +100,16 @@ public class DetailsActivity extends AppCompatActivity {
                 .setAction("Action", null).show();
     }
 
-    @AfterInject
-    public void stopCrashlitycs() {
-        /*Disable Crashlytics.
-        * Use this only for unit tests*/
-        CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build();
-        Fabric.with(this, new Crashlytics.Builder().core(core).build());
-    }
-
     @AfterViews
     protected void onCreateView() {
         setDetailsActionBar(toolbar);
         City city = new Select().from(City.class).executeSingle();
-        ForecastItem item = new Select().from(ForecastItem.class).where("Id = ?", id).executeSingle();
+        ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();
+        if (item != null) {
         Log.d("DetailsActivity", item.toString());
         getDetailActivityViewsValues(item, city);
-        setDetailActivityViewsValues();
+            setDetailActivityViewsValues();
+        }
     }
 
     @UiThread

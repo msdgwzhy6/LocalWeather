@@ -8,30 +8,34 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
+import static junit.framework.Assert.assertSame;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+/**
+ * Created by piotr on 22.10.15.
+ */
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SettingsActivityTest {
 
-    SettingsActivity activity = Robolectric.setupActivity(SettingsActivity.class);
-    String appName = activity.getApplicationContext().getResources().getString(R.string.app_name);
-
     @Test
-    public void check_01_ifAppNameIsRight() throws Exception {
-        assertThat(activity.isTaskRoot());
+    public void testOnCreate() throws Exception {
+        SettingsActivity activity = Robolectric.setupActivity(SettingsActivity.class);
+        activity.isTaskRoot();
+        activity.getCallingActivity();
+        testSetSettingsActionBar();
     }
 
     @Test
-    public void check_02_ifSupportActionBarIsShowing() throws Exception {
+    public void testSetSettingsActionBar() throws Exception {
+        SettingsActivity activity = Robolectric.setupActivity(SettingsActivity.class);
         assertThat(activity.getSupportActionBar().isShowing());
+        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
+        activity.getSupportActionBar().isShowing();
+        activity.getSupportActionBar().setTitle(R.string.title_activity_settings);
+        assertSame(activity.getSupportActionBar().getTitle(),
+                activity.getText(R.string.title_activity_settings));
     }
-
-    @Test
-    public void check_03_ifActivityNameIsRight() throws Exception {
-        assertThat(activity.getSupportActionBar().getTitle().toString()).isEqualTo(appName);
-    }
-
 }

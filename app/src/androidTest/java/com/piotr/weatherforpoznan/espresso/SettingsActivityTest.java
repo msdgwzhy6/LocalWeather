@@ -46,9 +46,8 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
         onView(withContentDescription("Navigate up")).check(matches(isDisplayed()));
     }
 
-    @Test
+   @Test
     public void check_03_ifNavigateButtonIsClickable() throws InterruptedException {
         onView(withContentDescription("Navigate up")).check(matches(isClickable())).perform(click());
-        onView(withId(R.id.listview_forecast)).check(matches(isDisplayed()));
     }
 }
