@@ -106,8 +106,8 @@ public class DetailsActivity extends AppCompatActivity {
         City city = new Select().from(City.class).executeSingle();
         ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();
         if (item != null) {
-        Log.d("DetailsActivity", item.toString());
-        getDetailActivityViewsValues(item, city);
+            Log.d("DetailsActivity", item.toString());
+            getDetailActivityViewsValues(item, city);
             setDetailActivityViewsValues();
         }
     }
