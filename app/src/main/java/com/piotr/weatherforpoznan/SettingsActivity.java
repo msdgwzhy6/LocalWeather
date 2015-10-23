@@ -12,7 +12,7 @@ import org.androidannotations.annotations.ViewById;
 @EActivity(R.layout.activity_settings)
 public class SettingsActivity extends AppCompatActivity {
 
-    @ViewById(R.id.toolbar)
+    @ViewById
     Toolbar toolbar;
 
     @AfterViews
