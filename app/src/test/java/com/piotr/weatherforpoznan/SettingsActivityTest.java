@@ -1,5 +1,7 @@
 package com.piotr.weatherforpoznan;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.view.View;
 
 import org.junit.FixMethodOrder;
@@ -10,7 +12,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import static junit.framework.Assert.assertSame;
 import static junit.framework.TestCase.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -32,23 +33,27 @@ public class SettingsActivityTest {
         activity.setSettingsActionBar(activity.toolbar);
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Test
     public void testSetSettingsActionBar() throws Exception {
         final SettingsActivity_ activity = Robolectric.setupActivity(SettingsActivity_.class);
+        testOnCreate();
+        activity.setContentView(R.layout.activity_settings);
         activity.setSupportActionBar(activity.toolbar);
+        assertTrue(activity.getSupportActionBar().getTitle() != null);
         assertThat(activity.toolbar.isShown());
+
         activity.toolbar.setTitle(R.string.title_activity_settings);
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
-        assertTrue(activity.getSupportActionBar().isShowing());
-        activity.getSupportActionBar().setTitle(R.string.title_activity_settings);
-        assertSame(activity.getSupportActionBar().getTitle(),
-                activity.getText(R.string.title_activity_settings));
-        activity.toolbar.setOnClickListener(new View.OnClickListener() {
+        activity.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activity.onBackPressed();
+                assertTrue(activity.isFinishing());
             }
         });
+        activity.toolbar.performClick();
+        assertTrue(activity.isFinishing());
     }
 }
