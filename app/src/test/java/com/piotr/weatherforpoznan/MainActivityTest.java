@@ -37,11 +37,6 @@ public class MainActivityTest {
     }
 
     @Test
-    public void testSetWeatherFragments() throws Exception {
-
-    }
-
-    @Test
     public void testSetMainActivityActionBar() throws Exception {
         MainActivity_ activity = Robolectric.setupActivity(MainActivity_.class);
         activity.getSupportActionBar().setDisplayShowHomeEnabled(true);

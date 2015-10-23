@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         if (city != null) {
             latitude = city.getCoord().getLat().toString();
             longitude = city.getCoord().getLon().toString();
-            geo_coord = latitude + " | " + longitude;
         }
         return geo_coord;
     }

@@ -90,7 +90,7 @@ public class DetailsActivity extends AppCompatActivity {
     long id;
 
     public static String getFormattedDate(Date date) {
-        String formattedDay = new SimpleDateFormat("d MMMM y hh:mm a").format(date);
+        String formattedDay = new SimpleDateFormat("d MMMM y HH:mm").format(date);
         return formattedDay;
     }
 

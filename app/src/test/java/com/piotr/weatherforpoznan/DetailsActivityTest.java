@@ -32,7 +32,13 @@ public class DetailsActivityTest {
         DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
         DetailsActivity detailsActivity = null;
         String date = detailsActivity.getFormattedDate(new Date());
-        activity.detailsDate.setText(date);
+        activity.detailsDay.setText("Hello");
+        activity.detailsDate.setText("Hello");
+        activity.detailsCity.setText("Hello");
+        activity.detailsHighTemp.setText("Hello");
+        activity.detailsLowTemp.setText("Hello");
+        activity.detailsDate.setText("Hello");
+
     }
 
     @Test
