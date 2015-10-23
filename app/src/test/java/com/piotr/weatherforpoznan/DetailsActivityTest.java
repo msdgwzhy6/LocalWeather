@@ -1,9 +1,5 @@
 package com.piotr.weatherforpoznan;
 
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +10,6 @@ import org.robolectric.annotation.Config;
 
 import java.util.Date;
 
-import static junit.framework.Assert.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -25,44 +20,38 @@ import static org.assertj.core.api.Assertions.assertThat;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DetailsActivityTest {
 
-    DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
-    TextView detailsDay = (TextView) activity.findViewById(R.id.detailsDay);
-    TextView detailsDate = (TextView) activity.findViewById(R.id.detailsDate);
-    TextView detailsCity = (TextView) activity.findViewById(R.id.detailsCity);
-    TextView detailsHighTemp = (TextView) activity.findViewById(R.id.detailsHighTemp);
-    TextView detailsLowTemp = (TextView) activity.findViewById(R.id.detailsLowTemp);
-    TextView detailsHumidityVal = (TextView) activity.findViewById(R.id.detailsHumidityVal);
-    TextView detailsPressureVal = (TextView) activity.findViewById(R.id.detailsPressureVal);
-    TextView detailsWindVal = (TextView) activity.findViewById(R.id.detailsWindVal);
-
-    ImageView detailsIcon = (ImageView) activity.findViewById(R.id.detailsIcon);
-
     @Test
     public void testOnCreateView() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
         assertThat(activity.toolbar.isClickable());
+        testGetDetailActivityViewsValues();
     }
 
     @Test
     public void testGetFormattedDate() {
-        String date = "Time: " + new Date().getHours() + ":" + new Date().getMinutes();
-        detailsDate.setText(date);
-    }
-
-    @Test
-    public void testSetDetailActivityViewsValues() throws Exception {
-        detailsDay.setText(R.string.today);
-        detailsDate.setText(R.string.date);
-        detailsCity.setText(R.string.day);
-        detailsHighTemp.setText(R.string.high_temp);
-        detailsLowTemp.setText(R.string.low_temp);
-        detailsHumidityVal.setText(R.string.humidity_val);
-        detailsPressureVal.setText(R.string.pressure_val);
-        detailsWindVal.setText(R.string.wind_val);
-        detailsIcon.setImageResource(R.drawable.art_default);
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        DetailsActivity detailsActivity = null;
+        String date = detailsActivity.getFormattedDate(new Date());
+        activity.detailsDate.setText(date);
     }
 
     @Test
     public void testGetDetailActivityViewsValues() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        assertThat(activity.detailsDate.getText() != null);
+        assertThat(activity.detailsHighTemp.getText() != null);
+        assertThat(activity.detailsLowTemp.getText() != null);
+        assertThat(activity.detailsHumidityVal.getText() != null);
+        assertThat(activity.detailsPressureVal.getText() != null);
+        assertThat(activity.detailsWindVal.getText() != null);
+        assertThat(activity.detailsIcon.getDrawable() != null);
+        assertThat(activity.detailsDescription.getText() != null);
+    }
+
+
+    @Test
+    public void testSetDetailActivityViewsValues() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
         assertThat(activity.findViewById(R.id.detailsDay).isShown());
         assertThat(activity.findViewById(R.id.detailsDate).isShown());
         assertThat(activity.findViewById(R.id.detailsCity).isShown());
@@ -71,24 +60,32 @@ public class DetailsActivityTest {
         assertThat(activity.findViewById(R.id.detailsPressureVal).isShown());
         assertThat(activity.findViewById(R.id.detailsPressureVal).isShown());
         assertThat(activity.findViewById(R.id.detailsWindVal).isShown());
+        assertThat(activity.detailsDate.getText() != null);
+        assertThat(activity.detailsHighTemp.getText() != null);
+        assertThat(activity.detailsLowTemp.getText() != null);
+        assertThat(activity.detailsHumidityVal.getText() != null);
+        assertThat(activity.detailsPressureVal.getText() != null);
+        assertThat(activity.detailsWindVal.getText() != null);
+        assertThat(activity.detailsIcon.getDrawable() != null);
+        assertThat(activity.detailsDescription.getText() != null);
+
     }
 
     @Test
-    public void testSetDetailsActionBar() throws Exception {
-        final DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
-        activity.toolbar.setTitle(R.string.title_activity_details);
-        assertThat(activity.toolbar.getTitle().toString() == "Settings");
-        activity.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.onBackPressed();
-            }
-        });
-        activity.findViewById(R.id.toolbar).performClick();
-        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        activity.getSupportActionBar().setDisplayShowHomeEnabled(false);
-        activity.getSupportActionBar().hide();
-        assertTrue(activity.getSupportActionBar().isShowing() == false);
+    public void testGetDetailsActionBar() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        assertThat(activity.day = new Date().toString());
+        assertThat(activity.date = String.valueOf(new Date()));
+        assertThat(activity.city_name = String.valueOf(activity.findViewById(R.id.detailsCity)));
+        assertThat(activity.high_temp = String.valueOf(activity.findViewById(R.id.detailsCity)));
+        assertThat(activity.low_temp = String.valueOf(activity.findViewById(R.id.detailsCity)));
+        assertThat(activity.humidity_val = String.valueOf(activity.findViewById(R.id.detailsCity)));
+        assertThat(activity.pressure_val = String.valueOf(activity.findViewById(R.id.detailsCity)));
+        assertThat(activity.wind_speed = String.valueOf(activity.findViewById(R.id.detailsCity)));
+        assertThat(activity.wind_deg = String.valueOf(activity.findViewById(R.id.detailsCity)));
+        assertThat(activity.wind_val = String.valueOf(activity.findViewById(R.id.detailsWindVal)));
+        assertThat(activity.icon = Integer.parseInt(String.valueOf(R.drawable.art_clear)));
+        assertThat(activity.description = String.valueOf(activity.findViewById(R.id.detailsCity)));
     }
 
     @Test
