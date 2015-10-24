@@ -30,6 +30,12 @@
     <string name="latitude"></string>
     <string name="longitude"></string>
     <string name="geo_coord"></string>
+    <!--Settings Activity values-->
+    <string name="location">Location</string>
+    <string name="imperial">Imperial</string>
+    <string name="metric">Metric</string>
+    <string name="temperature_units">Temperature Units</string>
+    <string name="weatherNotifications">Weather Notifications</string>
     <!--If something goes wrong-->
     <string name="description_not_available">Description is not available</string>
     <string name="function_not_available">This function is not available.</string>
@@ -37,4 +43,5 @@
     <string name="API_ID">f1570c3640caf0e5f96358d802933e40</string>
     <!-- Language of phone-->
     <string name="lang">en</string>
+
 </resources>

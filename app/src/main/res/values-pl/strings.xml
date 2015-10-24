@@ -30,6 +30,12 @@
     <string name="latitude"></string>
     <string name="longitude"></string>
     <string name="geo_coord"></string>
+    <!--Settings Activity values-->
+    <string name="location">Lokalizacja</string>
+    <string name="imperial">Fahrenheit</string>
+    <string name="metric">Celcjusz</string>
+    <string name="temperature_units">Jednostka Temperatury</string>
+    <string name="weatherNotifications">Notyfikacje Pogodowe</string>
     <!--If something goes wrong-->
     <string name="description_not_available">Opis tymczasowo niedostępny</string>
     <string name="function_not_available">Funkcja tymczasowo niedostępna</string>
