@@ -18,8 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class
-        DetailsActivityTest {
+public class DetailsActivityTest {
 
     @Test
     public void testOnCreateView() throws Exception {
@@ -32,7 +31,7 @@ public class
     public void testGetFormattedDate() {
         DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
         DetailsActivity detailsActivity = null;
-        String date = DetailsActivity.getFormattedDate(new Date());
+        String date = detailsActivity.getFormattedDate(new Date());
         activity.detailsDay.setText("Hello");
         activity.detailsDate.setText("Hello");
         activity.detailsCity.setText("Hello");

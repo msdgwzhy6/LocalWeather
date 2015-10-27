@@ -30,8 +30,8 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
     }
 
     private static String getFormattedDate(Date date) {
-        String formattedDate = new SimpleDateFormat("E d MMMM y HH:mm").format(date);
-        return formattedDate;
+        String formattedDay = new SimpleDateFormat("E d MMMM y HH:mm").format(date);
+        return formattedDay;
         //FIXME: Settings -> Give user: 24h or AM/PM format
     }
 
