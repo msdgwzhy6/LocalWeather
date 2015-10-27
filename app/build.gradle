@@ -35,6 +35,11 @@ android {
 
     useLibrary 'org.apache.http.legacy'
 
+    //For building with Travis CI
+    lintOptions {
+        abortOnError false
+    }
+
     defaultConfig {
         applicationId "com.piotr.weatherforpoznan"
         minSdkVersion 16

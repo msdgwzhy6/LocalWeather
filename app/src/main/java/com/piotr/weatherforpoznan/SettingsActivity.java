@@ -32,5 +32,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setTitle(R.string.title_activity_settings);
+        onBackPressed();
     }
 }

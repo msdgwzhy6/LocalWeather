@@ -2,6 +2,8 @@ package com.piotr.weatherforpoznan;
 
 import android.content.Intent;
 
+import com.piotr.weatherforpoznan.utils.Utility;
+
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +26,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Config(constants = BuildConfig.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MainActivityTest {
+
+    MainActivity_ activity = Robolectric.setupActivity(MainActivity_.class);
 
     @Test
     public void testFirstMenuItemCalled() throws Exception {
@@ -56,5 +60,11 @@ public class MainActivityTest {
         activity.geo_coord = activity.latitude + " | " + activity.longitude;
         assertTrue(activity.geo_coord != null);
 
+    }
+
+    @Test
+    public void testGetDayNameTomorrow() throws Exception {
+        assertThat((Utility.getDayName(activity.getApplicationContext(),
+                System.currentTimeMillis()) + (1000 * 60 * 60 * 24)) == "Tomorrow");
     }
 }
