@@ -1,8 +1,12 @@
-# WeatherforPoznan [![Build Status](https://travis-ci.org/piotrek1543/WeatherforPoznan.svg)](https://travis-ci.org/piotrek1543/WeatherforPoznan)
+# WeatherforPoznan [![Build Status](https://travis-ci.org/piotrek1543/WeatherforPoznan.svg)](https://travis-ci.org/piotrek1543/WeatherforPoznan) [![Coverity Scan Build Status](https://scan.coverity.com/projects/6797/badge.svg)](https://scan.coverity.com/projects/piotrek1543-weatherforpoznan) [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 Practice app to learn retrofit, gson, AndroidAnnotations and ActiveAndroid
 
-<img src="http://i57.tinypic.com/33crpci.jpg" border="0" alt="Image and video hosting by TinyPic">
+##Screnshots
+<img src="http://i57.tinypic.com/33crpci.jpg" border="0" alt="Image and video hosting by TinyPic" height=400 >
+<img src="/screenshots/device-2015-10-12-111312.png" height="400px"/>
+<img src="/screenshots/device-2015-10-09-085604.png" height="400px"/>
+
  
 ## Build Instructions
  
