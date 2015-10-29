@@ -27,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
     @StringRes
     String longitude;
 
+    @StringRes
+    String latitude_short;
+
+    @StringRes
+    String longitude_short;
+
     @OptionsItem(R.id.action_settings)
     void firstMenuItemCalled() {
         Intent others = new Intent(this, SettingsActivity_.class);
@@ -54,8 +60,11 @@ public class MainActivity extends AppCompatActivity {
     protected String getGeoCoordinates() {
         City city = new Select().from(City.class).executeSingle();
         if (city != null) {
-            latitude = city.getCoord().getLat().toString();
-            longitude = city.getCoord().getLon().toString();
+            String latitude_value = city.getCoord().getLat().toString();
+            latitude = latitude_short+ latitude_value;
+            String longitude_value = city.getCoord().getLon().toString();
+            longitude = longitude_short+ longitude_value;
+            geo_coord = latitude+" "+" || " +" "+longitude;
         }
         return geo_coord;
     }

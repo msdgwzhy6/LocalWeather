@@ -30,6 +30,7 @@
             android:padding="@dimen/dimen_medium"
             android:paddingLeft="@dimen/no_padding"
             android:paddingTop="@dimen/dimen_big"
+            android:singleLine="true"
             android:text="@string/location"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -39,7 +40,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:hint="Test: put id or name of your city"
-            android:padding="@dimen/dimen_medium"/>
+            android:padding="@dimen/dimen_medium" />
     </LinearLayout>
 
 
@@ -79,6 +80,7 @@
                 android:id="@+id/settingsTimeFormat24H"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:fontFamily="sans-serif-light"
                 android:padding="@dimen/dimen_medium"
                 android:text="@string/time_format_24h" />
@@ -137,6 +139,7 @@
                 android:id="@+id/settingsMetricsMetric"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:fontFamily="sans-serif-light"
                 android:padding="@dimen/dimen_medium"
                 android:text="@string/metric" />
@@ -148,6 +151,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dimen_small"
+        android:checked="false"
         android:fontFamily="sans-serif-light"
         android:padding="@dimen/dimen_small"
         android:paddingTop="@dimen/activity_horizontal_margin"

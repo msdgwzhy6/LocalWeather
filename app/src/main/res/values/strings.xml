@@ -29,6 +29,8 @@
     <!--Main Activity values-->
     <string name="latitude"></string>
     <string name="longitude"></string>
+    <string name="latitude_short">Lat: </string>
+    <string name="longitude_short">Long: </string>
     <string name="geo_coord"></string>
     <!--Settings Activity values-->
     <string name="location">Location</string>
@@ -36,6 +38,9 @@
     <string name="metric">Metric</string>
     <string name="temperature_units">Temperature Units</string>
     <string name="weatherNotifications">Weather Notifications</string>
+    <string name="time_format_title">Local Time Format</string>
+    <string name="time_format_24h">24 Hour Clock</string>
+    <string name="time_format_12h">AM / PM</string>
     <!--If something goes wrong-->
     <string name="description_not_available">Description is not available</string>
     <string name="function_not_available">This function is not available.</string>
@@ -43,9 +48,4 @@
     <string name="API_ID">f1570c3640caf0e5f96358d802933e40</string>
     <!-- Language of phone-->
     <string name="lang">en</string>
-
-    <string name="time_format_title">Local Time Format</string>
-    <string name="time_format_24h">24 Hour Clock</string>
-    <string name="time_format_12h">AM / PM</string>
-
 </resources>

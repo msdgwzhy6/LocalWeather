@@ -3,9 +3,9 @@
 Practice app to learn retrofit, gson, AndroidAnnotations and ActiveAndroid
 
 ##Screnshots
-<img src="/screenshots/device-2015-10-29-111540.png" height="400px"/>
+<img src="/screenshots/device-2015-10-29-134512.png" height="400px"/>
+<img src="/screenshots/device-2015-10-29-134551.png" height="400px"/>
 <img src="/screenshots/device-2015-10-29-111513.png" height="400px"/>
-<img src="/screenshots/device-2015-10-29-111608.png" height="400px"/>
 
  
 ## Build Instructions
