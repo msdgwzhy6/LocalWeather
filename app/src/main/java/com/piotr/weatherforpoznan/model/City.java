@@ -15,6 +15,14 @@ public class City extends Model {
     @SerializedName("name")
     String name;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCoord(Coord coord) {
+        this.coord = coord;
+    }
+
     @Column(name = "coord", onUpdate = Column.ForeignKeyAction.CASCADE, onDelete = Column.ForeignKeyAction.CASCADE)
     @SerializedName("coord")
     Coord coord;

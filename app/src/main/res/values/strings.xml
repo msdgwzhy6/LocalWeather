@@ -44,4 +44,8 @@
     <!-- Language of phone-->
     <string name="lang">en</string>
 
+    <string name="time_format_title">Local Time Format</string>
+    <string name="time_format_24h">24 Hour Clock</string>
+    <string name="time_format_12h">AM / PM</string>
+
 </resources>
