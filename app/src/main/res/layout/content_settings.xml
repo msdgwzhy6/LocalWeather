@@ -30,7 +30,6 @@
             android:padding="@dimen/dimen_medium"
             android:paddingLeft="@dimen/no_padding"
             android:paddingTop="@dimen/dimen_big"
-            android:singleLine="true"
             android:text="@string/location"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -40,7 +39,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:hint="Test: put id or name of your city"
-            android:padding="@dimen/dimen_medium" />
+            android:padding="@dimen/dimen_medium"
+            android:singleLine="true" />
     </LinearLayout>
 
 
