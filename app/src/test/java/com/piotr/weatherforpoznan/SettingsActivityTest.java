@@ -21,7 +21,6 @@ import static org.hamcrest.CoreMatchers.is;
  */
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SettingsActivityTest {
 
     @Test

@@ -19,8 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Created by piotr on 27.10.15.
  */
 @RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@Config(constants = BuildConfig.class, sdk = 21)
 public class UtilityTest {
 
     MainActivity_ activity = Robolectric.setupActivity(MainActivity_.class);
