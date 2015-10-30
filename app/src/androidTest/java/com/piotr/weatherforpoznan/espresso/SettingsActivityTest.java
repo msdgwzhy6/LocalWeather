@@ -1,6 +1,5 @@
 package com.piotr.weatherforpoznan.espresso;
 
-import android.support.test.espresso.ViewAssertion;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.InstrumentationTestRunner;
@@ -19,9 +18,9 @@ import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -75,27 +74,27 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
 
     @Test
     public void check_007_IfSettingsMetricsIsDisplayed() throws InterruptedException {
-        onView(withId(R.id.settingsMetrics)).check(matches(isDisplayed()));
+        onView(withId(R.id.settingsTemperatureFormat)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_008_IfSettingsMetricsTitleIsDisplayed() throws InterruptedException {
-        onView(withId(R.id.settingsMetricsTitle)).check(matches(isDisplayed()));
+        onView(withId(R.id.settingsTemperatureFormatTitle)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_009_IfSettingsMetricsChooseIsDisplayed() throws InterruptedException {
-        onView(withId(R.id.settingsMetricsChoose)).check(matches(isDisplayed()));
+        onView(withId(R.id.settingsTemperatureFormatChoose)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_010_IfSettingsMetricsImperialIsDisplayed() throws InterruptedException {
-        onView(withId(R.id.settingsMetricsImperial)).check(matches(isDisplayed()));
+        onView(withId(R.id.settingsTemperatureFormatImperial)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_011_IfSettingsMetricsMetricIsDisplayed() throws InterruptedException {
-        onView(withId(R.id.settingsMetricsMetric)).check(matches(isDisplayed()));
+        onView(withId(R.id.settingsTemperatureFormatMetric)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -115,6 +114,6 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
     @Test
     public void check_014_checkcUnckeckBoxInEnableNotfications() throws InterruptedException {
         onView(withId(R.id.settingsEnableNotifications)).check(matches(isClickable()))
-                .perform(click()).check((ViewAssertion) isChecked());
+                .perform(click()).check(matches(isEnabled()));
     }
 }
