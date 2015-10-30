@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 import com.piotr.weatherforpoznan.MainActivity_;
 import com.piotr.weatherforpoznan.R;
 
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,12 +15,9 @@ import org.junit.runners.MethodSorters;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
-import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -35,255 +33,87 @@ public class DetailsActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity_> mRule = new ActivityTestRule<>(MainActivity_.class);
+    private int[] allDetailsViewsIdis = {
+            R.id.detailsItem,
+            R.id.detailsDayAndDate,
+            R.id.detailsDay,
+            R.id.detailsDate,
+            R.id.detailsCity,
+            R.id.detailsTempAndIcon,
+            R.id.detailsTemperature,
+            R.id.detailsHighTemp,
+            R.id.detailsLowTemp,
+            R.id.detailsIconLayout,
+            R.id.detailsIcon,
+            R.id.detailsDescriptionLayout,
+            R.id.detailsDescription,
+            R.id.detailsForecast,
+            R.id.detailsHumidityLayout,
+            R.id.detailsHumidityDesc,
+            R.id.detailsHumidityVal,
+            R.id.detailsPressureLayout,
+            R.id.detailsPressureDesc,
+            R.id.detailsPressureVal,
+            R.id.detailsWindLayout,
+            R.id.detailsWindDesc,
+            R.id.detailsWindVal
+    };
+    private int[] detailsViewsWithChangingValuesIdis = {
+            R.id.detailsIcon,
+            R.id.detailsDay,
+            R.id.detailsDate,
+            R.id.detailsHighTemp,
+            R.id.detailsLowTemp,
+            R.id.detailsDescription,
+            R.id.detailsHumidityVal,
+            R.id.detailsPressureVal,
+            R.id.detailsWindVal,
+            R.id.detailsIcon,
+    };
+    private int[] defaultViewsValuesIdis = {
+            R.drawable.art_default,
+            R.string.day,
+            R.string.date,
+            R.string.high_temp,
+            R.string.low_temp,
+            R.string.description,
+            R.string.humidity_val,
+            R.string.pressure_val,
+            R.string.wind_val,
+            R.id.detailsWindVal
+    };
 
-    private void goToDetailsActivityView() {
+    @Before
+    public void goToDetailsActivityView() {
         onView(withId(R.id.listview_forecast)).perform(click());
     }
 
-    /* PART 1.
-    * Checking action bar and navigation
-    * */
     @Test
     public void check_001_IfActivityNameIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
         onView(withId(R.id.toolbar)).check(matches(withChild(withText(R.string.title_activity_details))));
     }
 
     @Test
-    public void check_002_IfNavigateButtonIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withContentDescription("Navigate up")).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_003_ifNavigateButtonIsClickable() throws InterruptedException {
-        goToDetailsActivityView();
+    public void check_002_ifNavigateButtonIsClickable() throws InterruptedException {
         onView(withContentDescription("Navigate up")).check(matches(isClickable())).perform(click());
     }
 
-    /* PART 2.
-    * These tests should check if all parts of DetailsActivity are visible.
-    * */
     @Test
-    public void check_004_ifDetailsItemIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsItem)).check(matches(isCompletelyDisplayed()));
+    public void check_003_ifAllDetailsActivityViewsAreDisplayed() throws InterruptedException {
+        for (int i = 0; i < allDetailsViewsIdis.length; i++)
+            onView(withId(allDetailsViewsIdis[i])).check(matches(isDisplayed()));
     }
 
     @Test
-    public void check_005_ifDetailsDayAndDateIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsDayAndDate)).check(matches(isCompletelyDisplayed()));
+    public void check_04_ifDetailsDayHasNoDefaultValue() throws InterruptedException {
+        onView(withId(detailsViewsWithChangingValuesIdis[0])).check(matches(not(withId(defaultViewsValuesIdis[0]))));
+        for (int i = 1; i < detailsViewsWithChangingValuesIdis.length; i++)
+            onView(withId(detailsViewsWithChangingValuesIdis[i])).check(matches(not(withText(defaultViewsValuesIdis[i]))));
     }
 
     @Test
-    public void check_006_ifDetailsDayIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsDay)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_007_ifDetailsDateIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsDate)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_008_ifDetailsCityIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsCity)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_009_ifDetailsTempAndIconIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsTempAndIcon)).check(matches(isCompletelyDisplayed()));
-    }
-
-    @Test
-    public void check_010_ifDetailsTemperatureIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsTemperature)).check(matches(isCompletelyDisplayed()));
-    }
-
-    @Test
-    public void check_011_ifDetailsHighTemperatureIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsHighTemp)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_012_ifDetailsLowTemperatureIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsLowTemp)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_013_ifDetailIconLayoutIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsIconLayout)).check(matches(isCompletelyDisplayed()));
-    }
-
-    @Test
-    public void check_014_ifDetailIconIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsIcon)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_015_ifDetailsDescriptionLayoutIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsDescriptionLayout)).check(matches(isCompletelyDisplayed()));
-    }
-
-    @Test
-    public void check_016_ifDetailsDescriptionIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsDescription)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_017_ifDetailsForecastIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsForecast)).check(matches(isCompletelyDisplayed()));
-    }
-
-    @Test
-    public void check_018_ifDetailsHumidityLayoutIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsHumidityLayout)).check(matches(isCompletelyDisplayed()));
-    }
-
-    @Test
-    public void check_019_ifDetailsHumidityDescriptionIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsHumidityDesc)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_020_ifDetailsHumidityValueIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsHumidityVal)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_021_ifDetailsPressureLayoutIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsPressureLayout)).check(matches(isCompletelyDisplayed()));
-    }
-
-    @Test
-    public void check_022_ifDetailsPressureDescriptionIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsPressureDesc)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_023_ifDetailsPressureValueIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsPressureVal)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_024_ifDetailsWindLayoutIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsWindLayout)).check(matches(isCompletelyDisplayed()));
-    }
-
-    @Test
-    public void check_025_ifDetailsWindDescriptionIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsWindDesc)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_026_ifDetailsWindValueIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsWindVal)).check(matches(isDisplayed()));
-    }
-
-    /* PART 3.
-    * These tests should check if all parts of ListView.Item has different values than defaults.
-    * */
-    @Test
-    public void check_027_ifDetailsDayHasNoDefaultValue() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsDay)).check(matches(not(withText(R.string.day))));
-    }
-
-    @Test
-    public void check_028_ifDetailsDateHasNoDefaultValue() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsDate)).check(matches(not(withText(R.string.date))));
-    }
-
-    @Test
-    public void check_029_ifDetailsCityHasNoDefaultValue() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsCity)).check(matches(not(withText(R.string.city_name))));
-    }
-
-    @Test
-    public void check_030_ifDetailsHighTempHasNoDefaultValue() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsHighTemp)).check(matches(not(withText(R.string.high_temp))));
-    }
-
-    @Test
-    public void check_031_ifDetailsLowTempHasNoDefaultValue() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsLowTemp)).check(matches(not(withText(R.string.low_temp))));
-    }
-
-    @Test
-    public void check_032_ifDetailsIconHasNoDefaultValue() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsIcon)).check(matches(not(withText(R.drawable.art_default))));
-    }
-
-    @Test
-    public void check_033_ifDetailsDayHasNoDefaultValue() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsDescription)).check(matches(not(withText(R.string.description))));
-    }
-
-    @Test
-    public void check_034_ifDetailsHumidityValueHasNoDefaultValue() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsHumidityVal)).check(matches(not(withText(R.string.humidity_val))));
-    }
-
-    @Test
-    public void check_035_ifDetailsPressureValueHasNoDefaultValue() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsPressureVal)).check(matches(not(withText(R.string.pressure_val))));
-    }
-
-    @Test
-    public void check_036_ifDetailsWindValueHasNoDefaultValue() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.detailsWindVal)).check(matches(not(withText(R.string.wind_val))));
-    }
-
-    /*PART 4.
-    * Checking action bar values and navigate button
-    * */
-    @Test
-    public void check_037_ifFloatingActionButtonIsDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.fab)).check(matches(isDisplayed())).check(matches(isEnabled()));
-    }
-
-    @Test
-    public void check_038_ifFloatingActionButtonIsClickable() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.fab)).check(matches(isClickable())).perform(longClick());
-    }
-
-    @Test
-    public void check_039_ifSnackbarIsProperlyDisplayed() throws InterruptedException {
-        goToDetailsActivityView();
-        onView(withId(R.id.fab)).perform(click());
+    public void check_05_ifSnackbarIsProperlyDisplayed() throws InterruptedException {
+        onView(withId(R.id.fab)).check(matches(isDisplayed())).perform(click());
         onView(withText(R.string.function_not_available)).check(matches(isDisplayed()));
     }
 }

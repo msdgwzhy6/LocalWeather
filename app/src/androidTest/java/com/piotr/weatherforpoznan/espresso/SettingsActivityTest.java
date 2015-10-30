@@ -38,6 +38,7 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
 
     @Rule
     public ActivityTestRule<SettingsActivity_> mRule = new ActivityTestRule<>(SettingsActivity_.class);
+
     private int[] settingsViewsIdis = {R.id.settingsCity,
             R.id.settingsCityTitle,
             R.id.settingsCityNameEdit,

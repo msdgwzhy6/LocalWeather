@@ -20,6 +20,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.api.BackgroundExecutor;
 
 @EActivity(R.layout.activity_settings)
 public class SettingsActivity extends AppCompatActivity {
@@ -92,9 +93,8 @@ public class SettingsActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 ActiveAndroid.beginTransaction();
                 try {
-                    SettingsValues settingsValues = new SettingsValues();
-                    settingsValues.setCity(String.valueOf(s));
-                    settingsValues.save();
+                    BackgroundExecutor.cancelAll("save_city", true);
+                    saveCity(s.toString());
                     ActiveAndroid.setTransactionSuccessful();
                 } finally {
                     ActiveAndroid.endTransaction();
@@ -103,6 +103,13 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Background(delay = 1000, id = "save_city")
+    void saveCity(String s) {
+        SettingsValues settingsValues = new SettingsValues();
+        settingsValues.setCity(String.valueOf(s));
+        settingsValues.save();
     }
 
     @Background
@@ -176,6 +183,7 @@ public class SettingsActivity extends AppCompatActivity {
                     settingsValues.setTimeFormat12h(settingsTemperatureFormatMetric.isChecked());
                     settingsValues.save();
                     ActiveAndroid.setTransactionSuccessful();
+
                 } finally {
                     ActiveAndroid.endTransaction();
                     Snackbar.make(getCurrentFocus(), R.string.operation_successful, Snackbar.LENGTH_SHORT)
