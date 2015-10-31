@@ -72,13 +72,13 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
     }
 
     @Test
-    public void check_013_ifSettingsCityNameEditIsDisplayed() throws InterruptedException {
+    public void check_004_ifSettingsCityNameEditIsDisplayed() throws InterruptedException {
         onView(withId(R.id.settingsCityNameEdit)).perform(clearText(),
                 typeText(String.valueOf(R.string.city_name)));
     }
 
     @Test
-    public void check_014_ifEnableNotificationsCheckBoxisUnchecked() throws InterruptedException {
+    public void check_005_ifEnableNotificationsCheckBoxisUnchecked() throws InterruptedException {
         onView(withId(R.id.settingsEnableNotifications)).check(matches(not(isChecked())));
     }
 }

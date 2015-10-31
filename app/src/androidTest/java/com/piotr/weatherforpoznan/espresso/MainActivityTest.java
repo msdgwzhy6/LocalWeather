@@ -44,6 +44,17 @@ public class MainActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity_> mRule = new ActivityTestRule<>(MainActivity_.class);
+
+    @Before
+    public void setup() {
+        closeSoftKeyboard();
+    }
+
+    @Before
+    public void setup() {
+        closeSoftKeyboard();
+    }
+
     private int[] settingsViewsIdis = {R.id.settingsCity,
             R.id.settingsCityTitle,
             R.id.settingsCityNameEdit,
@@ -59,11 +70,6 @@ public class MainActivityTest {
         return rand.nextInt(30) + 1;
     }
 
-    @Before
-    public void setup() {
-        closeSoftKeyboard();
-    }
-
     @Test
     public void check_001_ifAppNameIsDisplayed() throws InterruptedException {
         onView(withId(R.id.action_bar)).check(matches(withChild(withText(R.string.app_name))));
@@ -77,13 +83,8 @@ public class MainActivityTest {
     @Test
     public void check_003_ifSettingsMenuItemIsDisplayed() throws InterruptedException {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-        onView(withText(R.string.title_activity_settings)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void check_004_ifClickOnSettingsMenuItemTakesMeToSettingsActivity() throws InterruptedException {
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-        onView(withText(R.string.title_activity_settings)).perform(click());
+        onView(withText(R.string.title_activity_settings))
+                .check(matches(isDisplayed())).perform(click());
         onView(withContentDescription("Navigate up")).check(matches(isDisplayed()));
     }
 
@@ -100,8 +101,8 @@ public class MainActivityTest {
 
     @Test
     public void check_07_IfClickOnListViewTakesMeToDetailsActivity() throws InterruptedException {
-        onView(withId(R.id.listview_forecast)).perform(click());
-        onView(withText(R.string.title_activity_details)).check(matches(isDisplayed()));
+        onView(withId(R.id.listview_forecast)).perform(click()).
+                check(matches(withText(R.string.title_activity_details)));
     }
 
     @Test

@@ -33,6 +33,7 @@ public class DetailsActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity_> mRule = new ActivityTestRule<>(MainActivity_.class);
+
     private int[] allDetailsViewsIdis = {
             R.id.detailsItem,
             R.id.detailsDayAndDate,
@@ -58,6 +59,7 @@ public class DetailsActivityTest {
             R.id.detailsWindDesc,
             R.id.detailsWindVal
     };
+
     private int[] detailsViewsWithChangingValuesIdis = {
             R.id.detailsIcon,
             R.id.detailsDay,
@@ -70,6 +72,7 @@ public class DetailsActivityTest {
             R.id.detailsWindVal,
             R.id.detailsIcon,
     };
+
     private int[] defaultViewsValuesIdis = {
             R.drawable.art_default,
             R.string.day,
