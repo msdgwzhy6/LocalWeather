@@ -40,6 +40,10 @@ android {
         abortOnError false
     }
 
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
     defaultConfig {
         applicationId "com.piotr.weatherforpoznan"
         minSdkVersion 16
