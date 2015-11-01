@@ -3,10 +3,6 @@
     android:id="@+id/swiperefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/dimen_medium"
-    android:paddingLeft="@dimen/dimen_medium"
-    android:paddingRight="@dimen/dimen_medium"
-    android:paddingTop="@dimen/dimen_medium"
     tools:context=".MainActivity$PlaceholderFragment">
 
     <ListView
