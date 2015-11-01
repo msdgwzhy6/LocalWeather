@@ -2,6 +2,7 @@ package com.piotr.weatherforpoznan;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.activeandroid.query.Select;
@@ -52,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
     public void setMainActivityActionBar() {
         setWeatherFragments(null);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
-        getSupportActionBar().setTitle(R.string.app_name);
-        getSupportActionBar().setSubtitle(getGeoCoordinates());
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+        // getSupportActionBar().setSubtitle(getGeoCoordinates());
     }
 
     protected String getGeoCoordinates() {
