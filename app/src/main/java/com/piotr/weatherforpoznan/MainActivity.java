@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.activeandroid.query.Select;
 import com.piotr.weatherforpoznan.model.City;
@@ -13,11 +14,15 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
 
 @OptionsMenu(R.menu.menu_main)
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
+
+    @ViewById(R.id.action_bar_title)
+    TextView action_bar_title;
 
     @StringRes
     String geo_coord;
@@ -54,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
         setWeatherFragments(null);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
+        getSupportActionBar().setCustomView(R.layout.actionbar_main);
+        getSupportActionBar().setTitle("HELLLLO");
+        //action_bar_title.setText(R.string.function_not_available);
         // getSupportActionBar().setSubtitle(getGeoCoordinates());
     }
 
