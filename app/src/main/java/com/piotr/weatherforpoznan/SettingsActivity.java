@@ -55,6 +55,11 @@ public class SettingsActivity extends AppCompatActivity {
                 .setAction("Action", null).show();
     }
 
+    @Click(R.id.action_bar_back)
+    public void onClickButton() {
+        onBackPressed();
+    }
+
     @AfterViews
     protected void onCreate() {
         setSettingsActionBar(toolbar);

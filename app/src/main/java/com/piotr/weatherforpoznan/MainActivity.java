@@ -60,9 +60,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar_main);
-        getSupportActionBar().setTitle("HELLLLO");
-        //action_bar_title.setText(R.string.function_not_available);
-        // getSupportActionBar().setSubtitle(getGeoCoordinates());
     }
 
     protected String getGeoCoordinates() {
