@@ -1,19 +1,21 @@
 # WeatherforPoznan [![Build Status](https://travis-ci.org/piotrek1543/WeatherforPoznan.svg)](https://travis-ci.org/piotrek1543/WeatherforPoznan) [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-Practice weather app. Uses retrofit, gson, AndroidAnnotations and ActiveAndroid.
-
-##Screnshots
-<img src="/screenshots/device-2015-10-29-134512.png" height="400px"/>
-<img src="/screenshots/device-2015-10-29-134551.png" height="400px"/>
-<img src="/screenshots/device-2015-10-29-111513.png" height="400px"/>
+##About
+Practice weather app. Uses OpenWeatherMap API, retrofit, gson, AndroidAnnotations and ActiveAndroid. 
+#####For tests I used Espresso and Robolectric with AsserJ libraries.
 
 ##New design preview:
-<img src="/screenshots/device-2015-11-03-145104.png" height="400px"/>
+<img src="/screenshots/device-2015-11-04-152556.png" height="400px"/>
+<img src="/screenshots/device-2015-11-04-152804.png" height="400px"/>
+<img src="/screenshots/device-2015-11-04-152934.png" height="400px"/>
+<img src="/screenshots/device-2015-11-04-153002.png" height="400px"/>
 
 ##TODO list:
 * implement MaterialViewPager
-* finish SettingsActivity functions
-* refresh Details and Settings layout
+* save and load given city name
+* after a city name's change, refresh adapter
+* user can change temperature unit and format of hours
+* refresh Details and Settings layout 
 * testing, testing, testing... 
 
  
@@ -29,5 +31,6 @@ Practice weather app. Uses retrofit, gson, AndroidAnnotations and ActiveAndroid.
   Alternatively, from the Welcome screen, select **Import project**.
 
 ##Contributing
-Please, feel free to report any issue or make a pull request. 
-###### Any help would be appreciated.
+Please, feel free to report any issue or make a pull request.
+
+###### This app is still under development. Be patient!
