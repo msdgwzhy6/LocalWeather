@@ -28,6 +28,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeDown;
 import static android.support.test.espresso.action.ViewActions.swipeUp;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
@@ -44,12 +45,6 @@ public class MainActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity_> mRule = new ActivityTestRule<>(MainActivity_.class);
-
-    @Before
-    public void setup() {
-        closeSoftKeyboard();
-    }
-
     private int[] settingsViewsIdis = {R.id.settingsCity,
             R.id.settingsCityTitle,
             R.id.settingsCityNameEdit,
@@ -60,6 +55,11 @@ public class MainActivityTest {
             R.id.settingsTemperatureFormatMetric,
             R.id.settingsEnableNotifications};
 
+    @Before
+    public void setup() {
+        closeSoftKeyboard();
+    }
+
     private int getRandomPosition() {
         Random rand = new Random();
         return rand.nextInt(30) + 1;
@@ -67,7 +67,8 @@ public class MainActivityTest {
 
     @Test
     public void check_001_ifAppNameIsDisplayed() throws InterruptedException {
-        onView(withId(R.id.action_bar)).check(matches(withChild(withText(R.string.app_name))));
+        onView(withId(R.id.action_bar_main))
+                .check(matches(hasDescendant(withText(R.string.app_name))));
     }
 
     @Test
@@ -80,7 +81,6 @@ public class MainActivityTest {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
         onView(withText(R.string.title_activity_settings))
                 .check(matches(isDisplayed())).perform(click());
-        onView(withContentDescription("Navigate up")).check(matches(isDisplayed()));
     }
 
     @Test
@@ -96,8 +96,9 @@ public class MainActivityTest {
 
     @Test
     public void check_007_IfClickOnListViewTakesMeToDetailsActivity() throws InterruptedException {
-        onView(withId(R.id.listview_forecast)).perform(click()).
-                check(matches(withText(R.string.title_activity_details)));
+        onView(withId(R.id.listview_forecast)).check(matches(isClickable())).perform(click());
+        onView(withId(R.id.action_bar_details))
+                .check(matches(hasDescendant(withChild(withText(R.string.title_activity_details)))));
     }
 
     @Test

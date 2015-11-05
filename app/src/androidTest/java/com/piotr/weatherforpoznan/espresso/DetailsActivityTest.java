@@ -16,10 +16,10 @@ import org.junit.runners.MethodSorters;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withChild;
-import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
@@ -93,12 +93,15 @@ public class DetailsActivityTest {
 
     @Test
     public void check_001_IfActivityNameIsDisplayed() throws InterruptedException {
-        onView(withId(R.id.toolbar)).check(matches(withChild(withText(R.string.title_activity_details))));
+        onView(withId(R.id.action_bar_details))
+                .check(matches(hasDescendant(withChild(withText(R.string.title_activity_details)))));
     }
 
     @Test
     public void check_002_ifNavigateButtonIsClickable() throws InterruptedException {
-        onView(withContentDescription("Navigate up")).check(matches(isClickable())).perform(click());
+        onView(withId(R.id.action_bar_details))
+                .check(matches(hasDescendant(withId(R.id.action_bar_back))));
+        onView(withId(R.id.action_bar_back)).check(matches(isClickable())).perform(click());
     }
 
     @Test

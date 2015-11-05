@@ -7,24 +7,22 @@ import android.test.InstrumentationTestRunner;
 import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.SettingsActivity_;
 
-import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
-import static android.support.test.espresso.Espresso.closeSoftKeyboard;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
-import static android.support.test.espresso.action.ViewActions.longClick;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withChild;
-import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
@@ -49,20 +47,22 @@ public class SettingsActivityTest extends InstrumentationTestRunner {
             R.id.settingsTemperatureFormatMetric,
             R.id.settingsEnableNotifications};
 
-    @Before
+/*    @Before
     public void setup() {
         closeSoftKeyboard();
-    }
+    }*/
 
     @Test
     public void check_001_IfActivityNameIsDisplayed() throws InterruptedException {
-        onView(withId(R.id.toolbar)).check(matches(withChild(withText(R.string.title_activity_settings))));
+        onView(withId(R.id.action_bar_settings))
+                .check(matches(hasDescendant(withChild(withText(R.string.title_activity_settings)))));
     }
 
     @Test
     public void check_002_IfNavigateButtonIsClickable() throws InterruptedException {
-        onView(withContentDescription("Navigate up")).check(matches(isDisplayed()))
-                .check(matches(isClickable())).perform(longClick());
+        onView(withId(R.id.action_bar_settings))
+                .check(matches(hasDescendant(withId(R.id.action_bar_back))));
+        onView(withId(R.id.action_bar_back)).check(matches(isClickable())).perform(click());
     }
 
     @Test
