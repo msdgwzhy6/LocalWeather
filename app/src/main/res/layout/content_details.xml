@@ -195,6 +195,7 @@
                     android:paddingRight="@dimen/dimen_medium"
                     android:text="@string/wind_desc"
                     android:textAppearance="?android:textAppearanceLarge" />
+
                 <TextView
                     android:id="@+id/detailsWindVal"
                     android:layout_width="wrap_content"
