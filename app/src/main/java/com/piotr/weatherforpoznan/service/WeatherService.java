@@ -1,4 +1,4 @@
-package com.piotr.weatherforpoznan.api;
+package com.piotr.weatherforpoznan.service;
 
 /**
  * Created by piotr on 17.09.15.

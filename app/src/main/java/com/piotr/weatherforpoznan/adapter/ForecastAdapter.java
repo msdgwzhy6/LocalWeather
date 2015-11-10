@@ -1,4 +1,4 @@
-package com.piotr.weatherforpoznan.api;
+package com.piotr.weatherforpoznan.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -25,14 +25,16 @@ import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
 
 public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
+    static String formattedDay;
+
+
     public ForecastAdapter(Context context, int resource, List<ForecastItem> objects) {
         super(context, resource, objects);
     }
 
     private static String getFormattedDate(Date date) {
-        String formattedDay = new SimpleDateFormat("E d MMMM y HH:mm").format(date);
+        formattedDay = new SimpleDateFormat("E d MMMM y HH:mm").format(date);
         return formattedDay;
-        //FIXME: Settings -> Give user: 24h or AM/PM format
     }
 
     @Override
@@ -63,45 +65,45 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
     private void initDateValue(ForecastItem item, ViewHolder vHolder) {
         Date date = item.getDt_txt();
-        vHolder.itemDate.setText(getFormattedDate(date));
+        vHolder.forecastItemDate.setText(getFormattedDate(date));
     }
 
     private void initTemperatureMaxValue(ForecastItem item, ViewHolder vHolder) {
-        vHolder.itemTemperatureMax.setText(Math.round(item.getMain().getTempMax()) + " °C");
+        vHolder.forecastItemTemperatureMax.setText(Math.round(item.getMain().getTempMax()) + " °C");
     }
 
     private void initTemperatureMinValue(ForecastItem item, ViewHolder vHolder) {
-        vHolder.itemTemperatureMin.setText(Math.round(item.getMain().getTempMin()) + " °C");
+        vHolder.forecastItemTemperatureMin.setText(Math.round(item.getMain().getTempMin()) + " °C");
     }
 
     private void initIconDrawable(ForecastItem item, ViewHolder vHolder) {
         int iconName = item.getWeather().get(0).getWeatherId();
         int icon = Utility.getIconResourceForWeatherCondition(iconName);
-        Picasso.with(getContext()).load(icon).into(vHolder.forecastIcon);
+        Picasso.with(getContext()).load(icon).into(vHolder.forecastItemIcon);
     }
 
     private void initWeatherValue(ForecastItem item, ViewHolder vHolder) {
         if (item.getWeather().size() > 0) {
             String description = item.getWeather().get(0).getDescription().toString();
-            vHolder.itemDescription.setText(capitalizeString(description));
+            vHolder.forecastItemDescription.setText(capitalizeString(description));
         } else {
-            vHolder.itemDescription.setText(R.string.description_not_available);
+            vHolder.forecastItemDescription.setText(R.string.description_not_available);
         }
     }
 
     static class ViewHolder {
-        ImageView forecastIcon;
-        TextView itemDate;
-        TextView itemDescription;
-        TextView itemTemperatureMin;
-        TextView itemTemperatureMax;
+        ImageView forecastItemIcon;
+        TextView forecastItemDate;
+        TextView forecastItemDescription;
+        TextView forecastItemTemperatureMin;
+        TextView forecastItemTemperatureMax;
 
         public ViewHolder(View view) {
-            this.forecastIcon = (ImageView) view.findViewById(R.id.forecastItemIcon);
-            this.itemDate = (TextView) view.findViewById(R.id.forecastItemDate);
-            this.itemTemperatureMin = (TextView) view.findViewById(R.id.forecastItemTemperatureMin);
-            this.itemTemperatureMax = (TextView) view.findViewById(R.id.forecastItemTemperatureMax);
-            this.itemDescription = (TextView) view.findViewById(R.id.forecastItemDescription);
+            this.forecastItemIcon = (ImageView) view.findViewById(R.id.forecastItemIcon);
+            this.forecastItemDate = (TextView) view.findViewById(R.id.forecastItemDate);
+            this.forecastItemTemperatureMin = (TextView) view.findViewById(R.id.forecastItemTemperatureMin);
+            this.forecastItemTemperatureMax = (TextView) view.findViewById(R.id.forecastItemTemperatureMax);
+            this.forecastItemDescription = (TextView) view.findViewById(R.id.forecastItemDescription);
         }
     }
 }

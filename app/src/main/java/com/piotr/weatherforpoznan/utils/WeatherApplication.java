@@ -8,15 +8,16 @@ import com.activeandroid.app.Application;
 import com.activeandroid.query.Select;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.piotr.weatherforpoznan.api.WeatherService;
 import com.piotr.weatherforpoznan.model.City;
 import com.piotr.weatherforpoznan.model.ForecastItem;
+import com.piotr.weatherforpoznan.service.WeatherService;
 
 import java.util.List;
 
 import retrofit.RestAdapter;
 import retrofit.android.MainThreadExecutor;
 import retrofit.converter.GsonConverter;
+
 
 /**
  * Created by Piotr on 06.10.2015.
@@ -52,6 +53,4 @@ public class WeatherApplication extends Application {
                 .build();
         weatherAPI = restAdapter.create(WeatherService.class);
     }
-
-
 }

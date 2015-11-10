@@ -10,9 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.activeandroid.ActiveAndroid;
-import com.piotr.weatherforpoznan.api.ForecastAdapter;
-import com.piotr.weatherforpoznan.api.WeatherService;
+import com.piotr.weatherforpoznan.adapter.ForecastAdapter;
 import com.piotr.weatherforpoznan.model.Forecast;
+import com.piotr.weatherforpoznan.service.WeatherService;
 import com.piotr.weatherforpoznan.utils.WeatherApplication;
 
 import org.androidannotations.annotations.AfterViews;
@@ -37,17 +37,17 @@ public class MainActivityFragment extends Fragment {
     String lang;
 
     @ViewById
-    ListView listview_forecast;
+    ListView listviewForecast;
 
     @ViewById
-    SwipeRefreshLayout swiperefresh;
+    SwipeRefreshLayout swipeRefresh;
 
     ForecastAdapter mForecastAdapter;
 
     @AfterViews
-    public void onCreateFragment() {
+    public void afterViews() {
 
-        listview_forecast.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listviewForecast.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 long forecastItemId = mForecastAdapter.getItem(position).getId();
@@ -56,7 +56,7 @@ public class MainActivityFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        swiperefresh.setOnRefreshListener(
+        swipeRefresh.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
@@ -65,20 +65,22 @@ public class MainActivityFragment extends Fragment {
                 }
         );
         downloadForecastData(weatherAPI);
+        //FixMe: If offline, download data from database
         downloadCityData(weatherAPI);
     }
 
     @UiThread
     protected void downloadForecastData(final WeatherService weatherAPI) {
-        weatherAPI.getForecast(3088171, "json", "metric", "hour",  lang, "f1570c3640caf0e5f96358d802933e40", new Callback<Forecast>() {
+        weatherAPI.getForecast(3088171, "json", "metric", "hour", lang, API_ID, new
+                Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
                 mForecastAdapter = new ForecastAdapter(getActivity(),
                         R.layout.list_item_forecast, forecast.getForecastList());
-                listview_forecast.setAdapter(mForecastAdapter);
-                swiperefresh.setRefreshing(false);
+                listviewForecast.setAdapter(mForecastAdapter);
+                swipeRefresh.setRefreshing(false);
 
-                //Active Android implementation
+                //ActiveAndroid implementation
                 saveForecastItemToDatabase(forecast);
 
                 Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
@@ -88,7 +90,7 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void failure(RetrofitError error) {
                 Log.d("Failure", "error: " + error);
-                swiperefresh.setRefreshing(false);
+                swipeRefresh.setRefreshing(false);
                 Snackbar.make(getView(), "Error caused when trying to download forecast data!", Snackbar.LENGTH_LONG)
                         .setAction("Try again", new View.OnClickListener() {
                             @Override
@@ -105,7 +107,6 @@ public class MainActivityFragment extends Fragment {
         ActiveAndroid.beginTransaction();
         try {
             while (i < forecast.getForecastList().size()) {
-
                 forecast.getForecastList().get(i).saveItemToDatabase();
                 i++;
             }
@@ -121,13 +122,12 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void success(Forecast forecast, Response response) {
                 saveCityDataToDatabase(forecast);
-
             }
 
             @Override
             public void failure(RetrofitError error) {
                 Log.d("Failure", "error: " + error);
-                swiperefresh.setRefreshing(false);
+                swipeRefresh.setRefreshing(false);
                 Snackbar.make(getView(), "Error caused when trying to download forecast data!", Snackbar.LENGTH_LONG)
                         .setAction("Try again", new View.OnClickListener() {
                             @Override

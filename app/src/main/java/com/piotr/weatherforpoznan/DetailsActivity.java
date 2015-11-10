@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.activeandroid.query.Select;
 import com.piotr.weatherforpoznan.model.City;
 import com.piotr.weatherforpoznan.model.ForecastItem;
+import com.piotr.weatherforpoznan.model.Main;
+import com.piotr.weatherforpoznan.model.Wind;
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
@@ -36,11 +38,11 @@ import static com.piotr.weatherforpoznan.utils.Utility.getFormattedWind;
 @EActivity(R.layout.activity_details)
 public class DetailsActivity extends AppCompatActivity {
 
+    final String TAG = "DetailsActivity";
     @ViewById
     Toolbar toolbar;
     @ViewById
     FloatingActionButton fab;
-
     @ViewById
     TextView detailsDay;
     @ViewById
@@ -61,7 +63,6 @@ public class DetailsActivity extends AppCompatActivity {
     TextView detailsWindVal;
     @ViewById
     ImageView detailsIcon;
-
     @StringRes
     String day;
     @StringRes
@@ -84,10 +85,8 @@ public class DetailsActivity extends AppCompatActivity {
     String wind_deg;
     @StringRes
     String description;
-
     @IntegerRes
     int icon;
-
     @Extra
     long id;
 
@@ -103,12 +102,12 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     @AfterViews
-    protected void onCreateView() {
+    protected void afterViews() {
         setDetailsActionBar(toolbar);
         City city = new Select().from(City.class).executeSingle();
         ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();
         if (item != null) {
-            Log.d("DetailsActivity", item.toString());
+            Log.d(TAG, item.toString());
             getDetailActivityViewsValues(item, city);
             setDetailActivityViewsValues();
         }
@@ -133,12 +132,14 @@ public class DetailsActivity extends AppCompatActivity {
         day = capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = getFormattedDate(item.getDt_txt());
         city_name = city.getName().toString();
-        high_temp = Math.round(item.getMain().getTempMax()) + " °C";
-        low_temp = Math.round(item.getMain().getTempMin()) + " °C";
-        humidity_val = Math.round(item.getMain().getHumidity()) + " %";
-        pressure_val = Math.round(item.getMain().getPressure()) + " hPa";
-        wind_speed = Math.round(item.getWind().getSpeed()) + " km/h";
-        wind_deg = getFormattedWind(item.getWind().getDeg());
+        Main main = item.getMain();
+        Wind wind = item.getWind();
+        high_temp = Math.round(main.getTempMax()) + " °C";
+        low_temp = Math.round(main.getTempMin()) + " °C";
+        humidity_val = Math.round(main.getHumidity()) + " %";
+        pressure_val = Math.round(main.getPressure()) + " hPa";
+        wind_speed = Math.round(wind.getSpeed()) + " km/h";
+        wind_deg = getFormattedWind(wind.getDeg());
         wind_val = wind_speed + " \t" + wind_deg;
         icon = getArtResourceForWeatherCondition(item.getWeatherData().getWeatherId());
         description = item.getWeatherData().getDescription();

@@ -88,7 +88,7 @@ public class DetailsActivityTest {
 
     @Before
     public void goToDetailsActivityView() {
-        onView(withId(R.id.listview_forecast)).perform(click());
+        onView(withId(R.id.listviewForecast)).perform(click());
     }
 
     @Test
