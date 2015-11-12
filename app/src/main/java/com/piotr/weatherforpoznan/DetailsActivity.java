@@ -44,25 +44,25 @@ public class DetailsActivity extends AppCompatActivity {
     @ViewById
     FloatingActionButton fab;
     @ViewById
-    TextView detailsDay;
+    TextView dDay;
     @ViewById
-    TextView detailsDate;
+    TextView dDate;
     @ViewById
-    TextView detailsCity;
+    TextView dCity;
     @ViewById
-    TextView detailsHighTemp;
+    TextView dHighTemp;
     @ViewById
-    TextView detailsLowTemp;
+    TextView dLowTemp;
     @ViewById
-    TextView detailsDescription;
+    TextView dDescription;
     @ViewById
-    TextView detailsHumidityVal;
+    TextView dHumidityVal;
     @ViewById
-    TextView detailsPressureVal;
+    TextView dPressureVal;
     @ViewById
-    TextView detailsWindVal;
+    TextView dWindVal;
     @ViewById
-    ImageView detailsIcon;
+    ImageView dIcon;
     @StringRes
     String day;
     @StringRes
@@ -115,16 +115,16 @@ public class DetailsActivity extends AppCompatActivity {
 
     @UiThread
     protected void setDetailActivityViewsValues() {
-        detailsDay.setText(day);
-        detailsDate.setText(date);
-        detailsCity.setText(city_name);
-        detailsHighTemp.setText(high_temp);
-        detailsLowTemp.setText(low_temp);
-        detailsHumidityVal.setText(humidity_val);
-        detailsPressureVal.setText(pressure_val);
-        detailsWindVal.setText(wind_val);
-        Picasso.with(getApplicationContext()).load(icon).into(detailsIcon);
-        detailsDescription.setText(capitalizeString(description));
+        dDay.setText(day);
+        dDate.setText(date);
+        dCity.setText(city_name);
+        dHighTemp.setText(high_temp);
+        dLowTemp.setText(low_temp);
+        dHumidityVal.setText(humidity_val);
+        dPressureVal.setText(pressure_val);
+        dWindVal.setText(wind_val);
+        Picasso.with(getApplicationContext()).load(icon).into(dIcon);
+        dDescription.setText(capitalizeString(description));
     }
 
     @UiThread

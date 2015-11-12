@@ -37,7 +37,7 @@ public class MainActivityFragment extends Fragment {
     String lang;
 
     @ViewById
-    ListView listviewForecast;
+    ListView mListView;
 
     @ViewById
     SwipeRefreshLayout swipeRefresh;
@@ -47,7 +47,7 @@ public class MainActivityFragment extends Fragment {
     @AfterViews
     public void afterViews() {
 
-        listviewForecast.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 long forecastItemId = mForecastAdapter.getItem(position).getId();
@@ -77,7 +77,7 @@ public class MainActivityFragment extends Fragment {
             public void success(Forecast forecast, Response response) {
                 mForecastAdapter = new ForecastAdapter(getActivity(),
                         R.layout.list_item_forecast, forecast.getForecastList());
-                listviewForecast.setAdapter(mForecastAdapter);
+                mListView.setAdapter(mForecastAdapter);
                 swipeRefresh.setRefreshing(false);
 
                 //ActiveAndroid implementation

@@ -45,15 +45,15 @@ public class MainActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity_> mRule = new ActivityTestRule<>(MainActivity_.class);
-    private int[] settingsViewsIdis = {R.id.settingsCity,
-            R.id.settingsCityTitle,
-            R.id.settingsCityNameEdit,
-            R.id.settingsTemperatureFormat,
-            R.id.settingsTemperatureFormatTitle,
-            R.id.settingsTemperatureFormatChoose,
-            R.id.settingsTemperatureFormatImperial,
-            R.id.settingsTemperatureFormatMetric,
-            R.id.settingsEnableNotifications};
+    private int[] settingsViewsIdis = {R.id.sCityLayout,
+            R.id.sCityTitle,
+            R.id.sCityNameEdit,
+            R.id.sTemperatureFormat,
+            R.id.sTemperatureFormatTitle,
+            R.id.sTemperatureFormatChoose,
+            R.id.sTemperatureFormatImperial,
+            R.id.sTemperatureFormatMetric,
+            R.id.sEnableNotifications};
 
     @Before
     public void setup() {
@@ -90,92 +90,92 @@ public class MainActivityTest {
 
     @Test
     public void check_006_IfSwipingUpTakesMeToEndOfList() throws InterruptedException {
-        onView(withId(R.id.listviewForecast)).check(matches(isDisplayed()))
+        onView(withId(R.id.mListView)).check(matches(isDisplayed()))
                 .perform(swipeUp(), swipeUp(), swipeUp(), swipeUp());
     }
 
     @Test
     public void check_007_IfClickOnListViewTakesMeToDetailsActivity() throws InterruptedException {
-        onView(withId(R.id.listviewForecast)).check(matches(isClickable())).perform(click());
+        onView(withId(R.id.mListView)).check(matches(isClickable())).perform(click());
         onView(withId(R.id.action_bar_details))
                 .check(matches(hasDescendant(withChild(withText(R.string.title_activity_details)))));
     }
 
     @Test
     public void check_008_ifForecastItemIsDisplayed() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItem)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_009_ifForecastItemIconIsDisplayed() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemIcon)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_010_ifForecastItemTableIsDisplayed() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemTable)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_011_ifForecastItemDateIsDisplayed() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemDate)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_012_ifForecastItemDescriptionIsDisplayed() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemDescription)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_013_ifForecastItemTemperatureIsDisplayed() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemTemperature)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_014_ifForecastItemTemperatureMaxIsDisplayed() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemTemperatureMax)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_015_ifForecastItemTemperatureMinIsDisplayed() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemTemperatureMin)).check(matches(isDisplayed()));
     }
 
     @Test
     public void check_016_ifForecastIconHasNoDefaultDrawable() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemIcon)).check(matches(not(withId(R.mipmap.ic_launcher))));
     }
 
     @Test
     public void check_017_ifForecastItemDateHasNoDefaultValue() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemDate)).check(matches(not(withText(R.string.date))));
     }
 
     @Test
     public void check_018_ifForecastItemDescriptionHasNoDefaultValue() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemDescription)).check(matches(not(withText(R.string.description))));
     }
 
     @Test
     public void check_019_ifForecastItemTemperatureMaxHasNoDefaultValue() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemTemperatureMax)).check(matches(not(withText(R.string.high_temp))));
     }
 
     @Test
     public void check_020_ifForecastItemTemperatureMinHasNoDefaultValue() throws InterruptedException {
-        onData(anything()).inAdapterView(withId(R.id.listviewForecast)).atPosition(getRandomPosition()).
+        onData(anything()).inAdapterView(withId(R.id.mListView)).atPosition(getRandomPosition()).
                 onChildView(withId(R.id.forecastItemTemperatureMin)).check(matches(not(withText(R.string.low_temp))));
     }
 }

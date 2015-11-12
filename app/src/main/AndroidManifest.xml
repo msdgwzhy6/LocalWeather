@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.piotr.weatherforpoznan">
+<manifest
+    package="com.piotr.weatherforpoznan"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -36,16 +37,6 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a9c7e38bb2356fc4872464570cc2154518830002" />
-
-        <activity
-            android:name=".SettingsActivity_"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity_"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.piotr.weatherforpoznan.MainActivity_" />
-        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<LinearLayout
     android:id="@+id/list_item_forecast"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minHeight="?android:attr/listPreferredItemHeight"
@@ -34,7 +35,7 @@
                 android:id="@+id/forecastItemTable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/detailsTemperature"
+                android:layout_toLeftOf="@+id/dTemperature"
                 android:layout_toRightOf="@+id/forecastItemIcon"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/dimen_medium">

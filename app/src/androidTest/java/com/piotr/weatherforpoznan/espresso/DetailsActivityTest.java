@@ -35,42 +35,42 @@ public class DetailsActivityTest {
     public ActivityTestRule<MainActivity_> mRule = new ActivityTestRule<>(MainActivity_.class);
 
     private int[] allDetailsViewsIdis = {
-            R.id.detailsItem,
-            R.id.detailsDayAndDate,
-            R.id.detailsDay,
-            R.id.detailsDate,
-            R.id.detailsCity,
-            R.id.detailsTempAndIcon,
-            R.id.detailsTemperature,
-            R.id.detailsHighTemp,
-            R.id.detailsLowTemp,
-            R.id.detailsIconLayout,
-            R.id.detailsIcon,
-            R.id.detailsDescriptionLayout,
-            R.id.detailsDescription,
-            R.id.detailsForecast,
-            R.id.detailsHumidityLayout,
-            R.id.detailsHumidityDesc,
-            R.id.detailsHumidityVal,
-            R.id.detailsPressureLayout,
-            R.id.detailsPressureDesc,
-            R.id.detailsPressureVal,
-            R.id.detailsWindLayout,
-            R.id.detailsWindDesc,
-            R.id.detailsWindVal
+            R.id.dItem,
+            R.id.dDayAndDate,
+            R.id.dDay,
+            R.id.dDate,
+            R.id.dCity,
+            R.id.dTempAndIcon,
+            R.id.dTemperature,
+            R.id.dHighTemp,
+            R.id.dLowTemp,
+            R.id.dIconLayout,
+            R.id.dIcon,
+            R.id.dDescriptionLayout,
+            R.id.dDescription,
+            R.id.dForecast,
+            R.id.dHumidityLayout,
+            R.id.dHumidityDesc,
+            R.id.dHumidityVal,
+            R.id.dPressureLayout,
+            R.id.dPressureDesc,
+            R.id.dPressureVal,
+            R.id.dWindLayout,
+            R.id.dWindDesc,
+            R.id.dWindVal
     };
 
     private int[] detailsViewsWithChangingValuesIdis = {
-            R.id.detailsIcon,
-            R.id.detailsDay,
-            R.id.detailsDate,
-            R.id.detailsHighTemp,
-            R.id.detailsLowTemp,
-            R.id.detailsDescription,
-            R.id.detailsHumidityVal,
-            R.id.detailsPressureVal,
-            R.id.detailsWindVal,
-            R.id.detailsIcon,
+            R.id.dIcon,
+            R.id.dDay,
+            R.id.dDate,
+            R.id.dHighTemp,
+            R.id.dLowTemp,
+            R.id.dDescription,
+            R.id.dHumidityVal,
+            R.id.dPressureVal,
+            R.id.dWindVal,
+            R.id.dIcon,
     };
 
     private int[] defaultViewsValuesIdis = {
@@ -83,12 +83,12 @@ public class DetailsActivityTest {
             R.string.humidity_val,
             R.string.pressure_val,
             R.string.wind_val,
-            R.id.detailsWindVal
+            R.id.dWindVal
     };
 
     @Before
     public void goToDetailsActivityView() {
-        onView(withId(R.id.listviewForecast)).perform(click());
+        onView(withId(R.id.mListView)).perform(click());
     }
 
     @Test

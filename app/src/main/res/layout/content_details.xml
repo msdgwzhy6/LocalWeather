@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_details">
 
     <LinearLayout
-        android:id="@+id/detailsItem"
+        android:id="@+id/dItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -18,7 +18,7 @@
 
         <!-- Header: Day, Date -->
         <LinearLayout
-            android:id="@+id/detailsDayAndDate"
+            android:id="@+id/dDayAndDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -26,7 +26,7 @@
             android:paddingBottom="@dimen/dimen_medium">
 
             <TextView
-                android:id="@+id/detailsDay"
+                android:id="@+id/dDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
@@ -36,7 +36,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/detailsDate"
+                android:id="@+id/dDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
@@ -47,7 +47,7 @@
 
         <!-- Main content: high, low, art, weather state -->
         <TextView
-            android:id="@+id/detailsCity"
+            android:id="@+id/dCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -60,14 +60,14 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
-            android:id="@+id/detailsTempAndIcon"
+            android:id="@+id/dTempAndIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/detailsTemperature"
+                android:id="@+id/dTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -75,7 +75,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/detailsHighTemp"
+                    android:id="@+id/dHighTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -85,7 +85,7 @@
                     android:textSize="60sp" />
 
                 <TextView
-                    android:id="@+id/detailsLowTemp"
+                    android:id="@+id/dLowTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -95,7 +95,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/detailsIconLayout"
+                android:id="@+id/dIconLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -103,7 +103,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/detailsIcon"
+                    android:id="@+id/dIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/art_default" />
@@ -111,13 +111,13 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/detailsDescriptionLayout"
+            android:id="@+id/dDescriptionLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/activity_horizontal_margin">
 
             <TextView
-                android:id="@+id/detailsDescription"
+                android:id="@+id/dDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -128,7 +128,7 @@
 
         <!-- Humidity, detailsWindLayout, detailsPressureLayout -->
         <LinearLayout
-            android:id="@+id/detailsForecast"
+            android:id="@+id/dForecast"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/no_padding"
@@ -136,13 +136,13 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/detailsHumidityLayout"
+                android:id="@+id/dHumidityLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/detailsHumidityDesc"
+                    android:id="@+id/dHumidityDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="@dimen/dimen_medium"
@@ -150,7 +150,7 @@
                     android:textAppearance="?android:textAppearanceLarge" />
 
                 <TextView
-                    android:id="@+id/detailsHumidityVal"
+                    android:id="@+id/dHumidityVal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/humidity_val"
@@ -158,13 +158,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/detailsPressureLayout"
+                android:id="@+id/dPressureLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/detailsPressureDesc"
+                    android:id="@+id/dPressureDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_small"
@@ -173,7 +173,7 @@
                     android:textAppearance="?android:textAppearanceLarge" />
 
                 <TextView
-                    android:id="@+id/detailsPressureVal"
+                    android:id="@+id/dPressureVal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_small"
@@ -182,13 +182,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/detailsWindLayout"
+                android:id="@+id/dWindLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/detailsWindDesc"
+                    android:id="@+id/dWindDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_small"
@@ -197,7 +197,7 @@
                     android:textAppearance="?android:textAppearanceLarge" />
 
                 <TextView
-                    android:id="@+id/detailsWindVal"
+                    android:id="@+id/dWindVal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_small"
