@@ -15,17 +15,18 @@ import org.junit.runners.MethodSorters;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
-import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
+import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
 
 /**
- * Created by piotr on 17.10.15.
+ *  @author Piotr on 17.10.15.
  */
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -34,7 +35,7 @@ public class DetailsActivityTest {
     @Rule
     public ActivityTestRule<MainActivity_> mRule = new ActivityTestRule<>(MainActivity_.class);
 
-    private int[] allDetailsViewsIdis = {
+    private int[] allDetailsActivityViewsIdis = {
             R.id.dItem,
             R.id.dDayAndDate,
             R.id.dDay,
@@ -58,10 +59,10 @@ public class DetailsActivityTest {
             R.id.dWindLayout,
             R.id.dWindDesc,
             R.id.dWindVal
+
     };
 
-    private int[] detailsViewsWithChangingValuesIdis = {
-            R.id.dIcon,
+    private int[] detailsActivityTextViewsIdis = {
             R.id.dDay,
             R.id.dDate,
             R.id.dHighTemp,
@@ -70,11 +71,10 @@ public class DetailsActivityTest {
             R.id.dHumidityVal,
             R.id.dPressureVal,
             R.id.dWindVal,
-            R.id.dIcon,
+
     };
 
-    private int[] defaultViewsValuesIdis = {
-            R.drawable.art_default,
+    private int[] detailsActivityTextViewsDefaultValues = {
             R.string.day,
             R.string.date,
             R.string.high_temp,
@@ -83,43 +83,76 @@ public class DetailsActivityTest {
             R.string.humidity_val,
             R.string.pressure_val,
             R.string.wind_val,
-            R.id.dWindVal
+
     };
 
     @Before
-    public void goToDetailsActivityView() {
+    public void goToDetailsActivity() throws InterruptedException {
         onView(withId(R.id.mListView)).perform(click());
+
     }
 
     @Test
-    public void check_001_IfActivityNameIsDisplayed() throws InterruptedException {
-        onView(withId(R.id.action_bar_details))
-                .check(matches(hasDescendant(withChild(withText(R.string.title_activity_details)))));
+    public void checkIfActivityNameIsDisplayedOnActionBar() throws InterruptedException {
+        onView(withText(R.string.title_activity_details))
+                .check(matches(withParent(withParent(withId(R.id.action_bar_details)))));
+
     }
 
     @Test
-    public void check_002_ifNavigateButtonIsClickable() throws InterruptedException {
+    public void checkIfNavigationBackButtonIsDisplayedOnActionBar() throws InterruptedException {
         onView(withId(R.id.action_bar_details))
                 .check(matches(hasDescendant(withId(R.id.action_bar_back))));
-        onView(withId(R.id.action_bar_back)).check(matches(isClickable())).perform(click());
+
     }
 
     @Test
-    public void check_003_ifAllDetailsActivityViewsAreDisplayed() throws InterruptedException {
-        for (int i = 0; i < allDetailsViewsIdis.length; i++)
-            onView(withId(allDetailsViewsIdis[i])).check(matches(isDisplayed()));
+    public void performClickOnNavigationBackButton() throws InterruptedException {
+        onView(withId(R.id.action_bar_back)).perform(click());
+
     }
 
     @Test
-    public void check_04_ifDetailsDayHasNoDefaultValue() throws InterruptedException {
-        onView(withId(detailsViewsWithChangingValuesIdis[0])).check(matches(not(withId(defaultViewsValuesIdis[0]))));
-        for (int i = 1; i < detailsViewsWithChangingValuesIdis.length; i++)
-            onView(withId(detailsViewsWithChangingValuesIdis[i])).check(matches(not(withText(defaultViewsValuesIdis[i]))));
+    public void checkIfAllDetailsActivityViewsAreDisplayed() throws InterruptedException {
+        for (int id : allDetailsActivityViewsIdis) onView(withId(id)).check(matches(isDisplayed()));
+
     }
 
     @Test
-    public void check_05_ifSnackbarIsProperlyDisplayed() throws InterruptedException {
-        onView(withId(R.id.fab)).check(matches(isDisplayed())).perform(click());
+    public void checkIfDetailsActivityImageHasNoDefaultImage() throws InterruptedException {
+        onView(withId(R.id.dIcon)).check(matches(not(withId(R.drawable.art_default))));
+
+    }
+
+    @Test
+    public void checkIfDetailsActivityViewsHaveNoDefaultValue() throws InterruptedException {
+        for (int viewId : detailsActivityTextViewsIdis)
+            for (int valueId : detailsActivityTextViewsDefaultValues)
+                onView(withId(viewId)).check(matches(not(withText(valueId))));
+
+    }
+
+    @Test
+    public void checkIfSnackBarIsProperlyDisplayed() throws InterruptedException {
+        onView(withId(R.id.fab)).perform(click());
         onView(withText(R.string.function_not_available)).check(matches(isDisplayed()));
+
+    }
+
+    @Test
+    public void clickOnFloatingActionButtonToShowSnackBar() {
+        onView(withId(R.id.fab)).perform(click());
+        onView(withId(R.id.snackbar_text))
+                .check(matches(withText(R.string.function_not_available)));
+
+    }
+
+    @Test
+    public void swipeRightToDismissDisplayedCommunique() {
+        onView(withId(R.id.fab)).perform(click());
+        onView(withId(R.id.snackbar_text))
+                .perform(swipeRight())
+                .check(matches(not(isCompletelyDisplayed())));
+
     }
 }
