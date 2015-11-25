@@ -2,13 +2,7 @@
 
 ##About
 Practice weather app. Uses OpenWeatherMap API, retrofit, gson, AndroidAnnotations and ActiveAndroid. 
-#####For tests I used Espresso and Robolectric with AsserJ libraries.
 
-##New design preview:
-<img src="/screenshots/device-2015-11-04-152556.png" height="400px"/>
-<img src="/screenshots/device-2015-11-04-152804.png" height="400px"/>
-<img src="/screenshots/device-2015-11-04-152934.png" height="400px"/>
-<img src="/screenshots/device-2015-11-04-153002.png" height="400px"/>
 
 ##TODO list:
 * implement MaterialViewPager
