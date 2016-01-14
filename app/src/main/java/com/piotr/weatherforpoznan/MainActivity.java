@@ -13,13 +13,25 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
+
+import com.activeandroid.query.Select;
+import com.piotr.weatherforpoznan.adapter.ForecastAdapter;
+import com.piotr.weatherforpoznan.model.ForecastItem;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import static com.piotr.weatherforpoznan.utils.Utility.getArtResourceForWeatherCondition;
+import static com.piotr.weatherforpoznan.utils.Utility.getIconResourceForWeatherCondition;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     @StringRes
     String longitude_short;
 
+    ForecastAdapter mForecastAdapter;
+
     @UiThread
     protected void setWeatherFragments(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
@@ -49,21 +63,37 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.mActivity, new MainActivityFragment_())
                     .commit();
         }
+        List<ForecastItem> forecastItems = new Select().from(ForecastItem.class).execute();
+        Log.d("HHHHHHHHHHHH", "" + forecastItems.get(1).getDt_txt().toString());
+        ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", forecastItems.get(1).getId())
+                .executeSingle();
+        setWeatherNotification(item.getDt_txt(),
+                item.getWeatherData().getDescription(),
+                Math.round(item.getMain().getTempMax()),
+                item.getWeatherData().getWeatherId());
+
     }
 
-    @AfterViews
-    protected void setWeatherNotifications() {
+    private static String getFormattedDate(Date date) {
+        String formattedDay = new SimpleDateFormat("d MMMM y HH:mm").format(date);
+        return formattedDay;
+    }
+
+    protected void setWeatherNotification(Date date, String description, double tempMax,
+                                          int iconId) {
         Intent intent = new Intent(this, DetailsActivity.class);
         int requestID = (int) System.currentTimeMillis();
         int flags = PendingIntent.FLAG_CANCEL_CURRENT;
         PendingIntent pIntent = PendingIntent.getActivity(this, requestID, intent, flags);
         Notification noti =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.art_clear)
+                        .setSmallIcon(getIconResourceForWeatherCondition((iconId)))
                         .setLargeIcon(drawableToBitmap(getResources()
-                                .getDrawable(R.drawable.art_clear)))
+                                .getDrawable(getArtResourceForWeatherCondition(iconId))))
                         .setContentTitle(getString(R.string.app_name))
-                        .setContentText("Hello World!")
+                        .setContentText(getFormattedDate(date))
+                        .setSubText(description + "\t" + tempMax + "°C")
+
                         .setContentIntent(pIntent).build();
 
         NotificationManager mNotificationManager =

@@ -73,33 +73,33 @@ public class MainActivityFragment extends Fragment {
     protected void downloadForecastData(final WeatherService weatherAPI) {
         weatherAPI.getForecast(3088171, "json", "metric", "hour", lang, API_ID, new
                 Callback<Forecast>() {
-            @Override
-            public void success(Forecast forecast, Response response) {
-                mForecastAdapter = new ForecastAdapter(getActivity(),
-                        R.layout.list_item_forecast, forecast.getForecastList());
-                mListView.setAdapter(mForecastAdapter);
-                swipeRefresh.setRefreshing(false);
+                    @Override
+                    public void success(Forecast forecast, Response response) {
+                        mForecastAdapter = new ForecastAdapter(getActivity(),
+                                R.layout.list_item_forecast, forecast.getForecastList());
+                        mListView.setAdapter(mForecastAdapter);
+                        swipeRefresh.setRefreshing(false);
 
-                //ActiveAndroid implementation
-                saveForecastItemToDatabase(forecast);
+                        //ActiveAndroid implementation
+                        saveForecastItemToDatabase(forecast);
 
-                Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
-                Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
-            }
+                        Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
+                        Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
+                    }
 
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d("Failure", "error: " + error);
-                swipeRefresh.setRefreshing(false);
-                Snackbar.make(getView(), "Error caused when trying to download forecast data!", Snackbar.LENGTH_LONG)
-                        .setAction("Try again", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                downloadForecastData(weatherAPI);
-                            }
-                        }).show();
-            }
-        });
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.d("Failure", "error: " + error);
+                        swipeRefresh.setRefreshing(false);
+                        Snackbar.make(getView(), "Error caused when trying to download forecast data!", Snackbar.LENGTH_LONG)
+                                .setAction("Try again", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        downloadForecastData(weatherAPI);
+                                    }
+                                }).show();
+                    }
+                });
     }
 
     private void saveForecastItemToDatabase(Forecast forecast) {
