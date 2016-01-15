@@ -9,11 +9,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
@@ -64,13 +64,14 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
         List<ForecastItem> forecastItems = new Select().from(ForecastItem.class).execute();
-        Log.d("HHHHHHHHHHHH", "" + forecastItems.get(1).getDt_txt().toString());
-        ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", forecastItems.get(1).getId())
-                .executeSingle();
-        setWeatherNotification(item.getDt_txt(),
-                item.getWeatherData().getDescription(),
-                Math.round(item.getMain().getTempMax()),
-                item.getWeatherData().getWeatherId());
+        if (forecastItems.size() != 0) {
+            ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", forecastItems.get(1).getId())
+                    .executeSingle();
+            setWeatherNotification(item.getDt_txt(),
+                    item.getWeatherData().getDescription(),
+                    Math.round(item.getMain().getTempMax()),
+                    item.getWeatherData().getWeatherId());
+        }
 
     }
 
@@ -85,15 +86,20 @@ public class MainActivity extends AppCompatActivity {
         int requestID = (int) System.currentTimeMillis();
         int flags = PendingIntent.FLAG_CANCEL_CURRENT;
         PendingIntent pIntent = PendingIntent.getActivity(this, requestID, intent, flags);
+
+        int image;
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            image = getArtResourceForWeatherCondition(iconId);
+        } else image = getIconResourceForWeatherCondition(iconId);
+
         Notification noti =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(getIconResourceForWeatherCondition((iconId)))
                         .setLargeIcon(drawableToBitmap(getResources()
-                                .getDrawable(getArtResourceForWeatherCondition(iconId))))
+                                .getDrawable(image)))
                         .setContentTitle(getString(R.string.app_name))
                         .setContentText(getFormattedDate(date))
                         .setSubText(description + "\t" + tempMax + "°C")
-
                         .setContentIntent(pIntent).build();
 
         NotificationManager mNotificationManager =

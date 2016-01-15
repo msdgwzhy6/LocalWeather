@@ -3,15 +3,6 @@
 ##About
 Practice weather app. Uses OpenWeatherMap API, retrofit, gson, AndroidAnnotations and ActiveAndroid. 
 
-
-##TODO list:
-* implement MaterialViewPager
-* save and load given city name
-* after a city name's change, refresh adapter
-* user can change temperature unit and format of hours
-* refresh Details and Settings layout 
-* testing, testing, testing... 
-
  
 ## Build Instructions
  
