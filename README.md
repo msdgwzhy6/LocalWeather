@@ -1,9 +1,15 @@
 # WeatherforPoznan [![Build Status](https://travis-ci.org/piotrek1543/WeatherforPoznan.svg)](https://travis-ci.org/piotrek1543/WeatherforPoznan) [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
+<img src="app/src/main/res/mipmap-xxhdpi/ic_launcher.png"/>
+
+
 ##About
 Practice weather app. Uses OpenWeatherMap API, retrofit, gson, AndroidAnnotations and ActiveAndroid. 
 
- 
+##Screenshots
+<img src="screenshots/device-2015-11-04-152556.png" height="500dp"/>
+<img src="screenshots/device-2015-11-04-152804.png" height="500dp"/>
+
 ## Build Instructions
  
 - Clone the project from GitHub: 
