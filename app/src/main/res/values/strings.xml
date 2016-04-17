@@ -45,7 +45,7 @@
     <string name="description_not_available">Description is not available</string>
     <string name="function_not_available">This function is not available.</string>
     <!--OpenWeatherMAp API Key-->
-    <string name="API_ID">f1570c3640caf0e5f96358d802933e40</string>
+    <string name="API_ID">cf28f00904e59e7ba0fc080879080861</string>
     <!-- Language of phone-->
     <string name="lang">en</string>
     <string name="operation_successful">The operation completed successfully</string>

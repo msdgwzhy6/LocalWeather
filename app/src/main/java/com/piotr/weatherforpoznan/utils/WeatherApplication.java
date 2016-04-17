@@ -12,6 +12,7 @@ import com.piotr.weatherforpoznan.model.City;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.piotr.weatherforpoznan.service.WeatherService;
 
+import java.lang.reflect.Modifier;
 import java.util.List;
 
 import retrofit.RestAdapter;
@@ -41,6 +42,7 @@ public class WeatherApplication extends Application {
         //Fabric.with(this, new Crashlytics());
         ActiveAndroid.initialize(this);
         Gson gson = new GsonBuilder()
+                .excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC)
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
 
