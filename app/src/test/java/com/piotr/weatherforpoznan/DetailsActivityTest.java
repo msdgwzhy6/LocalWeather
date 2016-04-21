@@ -33,7 +33,8 @@ public class DetailsActivityTest {
         activity.dHighTemp.setText("Hello");
         activity.dLowTemp.setText("Hello");
         activity.dDate.setText("Hello");
-
+        //TODO: Learn the unit testing
+        //TODO: Change existing code
     }
 
     @Test

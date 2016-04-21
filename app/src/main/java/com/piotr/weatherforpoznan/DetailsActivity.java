@@ -106,7 +106,7 @@ public class DetailsActivity extends AppCompatActivity {
         setDetailsActionBar(toolbar);
         City city = new Select().from(City.class).executeSingle();
         ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();
-        if (item != null) {
+        if ((item != null) && (city != null)) {
             Log.d(TAG, item.toString());
             getDetailActivityViewsValues(item, city);
             setDetailActivityViewsValues();
@@ -127,11 +127,12 @@ public class DetailsActivity extends AppCompatActivity {
         dDescription.setText(capitalizeString(description));
     }
 
-    @UiThread
     protected void getDetailActivityViewsValues(ForecastItem item, City city) {
         day = capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = getFormattedDate(item.getDt_txt());
         city_name = city.getName().toString();
+        //FIXME: Unable to get name of the city.
+        //NOTE: For development purposes I changed default city_name in strings.xml
         Main main = item.getMain();
         Wind wind = item.getWind();
         high_temp = Math.round(main.getTempMax()) + " °C";
