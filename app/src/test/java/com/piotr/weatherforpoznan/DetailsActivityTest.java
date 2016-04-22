@@ -6,8 +6,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.Date;
-
 import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
 import static junit.framework.Assert.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,7 +21,6 @@ public class DetailsActivityTest {
     public void testOnCreateView() throws Exception {
         DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
         assertThat(activity.toolbar.isClickable());
-        testGetDetailActivityViewsValues();
     }
 
     @Test
@@ -94,9 +91,8 @@ public class DetailsActivityTest {
     public void testOnIconDrawableChange() throws Exception {
         DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
         activity.dIcon.setImageDrawable(activity.getResources().getDrawable(R.drawable.art_clear));
-        assertTrue(activity.dIcon.getDrawable().equals(activity.getResources().getDrawable(R
-                .drawable
-                .art_clear)));
+        assertTrue(activity.dIcon.getDrawable().equals(activity.getResources()
+                .getDrawable(R.drawable.art_clear)));
     }
 
     @Test
@@ -107,58 +103,6 @@ public class DetailsActivityTest {
         assertTrue(activity.dDescription.getText().equals(capitalizeString(description)));
     }
 
-    @Test
-    public void testGetDetailActivityViewsValues() throws Exception {
-        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
-        assertThat(activity.dDate.getText() != null);
-        assertThat(activity.dHighTemp.getText() != null);
-        assertThat(activity.dLowTemp.getText() != null);
-        assertThat(activity.dHumidityVal.getText() != null);
-        assertThat(activity.dPressureVal.getText() != null);
-        assertThat(activity.dWindVal.getText() != null);
-        assertThat(activity.dIcon.getDrawable() != null);
-        assertThat(activity.dDescription.getText() != null);
-    }
-
-
-    @Test
-    public void testSetDetailActivityViewsValues() throws Exception {
-        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
-        assertThat(activity.findViewById(R.id.dDay).isShown());
-        assertThat(activity.findViewById(R.id.dDate).isShown());
-        assertThat(activity.findViewById(R.id.dCity).isShown());
-        assertThat(activity.findViewById(R.id.dHighTemp).isShown());
-        assertThat(activity.findViewById(R.id.dLowTemp).isShown());
-        assertThat(activity.findViewById(R.id.dPressureVal).isShown());
-        assertThat(activity.findViewById(R.id.dPressureVal).isShown());
-        assertThat(activity.findViewById(R.id.dWindVal).isShown());
-        assertThat(activity.dDate.getText() != null);
-        assertThat(activity.dHighTemp.getText() != null);
-        assertThat(activity.dLowTemp.getText() != null);
-        assertThat(activity.dHumidityVal.getText() != null);
-        assertThat(activity.dPressureVal.getText() != null);
-        assertThat(activity.dWindVal.getText() != null);
-        assertThat(activity.dIcon.getDrawable() != null);
-        assertThat(activity.dDescription.getText() != null);
-
-    }
-
-    @Test
-    public void testGetDetailsActionBar() throws Exception {
-        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
-        assertThat(activity.day = new Date().toString());
-        assertThat(activity.date = String.valueOf(new Date()));
-        assertThat(activity.city_name = String.valueOf(activity.findViewById(R.id.dCity)));
-        assertThat(activity.high_temp = String.valueOf(activity.findViewById(R.id.dCity)));
-        assertThat(activity.low_temp = String.valueOf(activity.findViewById(R.id.dCity)));
-        assertThat(activity.humidity_val = String.valueOf(activity.findViewById(R.id.dCity)));
-        assertThat(activity.pressure_val = String.valueOf(activity.findViewById(R.id.dCity)));
-        assertThat(activity.wind_speed = String.valueOf(activity.findViewById(R.id.dCity)));
-        assertThat(activity.wind_deg = String.valueOf(activity.findViewById(R.id.dCity)));
-        assertThat(activity.wind_val = String.valueOf(activity.findViewById(R.id.dWindVal)));
-        assertThat(activity.icon = Integer.parseInt(String.valueOf(R.drawable.art_clear)));
-        assertThat(activity.description = String.valueOf(activity.findViewById(R.id.dCity)));
-    }
 
     @Test
     public void testOnClick() throws Exception {
@@ -168,10 +112,6 @@ public class DetailsActivityTest {
         activity.fab.performClick();
     }
 
-    @Test
-    public void testExtras() throws Exception {
-/*        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
-        activity.setDetailActivityViewsValues();*/
+    //TODO: Write more unit tests
 
-    }
 }
