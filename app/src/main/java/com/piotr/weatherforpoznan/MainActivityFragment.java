@@ -118,7 +118,7 @@ public class MainActivityFragment extends Fragment {
 
     @UiThread
     protected void downloadCityData(final WeatherService weatherAPI) {
-        weatherAPI.getForecast(3088171, "json", "metric", "hour", lang, "f1570c3640caf0e5f96358d802933e40", new Callback<Forecast>() {
+        weatherAPI.getForecast(3088171, "json", "metric", "hour", lang, API_ID, new Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
                 saveCityDataToDatabase(forecast);
