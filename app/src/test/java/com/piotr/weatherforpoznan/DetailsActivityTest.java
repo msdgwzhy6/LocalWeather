@@ -8,6 +8,8 @@ import org.robolectric.annotation.Config;
 
 import java.util.Date;
 
+import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
+import static junit.framework.Assert.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -25,16 +27,84 @@ public class DetailsActivityTest {
     }
 
     @Test
-    public void testGetFormattedDate() {
+    public void testOnDayChange() {
         DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
-        activity.dDay.setText("Hello");
-        activity.dDate.setText("Hello");
-        activity.dCity.setText("Hello");
-        activity.dHighTemp.setText("Hello");
-        activity.dLowTemp.setText("Hello");
-        activity.dDate.setText("Hello");
-        //TODO: Learn the unit testing
-        //TODO: Change existing code
+        String day = activity.getResources().getString(R.string.day);
+        activity.dDay.setText(day);
+        assertTrue(activity.dDay.getText().equals(day));
+    }
+
+    @Test
+    public void testOnDateChange() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        String date = activity.getResources().getString(R.string.date);
+        activity.dDate.setText(date);
+        assertTrue(activity.dDate.getText().equals(date));
+    }
+
+    @Test
+    public void testOnCityNameChange() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        String city_name = activity.getResources().getString(R.string.city_name);
+        activity.dCity.setText(city_name);
+        assertTrue(activity.dCity.getText().equals(city_name));
+    }
+
+    @Test
+    public void testOnHighTemperatureChange() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        String high_temp = activity.getResources().getString(R.string.high_temp);
+        activity.dHighTemp.setText(high_temp);
+        assertTrue(activity.dHighTemp.getText().equals(high_temp));
+    }
+
+    @Test
+    public void testOnLowTemperatureChange() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        String low_temp = activity.getResources().getString(R.string.low_temp);
+        activity.dLowTemp.setText(low_temp);
+        assertTrue(activity.dLowTemp.getText().equals(low_temp));
+    }
+
+    @Test
+    public void testOnHumidityValueChange() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        String humidity_val = activity.getResources().getString(R.string.humidity_val);
+        activity.dHumidityVal.setText(humidity_val);
+        assertTrue(activity.dHumidityVal.getText().equals(humidity_val));
+    }
+
+    @Test
+    public void testonPressureValueChange() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        String pressure_val = activity.getResources().getString(R.string.pressure_val);
+        activity.dPressureVal.setText(pressure_val);
+        assertTrue(activity.dPressureVal.getText().equals(pressure_val));
+    }
+
+    @Test
+    public void testOnWindValueChange() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        String wind_val = activity.getResources().getString(R.string.wind_val);
+        activity.dWindVal.setText(wind_val);
+        assertTrue(activity.dWindVal.getText().equals(wind_val));
+    }
+
+    @Test
+    public void testOnIconDrawableChange() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        activity.dIcon.setImageDrawable(activity.getResources().getDrawable(R.drawable.art_clear));
+        assertTrue(activity.dIcon.getDrawable().equals(activity.getResources().getDrawable(R
+                .drawable
+                .art_clear)));
+    }
+
+    @Test
+    public void testOnDescriptionChange() throws Exception {
+        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        String description = activity.getResources().getString(R.string.description);
+        activity.dDescription.setText(capitalizeString(description));
+        assertTrue(activity.dDescription.getText().equals(capitalizeString(description)));
     }
 
     @Test
@@ -96,5 +166,12 @@ public class DetailsActivityTest {
         activity.findViewById(R.id.fab).performClick();
         assertThat(activity.fab.isClickable());
         activity.fab.performClick();
+    }
+
+    @Test
+    public void testExtras() throws Exception {
+/*        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        activity.setDetailActivityViewsValues();*/
+
     }
 }
