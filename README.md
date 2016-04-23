@@ -6,6 +6,10 @@
 ##About
 Practice weather app. Uses OpenWeatherMap API, retrofit, gson, AndroidAnnotations and ActiveAndroid. 
 
+Includes tests: unit tests written with JUnit and Robolectric frameworks and automated UI tests written in Espresso.
+
+Available in two languages: Polish and English.
+
 ##Screenshots
 <img src="screenshots/device-2015-11-04-152556.png" height="500dp"/>
 <img src="screenshots/device-2015-11-04-152804.png" height="500dp"/>
@@ -22,6 +26,5 @@ Practice weather app. Uses OpenWeatherMap API, retrofit, gson, AndroidAnnotation
   Alternatively, from the Welcome screen, select **Import project**.
 
 ##Contributing
-Please, feel free to report any issue or make a pull request.
 
-###### This app is still under development. Be patient!
+Please, feel free to report any issue or make a pull request.
