@@ -17,7 +17,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
-import com.piotr.weatherforpoznan.adapter.ForecastAdapter;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 
 import org.androidannotations.annotations.AfterViews;
@@ -54,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
     @StringRes
     String longitude_short;
 
-    ForecastAdapter mForecastAdapter;
-
     @UiThread
     protected void setWeatherFragments(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
@@ -64,13 +61,12 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
         List<ForecastItem> forecastItems = new Select().from(ForecastItem.class).execute();
+        //TODO: Set ACTUAL notification data on every application run
         if (forecastItems.size() != 0) {
             ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", forecastItems.get(1).getId())
                     .executeSingle();
-            setWeatherNotification(item.getDt_txt(),
-                    item.getWeatherData().getDescription(),
-                    Math.round(item.getMain().getTempMax()),
-                    item.getWeatherData().getWeatherId());
+
+            setWeatherNotification(item);
         }
 
     }
@@ -80,17 +76,18 @@ public class MainActivity extends AppCompatActivity {
         return formattedDay;
     }
 
-    protected void setWeatherNotification(Date date, String description, double tempMax,
-                                          int iconId) {
+    protected void setWeatherNotification(ForecastItem item) {
+        Date date = item.getDt_txt();
+        String description = item.getWeatherData().getDescription();
+        double tempMax = Math.round(item.getMain().getTempMax());
+        int iconId = item.getWeatherData().getWeatherId();
+
         Intent intent = new Intent(this, DetailsActivity.class);
         int requestID = (int) System.currentTimeMillis();
         int flags = PendingIntent.FLAG_CANCEL_CURRENT;
         PendingIntent pIntent = PendingIntent.getActivity(this, requestID, intent, flags);
 
-        int image;
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            image = getArtResourceForWeatherCondition(iconId);
-        } else image = getIconResourceForWeatherCondition(iconId);
+        int image = setImageResourceForWeatherCondition(iconId);
 
         Notification noti =
                 new NotificationCompat.Builder(this)
@@ -108,12 +105,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @AfterViews
-    public void setMainActivityActionBar() {
-        setWeatherFragments(null);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar_main);
+    private int setImageResourceForWeatherCondition(int iconId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return getArtResourceForWeatherCondition(iconId);
+        }
+        return getIconResourceForWeatherCondition(iconId);
     }
 
     public static Bitmap drawableToBitmap(Drawable drawable) {
@@ -138,5 +134,11 @@ public class MainActivity extends AppCompatActivity {
         return bitmap;
     }
 
-    //FIXME: Reformat code, extract to methods
+    @AfterViews
+    public void setMainActivityActionBar() {
+        setWeatherFragments(null);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_main);
+    }
 }
