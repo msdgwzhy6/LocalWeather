@@ -3,8 +3,8 @@ package com.piotr.weatherforpoznan.espresso;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.piotr.weatherforpoznan.MainActivity_;
 import com.piotr.weatherforpoznan.R;
+import com.piotr.weatherforpoznan.view.MainActivity_;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;

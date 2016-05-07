@@ -1,5 +1,7 @@
 package com.piotr.weatherforpoznan;
 
+import com.piotr.weatherforpoznan.view.MainActivity_;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;

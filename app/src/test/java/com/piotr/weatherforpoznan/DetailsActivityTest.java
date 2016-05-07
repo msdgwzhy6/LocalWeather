@@ -1,6 +1,8 @@
 package com.piotr.weatherforpoznan;
 
 import com.piotr.weatherforpoznan.utils.StringUtils;
+import com.piotr.weatherforpoznan.view.DetailsActivity;
+import com.piotr.weatherforpoznan.view.DetailsActivity_;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +22,7 @@ public class DetailsActivityTest {
 
     @Test
     public void testOnCreateView() throws Exception {
-        DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
+        DetailsActivity activity = Robolectric.setupActivity(DetailsActivity.class);
         assertNotNull(activity);
     }
 

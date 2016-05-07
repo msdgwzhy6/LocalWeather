@@ -1,4 +1,4 @@
-package com.piotr.weatherforpoznan;
+package com.piotr.weatherforpoznan.view;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
+import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 
 import org.androidannotations.annotations.AfterViews;

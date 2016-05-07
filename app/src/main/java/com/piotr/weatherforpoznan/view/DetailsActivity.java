@@ -1,4 +1,4 @@
-package com.piotr.weatherforpoznan;
+package com.piotr.weatherforpoznan.view;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
+import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.model.City;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.piotr.weatherforpoznan.model.Main;
@@ -40,26 +41,37 @@ public class DetailsActivity extends AppCompatActivity {
     @ViewById
     Toolbar toolbar;
     @ViewById
+    public
     FloatingActionButton fab;
     @ViewById
+    public
     TextView dDay;
     @ViewById
+    public
     TextView dDate;
     @ViewById
+    public
     TextView dCity;
     @ViewById
+    public
     TextView dHighTemp;
     @ViewById
+    public
     TextView dLowTemp;
     @ViewById
+    public
     TextView dDescription;
     @ViewById
+    public
     TextView dHumidityVal;
     @ViewById
+    public
     TextView dPressureVal;
     @ViewById
+    public
     TextView dWindVal;
     @ViewById
+    public
     ImageView dIcon;
     @StringRes
     String day;

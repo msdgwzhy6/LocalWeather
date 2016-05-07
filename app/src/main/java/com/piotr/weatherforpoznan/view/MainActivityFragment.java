@@ -1,4 +1,4 @@
-package com.piotr.weatherforpoznan;
+package com.piotr.weatherforpoznan.view;
 
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
@@ -10,10 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.activeandroid.ActiveAndroid;
+import com.piotr.weatherforpoznan.R;
+import com.piotr.weatherforpoznan.WeatherApplication;
 import com.piotr.weatherforpoznan.adapter.ForecastAdapter;
 import com.piotr.weatherforpoznan.model.Forecast;
 import com.piotr.weatherforpoznan.service.WeatherService;
-import com.piotr.weatherforpoznan.utils.WeatherApplication;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -25,7 +26,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import static com.piotr.weatherforpoznan.utils.WeatherApplication.weatherAPI;
+import static com.piotr.weatherforpoznan.WeatherApplication.weatherAPI;
 
 @EFragment(R.layout.fragment_main)
 public class MainActivityFragment extends Fragment {

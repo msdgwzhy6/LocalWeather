@@ -1,4 +1,4 @@
-package com.piotr.weatherforpoznan.utils;
+package com.piotr.weatherforpoznan;
 
 import android.os.AsyncTask;
 
