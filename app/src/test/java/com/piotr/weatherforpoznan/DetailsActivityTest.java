@@ -1,12 +1,13 @@
 package com.piotr.weatherforpoznan;
 
+import com.piotr.weatherforpoznan.utils.StringUtils;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
@@ -99,8 +100,8 @@ public class DetailsActivityTest {
     public void testOnDescriptionChange() throws Exception {
         DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
         String description = activity.getResources().getString(R.string.description);
-        activity.dDescription.setText(capitalizeString(description));
-        assertTrue(activity.dDescription.getText().equals(capitalizeString(description)));
+        activity.dDescription.setText(StringUtils.capitalizeString(description));
+        assertTrue(activity.dDescription.getText().equals(StringUtils.capitalizeString(description)));
     }
 
 

@@ -10,14 +10,13 @@ import android.widget.TextView;
 
 import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.model.ForecastItem;
-import com.piotr.weatherforpoznan.utils.Utility;
+import com.piotr.weatherforpoznan.utils.ImageUtils;
+import com.piotr.weatherforpoznan.utils.StringUtils;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
 
 /**
  * Created by piotr on 02.10.15.
@@ -78,14 +77,14 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
     private void initIconDrawable(ForecastItem item, ViewHolder vHolder) {
         int iconName = item.getWeather().get(0).getWeatherId();
-        int icon = Utility.getIconResourceForWeatherCondition(iconName);
+        int icon = ImageUtils.getIconResourceForWeatherCondition(iconName);
         Picasso.with(getContext()).load(icon).into(vHolder.forecastItemIcon);
     }
 
     private void initWeatherValue(ForecastItem item, ViewHolder vHolder) {
         if (item.getWeather().size() > 0) {
             String description = item.getWeather().get(0).getDescription().toString();
-            vHolder.forecastItemDescription.setText(capitalizeString(description));
+            vHolder.forecastItemDescription.setText(StringUtils.capitalizeString(description));
         } else {
             vHolder.forecastItemDescription.setText(R.string.description_not_available);
         }

@@ -5,10 +5,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -25,12 +21,13 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static com.piotr.weatherforpoznan.utils.Utility.getArtResourceForWeatherCondition;
-import static com.piotr.weatherforpoznan.utils.Utility.getIconResourceForWeatherCondition;
+import static com.piotr.weatherforpoznan.utils.ImageUtils.drawableToBitmap;
+import static com.piotr.weatherforpoznan.utils.ImageUtils.getArtResourceForWeatherCondition;
+import static com.piotr.weatherforpoznan.utils.ImageUtils.getIconResourceForWeatherCondition;
+import static com.piotr.weatherforpoznan.utils.StringUtils.getFormattedDate;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
@@ -71,10 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private static String getFormattedDate(Date date) {
-        String formattedDay = new SimpleDateFormat("d MMMM y HH:mm").format(date);
-        return formattedDay;
-    }
 
     protected void setWeatherNotification(ForecastItem item) {
         Date date = item.getDt_txt();
@@ -110,28 +103,6 @@ public class MainActivity extends AppCompatActivity {
             return getArtResourceForWeatherCondition(iconId);
         }
         return getIconResourceForWeatherCondition(iconId);
-    }
-
-    public static Bitmap drawableToBitmap(Drawable drawable) {
-        Bitmap bitmap = null;
-
-        if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if (bitmapDrawable.getBitmap() != null) {
-                return bitmapDrawable.getBitmap();
-            }
-        }
-
-        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
-        } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        }
-
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
     }
 
     @AfterViews

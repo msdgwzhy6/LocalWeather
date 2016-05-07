@@ -16,6 +16,7 @@ import com.piotr.weatherforpoznan.model.City;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.piotr.weatherforpoznan.model.Main;
 import com.piotr.weatherforpoznan.model.Wind;
+import com.piotr.weatherforpoznan.utils.StringUtils;
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
@@ -27,13 +28,10 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.IntegerRes;
 import org.androidannotations.annotations.res.StringRes;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
-import static com.piotr.weatherforpoznan.utils.Utility.getArtResourceForWeatherCondition;
-import static com.piotr.weatherforpoznan.utils.Utility.getDayName;
-import static com.piotr.weatherforpoznan.utils.Utility.getFormattedWind;
+import static com.piotr.weatherforpoznan.utils.ImageUtils.getArtResourceForWeatherCondition;
+import static com.piotr.weatherforpoznan.utils.StringUtils.getDayName;
+import static com.piotr.weatherforpoznan.utils.StringUtils.getFormattedDate;
+import static com.piotr.weatherforpoznan.utils.StringUtils.getFormattedWind;
 
 @EActivity(R.layout.activity_details)
 public class DetailsActivity extends AppCompatActivity {
@@ -90,11 +88,6 @@ public class DetailsActivity extends AppCompatActivity {
     @Extra
     long id;
 
-    public static String getFormattedDate(Date date) {
-        String formattedDay = new SimpleDateFormat("d MMMM y HH:mm").format(date);
-        return formattedDay;
-    }
-
     @Click(R.id.fab)
     public void onClick(View view) {
         Snackbar.make(view, R.string.function_not_available, Snackbar.LENGTH_LONG)
@@ -124,11 +117,11 @@ public class DetailsActivity extends AppCompatActivity {
         dPressureVal.setText(pressure_val);
         dWindVal.setText(wind_val);
         Picasso.with(getApplicationContext()).load(icon).into(dIcon);
-        dDescription.setText(capitalizeString(description));
+        dDescription.setText(StringUtils.capitalizeString(description));
     }
 
     protected void getDetailActivityViewsValues(ForecastItem item, City city) {
-        day = capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
+        day = StringUtils.capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = getFormattedDate(item.getDt_txt());
         city_name = city.getName().toString();
         //FIXME: Unable to get name of the city.
