@@ -75,16 +75,18 @@ public class MainActivityFragment extends Fragment {
                 Callback<Forecast>() {
                     @Override
                     public void success(Forecast forecast, Response response) {
-                        mForecastAdapter = new ForecastAdapter(getActivity(),
-                                R.layout.list_item_forecast, forecast.getForecastList());
-                        mListView.setAdapter(mForecastAdapter);
-                        swipeRefresh.setRefreshing(false);
+                        if (getActivity() != null) {
+                            mForecastAdapter = new ForecastAdapter(getActivity(),
+                                    R.layout.list_item_forecast, forecast.getForecastList());
+                            mListView.setAdapter(mForecastAdapter);
+                            swipeRefresh.setRefreshing(false);
 
-                        //ActiveAndroid implementation
-                        saveForecastItemToDatabase(forecast);
+                            //ActiveAndroid implementation
+                            saveForecastItemToDatabase(forecast);
 
-                        Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
-                        Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
+                            Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
+                            Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
+                        }
                     }
 
                     @Override
