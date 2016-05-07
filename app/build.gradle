@@ -74,7 +74,6 @@ dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile "junit:junit:$JUNIT_VERSION"
-    testCompile "org.assertj:assertj-core:1.7.1"
     testCompile("org.robolectric:robolectric:3.0") {
         exclude module: 'classworlds'
         exclude module: 'commons-logging'
@@ -92,8 +91,6 @@ dependencies {
         exclude module: 'wagon-http-lightweight'
         exclude module: 'wagon-provider-api'
     }
-    androidTestCompile 'com.squareup.assertj:assertj-android:1.1.1'
-    androidTestCompile 'org.assertj:assertj-core:1.7.1'
 
     compile "com.android.support:appcompat-v7:$SUPPORT_VERSION"
     compile "com.android.support:design:$SUPPORT_VERSION"

@@ -8,7 +8,6 @@ import org.robolectric.annotation.Config;
 
 import static com.piotr.weatherforpoznan.utils.Utility.capitalizeString;
 import static junit.framework.Assert.assertTrue;
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by piotr on 22.10.15.
@@ -20,7 +19,7 @@ public class DetailsActivityTest {
     @Test
     public void testOnCreateView() throws Exception {
         DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
-        assertThat(activity.toolbar.isClickable());
+        assertTrue(activity.toolbar.isClickable());
     }
 
     @Test
@@ -108,7 +107,7 @@ public class DetailsActivityTest {
     public void testOnClick() throws Exception {
         DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
         activity.findViewById(R.id.fab).performClick();
-        assertThat(activity.fab.isClickable());
+        assertTrue(activity.fab.isClickable());
         activity.fab.performClick();
     }
 
