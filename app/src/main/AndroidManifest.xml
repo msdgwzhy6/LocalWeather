@@ -32,7 +32,8 @@
         <activity
             android:name=".view.DetailsActivity_"
             android:label="@string/title_activity_details"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".view.MainActivity_"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"

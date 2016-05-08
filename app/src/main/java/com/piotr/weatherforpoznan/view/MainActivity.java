@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
@@ -51,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
     String longitude_short;
 
     @AfterViews
-    public void createMainActivity() {
+    public void initialize() {
         setWeatherFragments(null);
-        setMainActivityActionBar();
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         List<ForecastItem> forecastItems = new Select().from(ForecastItem.class).execute();
         //TODO: Set ACTUAL notification data on every application run
@@ -64,12 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
             createWeatherNotification(item);
         }
-    }
-
-    private void setMainActivityActionBar() {
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar_main);
     }
 
     private void setWeatherFragments(Bundle savedInstanceState) {

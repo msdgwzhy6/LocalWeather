@@ -17,11 +17,9 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
 
@@ -89,26 +87,6 @@ public class DetailsActivityTest {
     @Before
     public void goToDetailsActivity() throws InterruptedException {
         onView(withId(R.id.mListView)).perform(click());
-
-    }
-
-    @Test
-    public void checkIfActivityNameIsDisplayedOnActionBar() throws InterruptedException {
-        onView(withText(R.string.title_activity_details))
-                .check(matches(withParent(withParent(withId(R.id.action_bar_details)))));
-
-    }
-
-    @Test
-    public void checkIfNavigationBackButtonIsDisplayedOnActionBar() throws InterruptedException {
-        onView(withId(R.id.action_bar_details))
-                .check(matches(hasDescendant(withId(R.id.action_bar_back))));
-
-    }
-
-    @Test
-    public void performClickOnNavigationBackButton() throws InterruptedException {
-        onView(withId(R.id.action_bar_back)).perform(click());
 
     }
 

@@ -2,12 +2,12 @@ package com.piotr.weatherforpoznan.view;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,42 +37,32 @@ import static com.piotr.weatherforpoznan.utils.StringUtils.getFormattedWind;
 @EActivity(R.layout.activity_details)
 public class DetailsActivity extends AppCompatActivity {
 
-    final String TAG = "DetailsActivity";
+    final String TAG = getClass().getSimpleName();
+
     @ViewById
-    Toolbar toolbar;
+    public Toolbar toolbar;
     @ViewById
-    public
-    FloatingActionButton fab;
+    public FloatingActionButton fab;
     @ViewById
-    public
-    TextView dDay;
+    public TextView dDay;
     @ViewById
-    public
-    TextView dDate;
+    public TextView dDate;
     @ViewById
-    public
-    TextView dCity;
+    public TextView dCity;
     @ViewById
-    public
-    TextView dHighTemp;
+    public TextView dHighTemp;
     @ViewById
-    public
-    TextView dLowTemp;
+    public TextView dLowTemp;
     @ViewById
-    public
-    TextView dDescription;
+    public TextView dDescription;
     @ViewById
-    public
-    TextView dHumidityVal;
+    public TextView dHumidityVal;
     @ViewById
-    public
-    TextView dPressureVal;
+    public TextView dPressureVal;
     @ViewById
-    public
-    TextView dWindVal;
+    public TextView dWindVal;
     @ViewById
-    public
-    ImageView dIcon;
+    public ImageView dIcon;
     @StringRes
     String day;
     @StringRes
@@ -107,8 +97,9 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     @AfterViews
-    protected void afterViews() {
-        setDetailsActionBar(toolbar);
+    protected void initialize() {
+        setDetailsActivityActionBar();
+
         City city = new Select().from(City.class).executeSingle();
         ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();
         if ((item != null) && (city != null)) {
@@ -152,16 +143,20 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     @UiThread
-    protected void setDetailsActionBar(Toolbar toolbar) {
+    protected void setDetailsActivityActionBar() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar_details);
-        ImageButton button = (ImageButton) findViewById(R.id.action_bar_back);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

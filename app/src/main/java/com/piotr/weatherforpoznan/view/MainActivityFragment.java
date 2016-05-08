@@ -46,7 +46,7 @@ public class MainActivityFragment extends Fragment {
     ForecastAdapter mForecastAdapter;
 
     @AfterViews
-    public void afterViews() {
+    public void onCreateMainActivityFragment() {
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
