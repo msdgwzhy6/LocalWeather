@@ -9,12 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.activeandroid.ActiveAndroid;
 import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.WeatherApplication;
 import com.piotr.weatherforpoznan.adapter.ForecastAdapter;
 import com.piotr.weatherforpoznan.model.Forecast;
 import com.piotr.weatherforpoznan.service.WeatherService;
+import com.piotr.weatherforpoznan.utils.DatabaseUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -30,6 +30,8 @@ import static com.piotr.weatherforpoznan.WeatherApplication.weatherAPI;
 
 @EFragment(R.layout.fragment_main)
 public class MainActivityFragment extends Fragment {
+
+    private final DatabaseUtils mDatabaseUtils = new DatabaseUtils();
 
     @StringRes
     String API_ID;
@@ -83,7 +85,7 @@ public class MainActivityFragment extends Fragment {
                             swipeRefresh.setRefreshing(false);
 
                             //ActiveAndroid implementation
-                            saveForecastItemToDatabase(forecast);
+                            mDatabaseUtils.saveForecastItemToDatabase(forecast);
 
                             Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
                             Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
@@ -105,26 +107,12 @@ public class MainActivityFragment extends Fragment {
                 });
     }
 
-    private void saveForecastItemToDatabase(Forecast forecast) {
-        int i = 0;
-        ActiveAndroid.beginTransaction();
-        try {
-            while (i < forecast.getForecastList().size()) {
-                forecast.getForecastList().get(i).saveItemToDatabase();
-                i++;
-            }
-            ActiveAndroid.setTransactionSuccessful();
-        } finally {
-            ActiveAndroid.endTransaction();
-        }
-    }
-
     @UiThread
     protected void downloadCityData(final WeatherService weatherAPI) {
         weatherAPI.getForecast(3088171, "json", "metric", "hour", lang, API_ID, new Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
-                saveCityDataToDatabase(forecast);
+                mDatabaseUtils.saveCityDataToDatabase(forecast);
             }
 
             @Override
@@ -140,17 +128,5 @@ public class MainActivityFragment extends Fragment {
                         }).show();
             }
         });
-    }
-
-    private void saveCityDataToDatabase(Forecast forecast) {
-        ActiveAndroid.beginTransaction();
-        try {
-            forecast.getCity().getCoord().save();
-            forecast.getCity().save();
-            ActiveAndroid.setTransactionSuccessful();
-        } finally {
-            ActiveAndroid.endTransaction();
-        }
-        Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getCityList());
     }
 }
