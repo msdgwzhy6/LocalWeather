@@ -157,8 +157,8 @@
     <orderEntry type="library" exported="" name="gson-2.4" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="rules-0.5" level="project" />
     <orderEntry type="library" exported="" name="crashlytics-core-2.3.5" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="robolectric-annotations-3.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="javax.inject-1" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="robolectric-annotations-3.0" level="project" />
     <orderEntry type="library" exported="" name="design-23.3.0" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-23.3.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="robolectric-utils-3.0" level="project" />

@@ -18,7 +18,6 @@ import com.piotr.weatherforpoznan.model.ForecastItem;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
 
@@ -51,26 +50,37 @@ public class MainActivity extends AppCompatActivity {
     @StringRes
     String longitude_short;
 
-    @UiThread
-    protected void setWeatherFragments(Bundle savedInstanceState) {
+    @AfterViews
+    public void createMainActivity() {
+        setWeatherFragments(null);
+        setMainActivityActionBar();
+
+        List<ForecastItem> forecastItems = new Select().from(ForecastItem.class).execute();
+        //TODO: Set ACTUAL notification data on every application run
+        if (forecastItems.size() != 0) {
+            ForecastItem item = new Select().from(ForecastItem.class).where("id = ?",
+                    forecastItems.get(1).getId())
+                    .executeSingle();
+
+            createWeatherNotification(item);
+        }
+    }
+
+    private void setMainActivityActionBar() {
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_main);
+    }
+
+    private void setWeatherFragments(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.mActivity, new MainActivityFragment_())
                     .commit();
         }
-        List<ForecastItem> forecastItems = new Select().from(ForecastItem.class).execute();
-        //TODO: Set ACTUAL notification data on every application run
-        if (forecastItems.size() != 0) {
-            ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", forecastItems.get(1).getId())
-                    .executeSingle();
-
-            setWeatherNotification(item);
-        }
-
     }
 
-
-    protected void setWeatherNotification(ForecastItem item) {
+    private void createWeatherNotification(ForecastItem item) {
         Date date = item.getDt_txt();
         String description = item.getWeatherData().getDescription();
         double tempMax = Math.round(item.getMain().getTempMax());
@@ -81,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
         int flags = PendingIntent.FLAG_CANCEL_CURRENT;
         PendingIntent pIntent = PendingIntent.getActivity(this, requestID, intent, flags);
 
-        int image = setImageResourceForWeatherCondition(iconId);
+        int image = setImageResourceForWeatherNotification(iconId);
 
-        Notification noti =
+        Notification notification =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(getIconResourceForWeatherCondition((iconId)))
                         .setLargeIcon(drawableToBitmap(getResources()
@@ -95,22 +105,15 @@ public class MainActivity extends AppCompatActivity {
 
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(0, noti);
+        mNotificationManager.notify(0, notification);
 
     }
 
-    private int setImageResourceForWeatherCondition(int iconId) {
+    private int setImageResourceForWeatherNotification(int iconId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return getArtResourceForWeatherCondition(iconId);
         }
         return getIconResourceForWeatherCondition(iconId);
     }
 
-    @AfterViews
-    public void setMainActivityActionBar() {
-        setWeatherFragments(null);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar_main);
-    }
 }
