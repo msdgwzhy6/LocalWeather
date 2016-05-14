@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 import com.piotr.weatherforpoznan.R;
 
 /**
- * Created by piotr on 23.08.15.
+ * @author piotr on 23.08.15.
  */
 
 public class ImageUtils {
@@ -72,7 +72,7 @@ public class ImageUtils {
     }
 
     public static Bitmap drawableToBitmap(Drawable drawable) {
-        Bitmap bitmap = null;
+        Bitmap bitmap;
 
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;

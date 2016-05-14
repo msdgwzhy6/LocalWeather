@@ -8,29 +8,34 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by piotrek on 15-10-01.
+ * @author piotr on 15-10-01.
  */
 
 @Table(name = "Main")
 public class Main extends Model implements Serializable {
     @Column
     @SerializedName("temp")
+    private
     Double temp;
 
     @Column
     @SerializedName("temp_min")
+    private
     Double temp_min;
 
     @Column
     @SerializedName("temp_max")
+    private
     Double temp_max;
 
     @Column
     @SerializedName("pressure")
+    private
     Double pressure;
 
     @Column
     @SerializedName("humidity")
+    private
     Double humidity;
 
     public Main() {
@@ -40,8 +45,6 @@ public class Main extends Model implements Serializable {
     public Main(Double temp, Double pressure, Double humidity) {
         super();
         this.temp = temp;
-        this.temp_max = temp_max;
-        this.temp_min = temp_min;
         this.pressure = pressure;
         this.humidity = humidity;
     }

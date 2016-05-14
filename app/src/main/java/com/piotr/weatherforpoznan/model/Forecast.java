@@ -5,15 +5,15 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by piotrek on 15-10-01.
+ * @author piotr on 15-10-01.
  */
 
 public class Forecast {
     @SerializedName("list")
-    java.util.List<ForecastItem> forecastList;
+    private java.util.List<ForecastItem> forecastList;
 
     @SerializedName("city")
-    City city;
+    private City city;
 
     @Override
     public String toString() {

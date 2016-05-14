@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 
 import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.model.ForecastItem;
@@ -43,8 +44,8 @@ public class WeatherNotification {
         Notification notification =
                 new NotificationCompat.Builder(mMainActivity)
                         .setSmallIcon(ImageUtils.getIconResourceForWeatherCondition((iconId)))
-                        .setLargeIcon(ImageUtils.drawableToBitmap(mMainActivity.getResources()
-                                .getDrawable(image)))
+                        .setLargeIcon(ImageUtils.drawableToBitmap(ContextCompat
+                                .getDrawable(mMainActivity, image)))
                         .setContentTitle(mMainActivity.getString(R.string.app_name))
                         .setContentText(StringUtils.getFormattedDate(date))
                         .setSubText(description + "\t" + tempMax + "°C")

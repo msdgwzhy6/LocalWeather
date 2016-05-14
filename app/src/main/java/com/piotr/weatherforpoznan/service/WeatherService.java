@@ -1,7 +1,7 @@
 package com.piotr.weatherforpoznan.service;
 
 /**
- * Created by piotr on 17.09.15.
+ * @author piotr on 17.09.15.
  */
 
 import com.piotr.weatherforpoznan.model.Forecast;

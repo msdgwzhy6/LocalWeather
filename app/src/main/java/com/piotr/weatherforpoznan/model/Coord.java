@@ -8,17 +8,17 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by Piotr on 13.10.2015.
+ * @author piotr on 13.10.2015.
  */
 @Table(name = "Coord")
 public class Coord extends Model implements Serializable {
     @Column
     @SerializedName("lon")
-    Double lon;
+    private Double lon;
 
     @Column
     @SerializedName("lat")
-    Double lat;
+    private Double lat;
 
     public Coord() {
         super();

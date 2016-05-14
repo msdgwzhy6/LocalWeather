@@ -37,7 +37,7 @@ import static com.piotr.weatherforpoznan.utils.StringUtils.getFormattedWind;
 @EActivity(R.layout.activity_details)
 public class DetailsActivity extends AppCompatActivity {
 
-    final String TAG = getClass().getSimpleName();
+    private final String TAG = getClass().getSimpleName();
 
     @ViewById
     public Toolbar toolbar;
@@ -123,10 +123,10 @@ public class DetailsActivity extends AppCompatActivity {
         dDescription.setText(StringUtils.capitalizeString(description));
     }
 
-    protected void getDetailActivityViewsValues(ForecastItem item, City city) {
+    private void getDetailActivityViewsValues(ForecastItem item, City city) {
         day = StringUtils.capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = getFormattedDate(item.getDt_txt());
-        city_name = city.getName().toString();
+        city_name = city.getName();
         //FIXME: Unable to get name of the city.
         //NOTE: For development purposes I changed default city_name in strings.xml
         Main main = item.getMain();
@@ -145,8 +145,10 @@ public class DetailsActivity extends AppCompatActivity {
     @UiThread
     protected void setDetailsActivityActionBar() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
     @Override

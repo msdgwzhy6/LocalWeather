@@ -10,30 +10,35 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by piotrek on 15-10-01.
+ * @author piotr on 15-10-01.
  */
 
 @Table(name = "ForecastItem")
 public class ForecastItem extends Model {
     @Column(name = "dt_txt", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     @SerializedName("dt_txt")
+    private
     Date dt_txt;
 
     @Column(name = "main", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
     @SerializedName("main")
+    private
     Main main;
 
     @Column(name = "weather", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
     @SerializedName("weather")
+    private
     List<Weather> weather;
 
     @Column(name = "weatherData", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
+    private
     Weather weatherData;
 
 
 
     @Column(name = "wind", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
     @SerializedName("wind")
+    private
     Wind wind;
 
     public ForecastItem() {
@@ -45,6 +50,7 @@ public class ForecastItem extends Model {
         this.dt_txt = dt_txt;
         this.main = main;
         this.wind = wind;
+        this.weather = weather;
     }
 
 

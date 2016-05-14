@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by piotrek on 15-10-01.
+ * @author piotr on 15-10-01.
  */
 
 @Table(name = "Weather")
@@ -16,9 +16,11 @@ public class Weather extends Model implements Serializable {
 
     @Column
     @SerializedName("id")
+    private
     Integer weatherId;
     @Column
     @SerializedName("description")
+    private
     String description;
 
     public Weather() {
