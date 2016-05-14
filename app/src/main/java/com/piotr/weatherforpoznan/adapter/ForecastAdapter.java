@@ -19,27 +19,24 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by piotr on 02.10.15.
+ * @author piotr on 02.10.15.
  */
 
 public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
-    static String formattedDay;
-
-
-    public ForecastAdapter(Context context, int resource, List<ForecastItem> objects) {
-        super(context, resource, objects);
+    public ForecastAdapter(Context context, List<ForecastItem> objects) {
+        super(context, R.layout.list_item_forecast, objects);
     }
 
     private static String getFormattedDate(Date date) {
-        formattedDay = new SimpleDateFormat("E d MMMM y HH:mm").format(date);
+        String formattedDay = new SimpleDateFormat("E d MMMM y HH:mm").format(date);
         return formattedDay;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ForecastItem item = getItem(position);
-        ViewHolder vHolder = null;
+        ViewHolder vHolder;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_forecast, null);
@@ -83,7 +80,7 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
     private void initWeatherValue(ForecastItem item, ViewHolder vHolder) {
         if (item.getWeather().size() > 0) {
-            String description = item.getWeather().get(0).getDescription().toString();
+            String description = item.getWeather().get(0).getDescription();
             vHolder.forecastItemDescription.setText(StringUtils.capitalizeString(description));
         } else {
             vHolder.forecastItemDescription.setText(R.string.description_not_available);
@@ -91,11 +88,11 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
     }
 
     static class ViewHolder {
-        ImageView forecastItemIcon;
-        TextView forecastItemDate;
-        TextView forecastItemDescription;
-        TextView forecastItemTemperatureMin;
-        TextView forecastItemTemperatureMax;
+        final ImageView forecastItemIcon;
+        final TextView forecastItemDate;
+        final TextView forecastItemDescription;
+        final TextView forecastItemTemperatureMin;
+        final TextView forecastItemTemperatureMax;
 
         public ViewHolder(View view) {
             this.forecastItemIcon = (ImageView) view.findViewById(R.id.forecastItemIcon);

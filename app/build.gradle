@@ -64,7 +64,7 @@ android {
 dependencies {
     ext.JUNIT_VERSION = '4.12'
     ext.AA_VERSION = '4.0.0'
-    ext.SUPPORT_VERSION = '23.3.0'
+    ext.SUPPORT_VERSION = '23.4.0'
     ext.ESPRESSO_VERSION = '2.2.2'
 
     //TODO: Update Retrofit to 2.x version - it requires code changes

@@ -24,7 +24,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
 
 /**
- *  @author Piotr on 17.10.15.
+ * @author Piotr on 17.10.15.
  */
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -33,7 +33,7 @@ public class DetailsActivityTest {
     @Rule
     public ActivityTestRule<MainActivity_> mRule = new ActivityTestRule<>(MainActivity_.class);
 
-    private int[] allDetailsActivityViewsIdis = {
+    private final int[] allDetailsActivityViewsIdis = {
             R.id.dItem,
             R.id.dDayAndDate,
             R.id.dDay,
@@ -60,7 +60,7 @@ public class DetailsActivityTest {
 
     };
 
-    private int[] detailsActivityTextViewsIdis = {
+    private final int[] detailsActivityTextViewsIdis = {
             R.id.dDay,
             R.id.dDate,
             R.id.dHighTemp,
@@ -72,7 +72,7 @@ public class DetailsActivityTest {
 
     };
 
-    private int[] detailsActivityTextViewsDefaultValues = {
+    private final int[] detailsActivityTextViewsDefaultValues = {
             R.string.day,
             R.string.date,
             R.string.high_temp,

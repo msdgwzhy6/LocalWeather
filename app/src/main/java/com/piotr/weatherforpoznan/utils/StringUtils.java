@@ -12,8 +12,7 @@ import java.util.Date;
 public class StringUtils {
 
     public static String getFormattedDate(Date date) {
-        String formattedDay = new SimpleDateFormat("d MMMM y HH:mm").format(date);
-        return formattedDay;
+        return new SimpleDateFormat("d MMMM y HH:mm").format(date);
     }
 
     public static String getDayName(Context context, long dateInMillis) {
@@ -57,7 +56,7 @@ public class StringUtils {
         } else if (degrees >= 292.5 && degrees < 337.5) {
             direction = "NW";
         }
-        return String.format(direction);
+        return direction;
     }
 
     @NonNull

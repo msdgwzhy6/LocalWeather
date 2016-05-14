@@ -1,5 +1,6 @@
 package com.piotr.weatherforpoznan.view;
 
+import android.annotation.SuppressLint;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
@@ -34,35 +35,47 @@ import static com.piotr.weatherforpoznan.utils.StringUtils.getDayName;
 import static com.piotr.weatherforpoznan.utils.StringUtils.getFormattedDate;
 import static com.piotr.weatherforpoznan.utils.StringUtils.getFormattedWind;
 
+@SuppressLint("Registered")
 @EActivity(R.layout.activity_details)
 public class DetailsActivity extends AppCompatActivity {
 
     private final String TAG = getClass().getSimpleName();
 
     @ViewById
-    public Toolbar toolbar;
+    Toolbar toolbar;
     @ViewById
-    public FloatingActionButton fab;
+    public
+    FloatingActionButton fab;
     @ViewById
-    public TextView dDay;
+    public
+    TextView dDay;
     @ViewById
-    public TextView dDate;
+    public
+    TextView dDate;
     @ViewById
-    public TextView dCity;
+    public
+    TextView dCity;
     @ViewById
-    public TextView dHighTemp;
+    public
+    TextView dHighTemp;
     @ViewById
-    public TextView dLowTemp;
+    public
+    TextView dLowTemp;
     @ViewById
-    public TextView dDescription;
+    public
+    TextView dDescription;
     @ViewById
-    public TextView dHumidityVal;
+    public
+    TextView dHumidityVal;
     @ViewById
-    public TextView dPressureVal;
+    public
+    TextView dPressureVal;
     @ViewById
-    public TextView dWindVal;
+    public
+    TextView dWindVal;
     @ViewById
-    public ImageView dIcon;
+    public
+    ImageView dIcon;
     @StringRes
     String day;
     @StringRes
@@ -78,11 +91,7 @@ public class DetailsActivity extends AppCompatActivity {
     @StringRes
     String pressure_val;
     @StringRes
-    String wind_speed;
-    @StringRes
     String wind_val;
-    @StringRes
-    String wind_deg;
     @StringRes
     String description;
     @IntegerRes
@@ -123,7 +132,7 @@ public class DetailsActivity extends AppCompatActivity {
         dDescription.setText(StringUtils.capitalizeString(description));
     }
 
-    private void getDetailActivityViewsValues(ForecastItem item, City city) {
+    void getDetailActivityViewsValues(ForecastItem item, City city) {
         day = StringUtils.capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = getFormattedDate(item.getDt_txt());
         city_name = city.getName();
@@ -135,8 +144,8 @@ public class DetailsActivity extends AppCompatActivity {
         low_temp = Math.round(main.getTempMin()) + " °C";
         humidity_val = Math.round(main.getHumidity()) + " %";
         pressure_val = Math.round(main.getPressure()) + " hPa";
-        wind_speed = Math.round(wind.getSpeed()) + " km/h";
-        wind_deg = getFormattedWind(wind.getDeg());
+        String wind_speed = Math.round(wind.getSpeed()) + " km/h";
+        String wind_deg = getFormattedWind(wind.getDeg());
         wind_val = wind_speed + " \t" + wind_deg;
         icon = getArtResourceForWeatherCondition(item.getWeatherData().getWeatherId());
         description = item.getWeatherData().getDescription();

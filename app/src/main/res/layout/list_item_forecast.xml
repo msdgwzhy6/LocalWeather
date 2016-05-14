@@ -24,6 +24,7 @@
 
             <ImageView
                 android:id="@+id/forecastItemIcon"
+                android:contentDescription="forecastItemIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -35,7 +36,6 @@
                 android:id="@+id/forecastItemTable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/dTemperature"
                 android:layout_toRightOf="@+id/forecastItemIcon"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/dimen_medium">

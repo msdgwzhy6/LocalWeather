@@ -8,7 +8,7 @@
     <string name="tomorrow">Jutro</string>
     <!--Details Activity values-->
     <string name="day">Środa</string>
-    <string name="date">2015-10-05 09:30:00</string>
+    <string name="date">2015–10-05 09:30:00</string>
     <string name="city_name">Poznań</string>
     <!--Temperature-->
     <string name="high_temp"> °C</string>
@@ -20,18 +20,18 @@
     <string name="pressure_desc">Ciśnienie: </string>
     <string name="pressure_val"> hPa</string>
     <!--Wind-->
-    <string name="wind_speed"></string>
-    <string name="wind_deg"></string>
+    <string name="wind_speed"/>
+    <string name="wind_deg"/>
     <string name="wind_desc">Wiatr: </string>
     <string name="wind_val"> km/h E</string>
     <!--Description-->
     <string name="description">\Pochmurnie</string>
     <!--Main Activity values-->
-    <string name="latitude"></string>
-    <string name="longitude"></string>
+    <string name="latitude"/>
+    <string name="longitude"/>
     <string name="latitude_short">Dł: </string>
     <string name="longitude_short">Szer: </string>
-    <string name="geo_coord"></string>
+    <string name="geo_coord"/>
     <!--Settings Activity values-->
     <string name="location">Lokalizacja</string>
     <string name="imperial">Fahrenheit</string>
@@ -47,4 +47,7 @@
     <!-- Language of phone-->
     <string name="lang">pl</string>
     <string name="operation_successful">Operacja zakończona pomyślnie.</string>
+    <string name="error_download_data">Błąd pobierania danych!</string>
+    <string name="error_again_message">Ponów próbę</string>
+
 </resources>

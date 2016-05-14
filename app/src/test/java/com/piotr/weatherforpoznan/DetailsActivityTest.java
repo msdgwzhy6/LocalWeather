@@ -1,5 +1,7 @@
 package com.piotr.weatherforpoznan;
 
+import android.support.v4.content.ContextCompat;
+
 import com.piotr.weatherforpoznan.utils.StringUtils;
 import com.piotr.weatherforpoznan.view.DetailsActivity;
 import com.piotr.weatherforpoznan.view.DetailsActivity_;
@@ -14,7 +16,7 @@ import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * Created by piotr on 22.10.15.
+ * @author piotr on 22.10.15.
  */
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
@@ -93,9 +95,9 @@ public class DetailsActivityTest {
     @Test
     public void testOnIconDrawableChange() throws Exception {
         DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
-        activity.dIcon.setImageDrawable(activity.getResources().getDrawable(R.drawable.art_clear));
-        assertTrue(activity.dIcon.getDrawable().equals(activity.getResources()
-                .getDrawable(R.drawable.art_clear)));
+        activity.dIcon.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.art_clear));
+        assertTrue(activity.dIcon.getDrawable()
+                .equals(ContextCompat.getDrawable(activity, R.drawable.art_clear)));
     }
 
     @Test

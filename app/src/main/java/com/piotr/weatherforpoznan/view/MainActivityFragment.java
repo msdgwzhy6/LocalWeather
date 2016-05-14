@@ -84,7 +84,7 @@ public class MainActivityFragment extends Fragment {
                     public void success(Forecast forecast, Response response) {
                         if (getActivity() != null) {
                             mForecastAdapter = new ForecastAdapter(getActivity(),
-                                    R.layout.list_item_forecast, forecast.getForecastList());
+                                    forecast.getForecastList());
                             mListView.setAdapter(mForecastAdapter);
                             swipeRefresh.setRefreshing(false);
 
@@ -117,7 +117,7 @@ public class MainActivityFragment extends Fragment {
     private void showErrorSnackbar(final WeatherService weatherAPI) {
         if (getView() != null) {
             Snackbar.make(getView(), R.string.error_download_data, Snackbar.LENGTH_LONG)
-                    .setAction("Try again", new View.OnClickListener() {
+                    .setAction(R.string.error_again_message, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             downloadForecastData(weatherAPI);

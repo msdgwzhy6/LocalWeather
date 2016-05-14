@@ -1,6 +1,5 @@
 package com.piotr.weatherforpoznan.view;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
@@ -44,16 +43,16 @@ public class MainActivity extends AppCompatActivity {
     @AfterViews
     public void initialize() {
         EventBus.getDefault().register(this);
-        setWeatherFragments(null);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        setWeatherFragments();
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
-    public void setWeatherFragments(Bundle savedInstanceState) {
-        if (savedInstanceState == null) {
+    private void setWeatherFragments() {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.mActivity, new MainActivityFragment_())
                     .commit();
-        }
     }
 
     public void onEvent(ForecastItem item) {
