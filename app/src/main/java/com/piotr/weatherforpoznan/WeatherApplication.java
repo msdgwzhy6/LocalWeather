@@ -6,6 +6,7 @@ import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Model;
 import com.activeandroid.app.Application;
 import com.activeandroid.query.Select;
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.piotr.weatherforpoznan.model.City;
@@ -16,6 +17,7 @@ import java.lang.reflect.Modifier;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
+import io.fabric.sdk.android.Fabric;
 import retrofit.RestAdapter;
 import retrofit.android.MainThreadExecutor;
 import retrofit.converter.GsonConverter;
@@ -40,7 +42,7 @@ public class WeatherApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Crashlytics());
         ActiveAndroid.initialize(this);
         EventBus myEventBus = EventBus.getDefault();
         Gson gson = new GsonBuilder()
