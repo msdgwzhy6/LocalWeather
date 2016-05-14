@@ -15,13 +15,14 @@ import com.piotr.weatherforpoznan.service.WeatherService;
 import java.lang.reflect.Modifier;
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
 import retrofit.RestAdapter;
 import retrofit.android.MainThreadExecutor;
 import retrofit.converter.GsonConverter;
 
 
 /**
- * Created by Piotr on 06.10.2015.
+ * @author piotr on 06.10.2015.
  */
 
 public class WeatherApplication extends Application {
@@ -41,6 +42,7 @@ public class WeatherApplication extends Application {
         super.onCreate();
         //Fabric.with(this, new Crashlytics());
         ActiveAndroid.initialize(this);
+        EventBus myEventBus = EventBus.getDefault();
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC)
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")

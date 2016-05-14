@@ -123,6 +123,7 @@ dependencies {
         exclude module: 'support-annotations'
         exclude module: 'recyclerview-v7'
     }
+    compile 'de.greenrobot:eventbus:2.4.0'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
         transitive = true;
     }
