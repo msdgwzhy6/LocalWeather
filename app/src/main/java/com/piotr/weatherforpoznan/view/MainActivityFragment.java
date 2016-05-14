@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.activeandroid.query.Select;
 import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.WeatherApplication;
 import com.piotr.weatherforpoznan.adapter.ForecastAdapter;
 import com.piotr.weatherforpoznan.model.Forecast;
+import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.piotr.weatherforpoznan.service.WeatherService;
 import com.piotr.weatherforpoznan.utils.DatabaseUtils;
 
@@ -22,6 +24,9 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
 
+import java.util.List;
+
+import de.greenrobot.event.EventBus;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -45,7 +50,7 @@ public class MainActivityFragment extends Fragment {
     @ViewById
     SwipeRefreshLayout swipeRefresh;
 
-    ForecastAdapter mForecastAdapter;
+    private ForecastAdapter mForecastAdapter;
 
     @AfterViews
     public void onCreateMainActivityFragment() {
@@ -88,6 +93,13 @@ public class MainActivityFragment extends Fragment {
 
                             Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
                             Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
+
+                            List<ForecastItem> forecastItems = new Select().from(ForecastItem.class).execute();
+                            ForecastItem item = new Select().from(ForecastItem.class).where("id = ?",
+                                    forecastItems.get(1).getId())
+                                    .executeSingle();
+
+                            EventBus.getDefault().post(item);
                         }
                     }
 
@@ -95,15 +107,23 @@ public class MainActivityFragment extends Fragment {
                     public void failure(RetrofitError error) {
                         Log.d("Failure", "error: " + error);
                         swipeRefresh.setRefreshing(false);
-                        Snackbar.make(getView(), "Error caused when trying to download forecast data!", Snackbar.LENGTH_LONG)
-                                .setAction("Try again", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        downloadForecastData(weatherAPI);
-                                    }
-                                }).show();
+                        showErrorSnackbar(weatherAPI);
                     }
-                });
+                }
+
+        );
+    }
+
+    private void showErrorSnackbar(final WeatherService weatherAPI) {
+        if (getView() != null) {
+            Snackbar.make(getView(), R.string.error_download_data, Snackbar.LENGTH_LONG)
+                    .setAction("Try again", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            downloadForecastData(weatherAPI);
+                        }
+                    }).show();
+        }
     }
 
     @UiThread
@@ -118,13 +138,7 @@ public class MainActivityFragment extends Fragment {
             public void failure(RetrofitError error) {
                 Log.d("Failure", "error: " + error);
                 swipeRefresh.setRefreshing(false);
-                Snackbar.make(getView(), "Error caused when trying to download forecast data!", Snackbar.LENGTH_LONG)
-                        .setAction("Try again", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                downloadForecastData(weatherAPI);
-                            }
-                        }).show();
+                showErrorSnackbar(weatherAPI);
             }
         });
     }

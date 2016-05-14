@@ -59,5 +59,8 @@ public class MainActivity extends AppCompatActivity {
     public void onEvent(ForecastItem item) {
         Log.d(TAG, "onEvent() called with: " + "item = [" + item + "]");
         mWeatherNotification.createWeatherNotification(item);
+        //TODO: Set ACTUAL notification data on every application run
+        //TODO: Notification as Service running in the background
+        //FIXME: Refreshing notification data
     }
 }

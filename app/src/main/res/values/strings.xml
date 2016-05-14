@@ -49,4 +49,5 @@
     <!-- Language of phone-->
     <string name="lang">en</string>
     <string name="operation_successful">The operation completed successfully</string>
+    <string name="error_download_data">Error caused when trying to download data!</string>
 </resources>
