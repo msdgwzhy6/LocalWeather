@@ -1,11 +1,13 @@
 package com.piotr.weatherforpoznan.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.model.ForecastItem;
+import com.piotr.weatherforpoznan.receiver.NotificationEventReceiver;
 import com.piotr.weatherforpoznan.ui.WeatherNotification;
 
 import org.androidannotations.annotations.AfterViews;
@@ -55,11 +57,26 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
+
+    // To prevent crash on resuming activity  : interaction with fragments allowed only after Fragments Resumed or in OnCreate
+    // http://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        // handleIntent();
+    }
+
     public void onEvent(ForecastItem item) {
         Log.d(TAG, "onEvent() called with: " + "item = [" + item + "]");
         mWeatherNotification.createWeatherNotification(item);
         //TODO: Set ACTUAL notification data on every application run
         //TODO: Notification as Service running in the background
         //FIXME: Refreshing notification data
+        NotificationEventReceiver.setupAlarm(getApplicationContext());
     }
 }
