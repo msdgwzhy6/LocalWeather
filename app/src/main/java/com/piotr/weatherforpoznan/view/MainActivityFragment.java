@@ -9,12 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.activeandroid.query.Select;
 import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.WeatherApplication;
 import com.piotr.weatherforpoznan.adapter.ForecastAdapter;
 import com.piotr.weatherforpoznan.model.Forecast;
-import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.piotr.weatherforpoznan.service.WeatherService;
 import com.piotr.weatherforpoznan.utils.DatabaseUtils;
 
@@ -23,8 +21,6 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
-
-import java.util.List;
 
 import de.greenrobot.event.EventBus;
 import retrofit.Callback;
@@ -94,12 +90,7 @@ public class MainActivityFragment extends Fragment {
                             Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
                             Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
 
-                            List<ForecastItem> forecastItems = new Select().from(ForecastItem.class).execute();
-                            ForecastItem item = new Select().from(ForecastItem.class).where("id = ?",
-                                    forecastItems.get(1).getId())
-                                    .executeSingle();
-
-                            EventBus.getDefault().post(item);
+                            EventBus.getDefault().post(DatabaseUtils.getNextWeatherForecast());
                         }
                     }
 
@@ -112,18 +103,6 @@ public class MainActivityFragment extends Fragment {
                 }
 
         );
-    }
-
-    private void showErrorSnackbar(final WeatherService weatherAPI) {
-        if (getView() != null) {
-            Snackbar.make(getView(), R.string.error_download_data, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.error_again_message, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            downloadForecastData(weatherAPI);
-                        }
-                    }).show();
-        }
     }
 
     @UiThread
@@ -141,5 +120,17 @@ public class MainActivityFragment extends Fragment {
                 showErrorSnackbar(weatherAPI);
             }
         });
+    }
+
+    private void showErrorSnackbar(final WeatherService weatherAPI) {
+        if (getView() != null) {
+            Snackbar.make(getView(), R.string.error_download_data, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.error_again_message, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            downloadForecastData(weatherAPI);
+                        }
+                    }).show();
+        }
     }
 }

@@ -3,8 +3,10 @@ package com.piotr.weatherforpoznan.utils;
 import android.util.Log;
 
 import com.activeandroid.ActiveAndroid;
+import com.activeandroid.query.Select;
 import com.piotr.weatherforpoznan.WeatherApplication;
 import com.piotr.weatherforpoznan.model.Forecast;
+import com.piotr.weatherforpoznan.model.ForecastItem;
 
 public class DatabaseUtils {
     public DatabaseUtils() {
@@ -34,5 +36,11 @@ public class DatabaseUtils {
             ActiveAndroid.endTransaction();
         }
         Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getCityList());
+    }
+
+    public static ForecastItem getNextWeatherForecast() {
+        return new Select().from(ForecastItem.class)
+                .where("id = ?", WeatherApplication.getObjectsList().get(1).
+                        getId()).executeSingle();
     }
 }
