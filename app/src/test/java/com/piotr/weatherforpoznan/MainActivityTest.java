@@ -2,6 +2,7 @@ package com.piotr.weatherforpoznan;
 
 import com.piotr.weatherforpoznan.view.MainActivity_;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -13,6 +14,7 @@ import static junit.framework.Assert.assertNotNull;
 /**
  * @author piotr on 30.04.2016.
  */
+@Ignore
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
 public class MainActivityTest {

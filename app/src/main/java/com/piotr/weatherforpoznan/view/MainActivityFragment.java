@@ -46,6 +46,14 @@ public class MainActivityFragment extends Fragment {
     @ViewById
     SwipeRefreshLayout swipeRefresh;
 
+    public ForecastAdapter getForecastAdapter() {
+        return mForecastAdapter;
+    }
+
+    public void setForecastAdapter(ForecastAdapter forecastAdapter) {
+        mForecastAdapter = forecastAdapter;
+    }
+
     private ForecastAdapter mForecastAdapter;
 
     @AfterViews
@@ -70,7 +78,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     public void openForecastDetailsActivity(int position) {
-        long forecastItemId = mForecastAdapter.getItem(position).getId();
+        long forecastItemId = mForecastAdapter.getItemId(position);
         Intent intent = new Intent(getContext(), DetailsActivity_.class);
         intent.putExtra("id", forecastItemId);
         startActivity(intent);
