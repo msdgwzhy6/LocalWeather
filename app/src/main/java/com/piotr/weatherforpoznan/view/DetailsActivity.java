@@ -30,10 +30,10 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.IntegerRes;
 import org.androidannotations.annotations.res.StringRes;
 
+import static com.piotr.weatherforpoznan.utils.DateUtils.getDayName;
+import static com.piotr.weatherforpoznan.utils.DateUtils.getFormattedDate;
 import static com.piotr.weatherforpoznan.utils.ImageUtils.getArtResourceForWeatherCondition;
-import static com.piotr.weatherforpoznan.utils.StringUtils.getDayName;
-import static com.piotr.weatherforpoznan.utils.StringUtils.getFormattedDate;
-import static com.piotr.weatherforpoznan.utils.StringUtils.getFormattedWind;
+import static com.piotr.weatherforpoznan.utils.WeatherUtils.getFormattedWind;
 
 @SuppressLint("Registered")
 @EActivity(R.layout.activity_details)

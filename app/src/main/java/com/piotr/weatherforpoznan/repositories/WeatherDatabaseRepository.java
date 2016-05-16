@@ -1,14 +1,15 @@
-package com.piotr.weatherforpoznan.utils;
+package com.piotr.weatherforpoznan.repositories;
 
 import android.util.Log;
 
 import com.activeandroid.ActiveAndroid;
-import com.activeandroid.query.Select;
 import com.piotr.weatherforpoznan.WeatherApplication;
 import com.piotr.weatherforpoznan.model.Forecast;
-import com.piotr.weatherforpoznan.model.ForecastItem;
 
-public class DatabaseUtils {
+/**
+ * @author piotr on 16.05.16.
+ */
+public class WeatherDatabaseRepository {
 
     public void saveForecastItemToDatabase(Forecast forecast) {
         int i = 0;
@@ -34,12 +35,5 @@ public class DatabaseUtils {
             ActiveAndroid.endTransaction();
         }
         Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getCityList());
-    }
-
-    public static ForecastItem getNextWeatherForecast() {
-        //FIXME: Add changing time condition
-        return new Select().from(ForecastItem.class)
-                .where("id = ?", WeatherApplication.getObjectsList().get(0).
-                        getId()).executeSingle();
     }
 }

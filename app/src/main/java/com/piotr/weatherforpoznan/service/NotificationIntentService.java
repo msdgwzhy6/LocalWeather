@@ -13,11 +13,12 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
 
 import com.piotr.weatherforpoznan.R;
+import com.piotr.weatherforpoznan.model.BitmapFactory;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.piotr.weatherforpoznan.receiver.NotificationEventReceiver;
-import com.piotr.weatherforpoznan.utils.DatabaseUtils;
+import com.piotr.weatherforpoznan.repositories.WeatherRepository;
+import com.piotr.weatherforpoznan.utils.DateUtils;
 import com.piotr.weatherforpoznan.utils.ImageUtils;
-import com.piotr.weatherforpoznan.utils.StringUtils;
 import com.piotr.weatherforpoznan.view.DetailsActivity_;
 
 import java.util.Date;
@@ -58,7 +59,7 @@ public class NotificationIntentService extends IntentService {
         try {
             String action = intent.getAction();
             if (ACTION_START.equals(action)) {
-                processStartNotification(DatabaseUtils.getNextWeatherForecast());
+                processStartNotification(WeatherRepository.getNextWeatherForecast());
             }
             if (ACTION_DELETE.equals(action)) {
                 processDeleteNotification(intent);
@@ -85,10 +86,10 @@ public class NotificationIntentService extends IntentService {
                 new android.support.v7.app.NotificationCompat.Builder(this);
         builder.setAutoCancel(true)
                 .setSmallIcon(ImageUtils.getIconResourceForWeatherCondition((iconId)))
-                .setLargeIcon(ImageUtils.drawableToBitmap(ContextCompat
+                .setLargeIcon(BitmapFactory.convert(ContextCompat
                         .getDrawable(getBaseContext(), image)))
                 .setContentTitle(getBaseContext().getString(R.string.app_name))
-                .setContentText(StringUtils.getFormattedDate(date))
+                .setContentText(DateUtils.getFormattedDate(date))
                 .setSubText(description + "\t" + tempMax + "°C");
 
         //FIXME: Change putExtra to get correct notification forecastItem Id
