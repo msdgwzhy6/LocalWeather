@@ -1,7 +1,6 @@
 package com.piotr.weatherforpoznan;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Model;
@@ -17,7 +16,6 @@ import com.piotr.weatherforpoznan.service.WeatherService;
 import java.lang.reflect.Modifier;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
 import io.fabric.sdk.android.Fabric;
 import retrofit.RestAdapter;
 import retrofit.android.MainThreadExecutor;
@@ -30,7 +28,6 @@ import retrofit.converter.GsonConverter;
 
 public class WeatherApplication extends Application {
 
-    private static final String TAG = "WeatherApplication";
     public static WeatherService weatherAPI;
 
     public static List<Model> getObjectsList() {
@@ -46,8 +43,6 @@ public class WeatherApplication extends Application {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
         ActiveAndroid.initialize(this);
-        EventBus myEventBus = EventBus.getDefault();
-        Log.i(TAG, "onCreate: " + myEventBus.toString());
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC)
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")

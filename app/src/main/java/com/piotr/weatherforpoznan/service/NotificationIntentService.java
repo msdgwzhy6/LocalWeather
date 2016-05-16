@@ -1,18 +1,29 @@
 package com.piotr.weatherforpoznan.service;
 
+import android.annotation.SuppressLint;
 import android.app.IntentService;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.WakefulBroadcastReceiver;
-import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
 import com.piotr.weatherforpoznan.R;
+import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.piotr.weatherforpoznan.receiver.NotificationEventReceiver;
-import com.piotr.weatherforpoznan.view.NotificationTestActivity;
+import com.piotr.weatherforpoznan.utils.DatabaseUtils;
+import com.piotr.weatherforpoznan.utils.ImageUtils;
+import com.piotr.weatherforpoznan.utils.StringUtils;
+import com.piotr.weatherforpoznan.view.DetailsActivity_;
+
+import java.util.Date;
+
+import static com.piotr.weatherforpoznan.utils.ImageUtils.getArtResourceForWeatherCondition;
+import static com.piotr.weatherforpoznan.utils.ImageUtils.getIconResourceForWeatherCondition;
 
 /**
  * @author piotr 15.05.16.
@@ -47,7 +58,7 @@ public class NotificationIntentService extends IntentService {
         try {
             String action = intent.getAction();
             if (ACTION_START.equals(action)) {
-                processStartNotification();
+                processStartNotification(DatabaseUtils.getNextWeatherForecast());
             }
             if (ACTION_DELETE.equals(action)) {
                 processDeleteNotification(intent);
@@ -57,29 +68,48 @@ public class NotificationIntentService extends IntentService {
         }
     }
 
+    @SuppressLint("LongLogTag")
     private void processDeleteNotification(Intent intent) {
-        // Log something?
         Log.d(TAG, "processDeleteNotification() called with: " + "intent = [" + intent + "]");
     }
 
-    private void processStartNotification() {
-        // Do something. For example, fetch fresh data from backend to create a rich notification?
+    private void processStartNotification(ForecastItem item) {
+        Date date = item.getDt_txt();
+        String description = item.getWeatherData().getDescription();
+        double tempMax = Math.round(item.getMain().getTempMax());
 
-        final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setContentTitle("Scheduled Notification")
-                .setAutoCancel(true)
-                .setColor(ContextCompat.getColor(getBaseContext(), R.color.colorPrimaryDark))
-                .setContentText(getString(R.string.function_not_available))
-                .setSmallIcon(android.R.drawable.ic_menu_agenda);
+        int iconId = item.getWeatherData().getWeatherId();
+        int image = setImageResourceForWeatherNotification(iconId);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,
-                NOTIFICATION_ID,
-                new Intent(this, NotificationTestActivity.class),
+        android.support.v7.app.NotificationCompat.Builder builder =
+                new android.support.v7.app.NotificationCompat.Builder(this);
+        builder.setAutoCancel(true)
+                .setSmallIcon(ImageUtils.getIconResourceForWeatherCondition((iconId)))
+                .setLargeIcon(ImageUtils.drawableToBitmap(ContextCompat
+                        .getDrawable(getBaseContext(), image)))
+                .setContentTitle(getBaseContext().getString(R.string.app_name))
+                .setContentText(StringUtils.getFormattedDate(date))
+                .setSubText(description + "\t" + tempMax + "°C");
+
+        //FIXME: Change putExtra to get correct notification forecastItem Id
+        Intent intent = new Intent(getBaseContext(), DetailsActivity_.class);
+        intent.putExtra("id", 0);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, NOTIFICATION_ID, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(pendingIntent);
         builder.setDeleteIntent(NotificationEventReceiver.getDeleteIntent(this));
 
-        final NotificationManager manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(NOTIFICATION_ID, builder.build());
+        Notification notification = builder.build();
+        NotificationManager mNotificationManager =
+                (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(NOTIFICATION_ID, notification);
+    }
+
+    private int setImageResourceForWeatherNotification(int iconId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return getArtResourceForWeatherCondition(iconId);
+        }
+        return getIconResourceForWeatherCondition(iconId);
     }
 }

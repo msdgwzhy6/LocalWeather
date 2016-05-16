@@ -1,7 +1,6 @@
 package com.piotr.weatherforpoznan.utils;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.text.format.Time;
 
 import com.piotr.weatherforpoznan.R;
@@ -59,7 +58,6 @@ public class StringUtils {
         return direction;
     }
 
-    @NonNull
     public static String capitalizeString(String description) {
         StringBuilder descriptionSb = new StringBuilder(description);
         descriptionSb.setCharAt(0, Character.toUpperCase(descriptionSb.charAt(0)));

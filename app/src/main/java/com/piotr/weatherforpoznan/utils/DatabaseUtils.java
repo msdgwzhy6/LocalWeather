@@ -9,8 +9,6 @@ import com.piotr.weatherforpoznan.model.Forecast;
 import com.piotr.weatherforpoznan.model.ForecastItem;
 
 public class DatabaseUtils {
-    public DatabaseUtils() {
-    }
 
     public void saveForecastItemToDatabase(Forecast forecast) {
         int i = 0;
@@ -39,8 +37,9 @@ public class DatabaseUtils {
     }
 
     public static ForecastItem getNextWeatherForecast() {
+        //FIXME: Add changing time condition
         return new Select().from(ForecastItem.class)
-                .where("id = ?", WeatherApplication.getObjectsList().get(1).
+                .where("id = ?", WeatherApplication.getObjectsList().get(0).
                         getId()).executeSingle();
     }
 }

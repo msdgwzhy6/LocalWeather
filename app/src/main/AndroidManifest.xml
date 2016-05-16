@@ -52,10 +52,6 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".view.NotificationTestActivity_"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a9c7e38bb2356fc4872464570cc2154518830002" />

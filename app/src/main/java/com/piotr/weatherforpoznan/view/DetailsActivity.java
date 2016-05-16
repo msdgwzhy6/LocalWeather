@@ -44,38 +44,27 @@ public class DetailsActivity extends AppCompatActivity {
     @ViewById
     Toolbar toolbar;
     @ViewById
-    public
-    FloatingActionButton fab;
+    public FloatingActionButton fab;
     @ViewById
-    public
-    TextView dDay;
+    public TextView dDay;
     @ViewById
-    public
-    TextView dDate;
+    public TextView dDate;
     @ViewById
-    public
-    TextView dCity;
+    public TextView dCity;
     @ViewById
-    public
-    TextView dHighTemp;
+    public TextView dHighTemp;
     @ViewById
-    public
-    TextView dLowTemp;
+    public TextView dLowTemp;
     @ViewById
-    public
-    TextView dDescription;
+    public TextView dDescription;
     @ViewById
-    public
-    TextView dHumidityVal;
+    public TextView dHumidityVal;
     @ViewById
-    public
-    TextView dPressureVal;
+    public TextView dPressureVal;
     @ViewById
-    public
-    TextView dWindVal;
+    public TextView dWindVal;
     @ViewById
-    public
-    ImageView dIcon;
+    public ImageView dIcon;
     @StringRes
     String day;
     @StringRes
@@ -108,7 +97,6 @@ public class DetailsActivity extends AppCompatActivity {
     @AfterViews
     protected void initialize() {
         setDetailsActivityActionBar();
-
         City city = new Select().from(City.class).executeSingle();
         ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();
         if ((item != null) && (city != null)) {

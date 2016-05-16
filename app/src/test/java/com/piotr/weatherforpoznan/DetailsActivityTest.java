@@ -112,9 +112,11 @@ public class DetailsActivityTest {
     @Test
     public void testOnClick() throws Exception {
         DetailsActivity_ activity = Robolectric.setupActivity(DetailsActivity_.class);
-        activity.findViewById(R.id.fab).performClick();
-        assertTrue(activity.fab.isClickable());
-        activity.fab.performClick();
+        if (activity != null) {
+            activity.findViewById(R.id.fab).performClick();
+            assertTrue(activity.fab.isClickable());
+            activity.fab.performClick();
+        }
     }
 
     //TODO: Write more unit tests

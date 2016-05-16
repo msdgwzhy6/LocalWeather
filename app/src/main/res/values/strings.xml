@@ -51,4 +51,5 @@
     <string name="operation_successful">The operation completed successfully</string>
     <string name="error_download_data">Error caused when trying to download data!</string>
     <string name="error_again_message">Try again</string>
+    <string name="d_icon_desc">detailsIcon</string>
 </resources>

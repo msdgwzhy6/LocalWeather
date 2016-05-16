@@ -13,6 +13,7 @@ import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.WeatherApplication;
 import com.piotr.weatherforpoznan.adapter.ForecastAdapter;
 import com.piotr.weatherforpoznan.model.Forecast;
+import com.piotr.weatherforpoznan.receiver.NotificationEventReceiver;
 import com.piotr.weatherforpoznan.service.WeatherService;
 import com.piotr.weatherforpoznan.utils.DatabaseUtils;
 
@@ -22,7 +23,6 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
 
-import de.greenrobot.event.EventBus;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -53,10 +53,7 @@ public class MainActivityFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                long forecastItemId = mForecastAdapter.getItem(position).getId();
-                Intent intent = new Intent(getContext(), DetailsActivity_.class);
-                intent.putExtra("id", forecastItemId);
-                startActivity(intent);
+                openForecastDetailsActivity(position);
             }
         });
         swipeRefresh.setOnRefreshListener(
@@ -70,6 +67,13 @@ public class MainActivityFragment extends Fragment {
         downloadForecastData(weatherAPI);
         //FixMe: If offline, download data from database
         downloadCityData(weatherAPI);
+    }
+
+    public void openForecastDetailsActivity(int position) {
+        long forecastItemId = mForecastAdapter.getItem(position).getId();
+        Intent intent = new Intent(getContext(), DetailsActivity_.class);
+        intent.putExtra("id", forecastItemId);
+        startActivity(intent);
     }
 
     @UiThread
@@ -90,7 +94,7 @@ public class MainActivityFragment extends Fragment {
                             Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
                             Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
 
-                            EventBus.getDefault().post(DatabaseUtils.getNextWeatherForecast());
+                            NotificationEventReceiver.setupAlarm(getContext());
                         }
                     }
 

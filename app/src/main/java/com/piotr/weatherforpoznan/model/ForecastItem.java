@@ -54,7 +54,7 @@ public class ForecastItem extends Model {
     }
 
 
-    public Long saveItemToDatabase() {
+    public void saveItemToDatabase() {
         getMain().save();
         for (int k = 0; k < getWeather().size(); k++) {
             getWeather().get(k).save();
@@ -66,7 +66,6 @@ public class ForecastItem extends Model {
         }
 
         getWind().save();
-        return save();
     }
 
     public Weather getWeatherData() {

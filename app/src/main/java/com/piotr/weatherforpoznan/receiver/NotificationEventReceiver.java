@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by piotr on 15.05.16.
+ * @author piotr on 15.05.16.
  */
 public class NotificationEventReceiver extends WakefulBroadcastReceiver {
 
@@ -24,10 +24,8 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
     public static void setupAlarm(Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         PendingIntent alarmIntent = getStartPendingIntent(context);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-                getTriggerAt(new Date()),
-                NOTIFICATIONS_INTERVAL_IN_HOURS * AlarmManager.INTERVAL_HOUR,
-                alarmIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, getTriggerAt(new Date()),
+                NOTIFICATIONS_INTERVAL_IN_HOURS * AlarmManager.INTERVAL_HOUR, alarmIntent);
     }
 
     @Override

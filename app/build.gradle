@@ -61,7 +61,7 @@ android {
     }
 }
 
-dependencies {
+def var = dependencies {
     ext.JUNIT_VERSION = '4.12'
     ext.AA_VERSION = '4.0.0'
     ext.SUPPORT_VERSION = '23.4.0'
@@ -123,9 +123,9 @@ dependencies {
         exclude module: 'support-annotations'
         exclude module: 'recyclerview-v7'
     }
-    compile 'de.greenrobot:eventbus:2.4.0'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
         transitive = true;
     }
     compile "junit:junit:${JUNIT_VERSION}"
 }
+var
