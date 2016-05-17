@@ -159,8 +159,8 @@
     <orderEntry type="library" exported="" name="crashlytics-2.5.5" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="rules-0.5" level="project" />
     <orderEntry type="library" exported="" name="crashlytics-core-2.3.8" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="robolectric-annotations-3.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="javax.inject-1" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="robolectric-annotations-3.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="robolectric-utils-3.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="asm-analysis-5.0.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="vtd-xml-2.11" level="project" />

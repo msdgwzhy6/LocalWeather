@@ -58,8 +58,9 @@ public class NotificationIntentService extends IntentService {
         Log.d(getClass().getSimpleName(), "onHandleIntent, started handling a notification event");
         try {
             String action = intent.getAction();
-            if (ACTION_START.equals(action)) {
-                processStartNotification(WeatherRepository.getNextWeatherForecast());
+            if (ACTION_START.equals(action) &&
+                    (WeatherRepository.getActualWeatherForecast()) != null) {
+                processStartNotification(WeatherRepository.getActualWeatherForecast());
             }
             if (ACTION_DELETE.equals(action)) {
                 processDeleteNotification(intent);

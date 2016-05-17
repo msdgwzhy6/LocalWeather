@@ -78,7 +78,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     public void openForecastDetailsActivity(int position) {
-        long forecastItemId = mForecastAdapter.getItemId(position);
+        long forecastItemId = mForecastAdapter.getItem(position).getId();
         Intent intent = new Intent(getContext(), DetailsActivity_.class);
         intent.putExtra("id", forecastItemId);
         startActivity(intent);

@@ -35,7 +35,6 @@ public class ForecastItem extends Model {
     Weather weatherData;
 
 
-
     @Column(name = "wind", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
     @SerializedName("wind")
     private
@@ -54,7 +53,7 @@ public class ForecastItem extends Model {
     }
 
 
-    public void saveItemToDatabase() {
+    public Long saveItemToDatabase() {
         getMain().save();
         for (int k = 0; k < getWeather().size(); k++) {
             getWeather().get(k).save();
@@ -66,6 +65,7 @@ public class ForecastItem extends Model {
         }
 
         getWind().save();
+        return save();
     }
 
     public Weather getWeatherData() {
