@@ -8,209 +8,217 @@
             tools:context=".view.DetailsActivity"
             tools:showIn="@layout/activity_details">
 
-    <LinearLayout
-        android:id="@+id/dItem"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:orientation="vertical"
-        android:padding="@dimen/dimen_medium">
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
 
-        <!-- Header: Day, Date -->
         <LinearLayout
-            android:id="@+id/dDayAndDate"
+            android:id="@+id/dItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="start"
             android:orientation="vertical"
-            android:padding="@dimen/dimen_small"
-            android:paddingBottom="@dimen/dimen_medium">
+            android:padding="@dimen/dimen_medium">
 
-            <TextView
-                android:id="@+id/dDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
-                android:paddingBottom="@dimen/dimen_very_small"
-                android:text="@string/day"
-                android:textColor="@color/black"
-                android:textSize="24sp"/>
-
-            <TextView
-                android:id="@+id/dDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
-                android:text="@string/date"
-                android:textColor="@color/grey_700"
-                android:textSize="16sp"/>
-        </LinearLayout>
-
-        <!-- Main content: high, low, art, weather state -->
-        <TextView
-            android:id="@+id/dCity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:padding="@dimen/dimen_small"
-            android:paddingBottom="@dimen/no_padding"
-            android:text="@string/city_name"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-        <RelativeLayout
-            android:id="@+id/dTempAndIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
-
+            <!-- Header: Day, Date -->
             <LinearLayout
-                android:id="@+id/dTemperature"
+                android:id="@+id/dDayAndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_small"
+                android:paddingBottom="@dimen/dimen_medium">
+
+                <TextView
+                    android:id="@+id/dDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:paddingBottom="@dimen/dimen_very_small"
+                    android:text="@string/day"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"/>
+
+                <TextView
+                    android:id="@+id/dDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="@string/date"
+                    android:textColor="@color/grey_700"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <!-- Main content: high, low, art, weather state -->
+            <TextView
+                android:id="@+id/dCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
+                android:fontFamily="sans-serif-light"
+                android:padding="@dimen/dimen_small"
+                android:paddingBottom="@dimen/no_padding"
+                android:text="@string/city_name"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <RelativeLayout
+                android:id="@+id/dTempAndIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/dTemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/dHighTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:fontFamily="sans-serif-light"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textSize="60sp"
+                        tools:text="@string/high_temp"/>
+
+                    <TextView
+                        android:id="@+id/dLowTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:textColor="@color/grey_700"
+                        android:textSize="30sp"
+                        tools:text="@string/low_temp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/dIconLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/dIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/d_icon_desc"
+                        android:src="@drawable/art_default"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/dDescriptionLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:id="@+id/dDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="@color/grey_700"
+                    tools:text="@string/description"/>
+            </RelativeLayout>
+
+            <!-- Humidity, detailsWindLayout, detailsPressureLayout -->
+            <LinearLayout
+                android:id="@+id/dForecast"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/dimen_medium"
+                android:layout_marginRight="@dimen/no_padding"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/dHighTemp"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/dHumidityLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:fontFamily="sans-serif-light"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text="@string/high_temp"
-                    android:textSize="60sp"/>
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/dLowTemp"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/dHumidityDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="@dimen/dimen_medium"
+                        android:paddingRight="@dimen/dimen_medium"
+                        android:text="@string/humidity_desc"
+                        android:textAppearance="?android:textAppearanceLarge"/>
+
+                    <TextView
+                        android:id="@+id/dHumidityVal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        tools:text="@string/humidity_val"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/dPressureLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="@string/low_temp"
-                    android:textColor="@color/grey_700"
-                    android:textSize="30sp"/>
-            </LinearLayout>
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/dIconLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/dPressureDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_small"
+                        android:paddingEnd="@dimen/dimen_medium"
+                        android:paddingRight="@dimen/dimen_medium"
+                        android:text="@string/pressure_desc"
+                        android:textAppearance="?android:textAppearanceLarge"/>
 
-                <ImageView
-                    android:id="@+id/dIcon"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/dPressureVal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_small"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        tools:text="@string/pressure_val"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/dWindLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/d_icon_desc"
-                    android:src="@drawable/art_default"/>
-            </LinearLayout>
-        </RelativeLayout>
+                    android:orientation="horizontal">
 
-        <RelativeLayout
-            android:id="@+id/dDescriptionLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin">
+                    <TextView
+                        android:id="@+id/dWindDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_small"
+                        android:paddingEnd="@dimen/dimen_medium"
+                        android:paddingRight="@dimen/dimen_medium"
+                        android:text="@string/wind_desc"
+                        android:textAppearance="?android:textAppearanceLarge"/>
 
-            <TextView
-                android:id="@+id/dDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:text="@string/description"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textColor="@color/grey_700"/>
-        </RelativeLayout>
-
-        <!-- Humidity, detailsWindLayout, detailsPressureLayout -->
-        <LinearLayout
-            android:id="@+id/dForecast"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/dimen_medium"
-            android:layout_marginRight="@dimen/no_padding"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/dHumidityLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/dHumidityDesc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingEnd="@dimen/dimen_medium"
-                    android:paddingRight="@dimen/dimen_medium"
-                    android:text="@string/humidity_desc"
-                    android:textAppearance="?android:textAppearanceLarge"/>
-
-                <TextView
-                    android:id="@+id/dHumidityVal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/humidity_val"
-                    android:textAppearance="?android:textAppearanceLarge"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/dPressureLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/dPressureDesc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_small"
-                    android:paddingEnd="@dimen/dimen_medium"
-                    android:paddingRight="@dimen/dimen_medium"
-                    android:text="@string/pressure_desc"
-                    android:textAppearance="?android:textAppearanceLarge"/>
-
-                <TextView
-                    android:id="@+id/dPressureVal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_small"
-                    android:text="@string/pressure_val"
-                    android:textAppearance="?android:textAppearanceLarge"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/dWindLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/dWindDesc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_small"
-                    android:paddingEnd="@dimen/dimen_medium"
-                    android:paddingRight="@dimen/dimen_medium"
-                    android:text="@string/wind_desc"
-                    android:textAppearance="?android:textAppearanceLarge"/>
-
-                <TextView
-                    android:id="@+id/dWindVal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_small"
-                    android:text="@string/wind_val"
-                    android:textAppearance="?android:textAppearanceLarge"/>
+                    <TextView
+                        android:id="@+id/dWindVal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_small"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        tools:text="@string/wind_val"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </android.support.v7.widget.CardView>
 </ScrollView>
