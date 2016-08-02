@@ -95,7 +95,7 @@ public class NotificationIntentService extends IntentService {
 
         //FIXME: Change putExtra to get correct notification forecastItem Id
         Intent intent = new Intent(getBaseContext(), DetailsActivity_.class);
-        intent.putExtra("id", 0);
+        intent.putExtra("id", item.getId());
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, NOTIFICATION_ID, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
