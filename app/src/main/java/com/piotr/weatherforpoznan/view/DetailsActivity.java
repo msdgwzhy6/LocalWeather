@@ -1,8 +1,8 @@
 package com.piotr.weatherforpoznan.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -40,9 +40,6 @@ import static com.piotr.weatherforpoznan.utils.WeatherUtils.getFormattedWind;
 public class DetailsActivity extends AppCompatActivity {
 
     private final String TAG = getClass().getSimpleName();
-
-    @ViewById
-    Toolbar toolbar;
     @ViewById
     public FloatingActionButton fab;
     @ViewById
@@ -65,6 +62,8 @@ public class DetailsActivity extends AppCompatActivity {
     public TextView dWindVal;
     @ViewById
     public ImageView dIcon;
+    @ViewById
+    Toolbar toolbar;
     @StringRes
     String day;
     @StringRes
@@ -88,17 +87,29 @@ public class DetailsActivity extends AppCompatActivity {
     @Extra
     long id;
 
+    private ForecastItem item;
+
     @Click(R.id.fab)
     public void onClick(View view) {
-        Snackbar.make(view, R.string.function_not_available, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        String shareMessage = String.format("%s, %s: %s %s",
+                dDay.getText(),
+                dDate.getText(),
+                dDescription.getText(),
+                dLowTemp.getText());
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(
+                R.string.share_message_subject, getFormattedDate(item.getDt_txt())));
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
+        startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string
+                .share_message_choose)));
     }
 
     @AfterViews
     protected void initialize() {
         setDetailsActivityActionBar();
         City city = new Select().from(City.class).executeSingle();
-        ForecastItem item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();
+        item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();
         if ((item != null) && (city != null)) {
             Log.d(TAG, item.toString());
             getDetailActivityViewsValues(item, city);

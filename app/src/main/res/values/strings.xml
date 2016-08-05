@@ -26,6 +26,8 @@
     <string name="wind_val"> km/h E</string>
     <!--Description-->
     <string name="description">\Rain</string>
+    <!--Image-->
+    <string name="image_desc">Image</string>
     <!--Main Activity values-->
     <string name="latitude"/>
     <string name="longitude"/>
@@ -41,15 +43,18 @@
     <string name="time_format_title">Local Time Format</string>
     <string name="time_format_24h">24 Hour Clock</string>
     <string name="time_format_12h">AM / PM</string>
+    <!--Sharing intent-->
+    <string name="share_message_subject">Weather forecast, %s</string>
+    <string name="share_message_choose"/>
     <!--If something goes wrong-->
     <string name="description_not_available">Description is not available</string>
     <string name="function_not_available">This function is not available.</string>
+    <string name="error_download_data">Error caused when trying to download data!</string>
+    <string name="error_again_message">Try again</string>
+    <!--If something goes good-->
+    <string name="operation_successful">The operation completed successfully</string>
     <!--OpenWeatherMAp API Key-->
     <string name="API_ID">cf28f00904e59e7ba0fc080879080861</string>
     <!-- Language of phone-->
     <string name="lang">en</string>
-    <string name="operation_successful">The operation completed successfully</string>
-    <string name="error_download_data">Error caused when trying to download data!</string>
-    <string name="error_again_message">Try again</string>
-    <string name="d_icon_desc">detailsIcon</string>
 </resources>

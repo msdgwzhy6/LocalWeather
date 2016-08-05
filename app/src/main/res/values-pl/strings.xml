@@ -26,6 +26,8 @@
     <string name="wind_val"> km/h E</string>
     <!--Description-->
     <string name="description">\Pochmurnie</string>
+    <!--Image-->
+    <string name="image_desc">Obrazek</string>
     <!--Main Activity values-->
     <string name="latitude"/>
     <string name="longitude"/>
@@ -41,13 +43,17 @@
     <string name="time_format_title">Format czas lokalnego</string>
     <string name="time_format_24h">24-godzinny</string>
     <string name="time_format_12h">12-godzinny</string>
+    <!--Sharing intent-->
+    <string name="share_message_choose"/>
+    <string name="share_message_subject">Weather forecast, %s</string>
     <!--If something goes wrong-->
     <string name="description_not_available">Opis tymczasowo niedostępny</string>
     <string name="function_not_available">Funkcja tymczasowo niedostępna</string>
-    <!-- Language of phone-->
-    <string name="lang">pl</string>
-    <string name="operation_successful">Operacja zakończona pomyślnie.</string>
     <string name="error_download_data">Błąd pobierania danych!</string>
     <string name="error_again_message">Ponów próbę</string>
+    <!--If something goes good-->
+    <string name="operation_successful">Operacja zakończona pomyślnie.</string>
+    <!-- Language of phone-->
+    <string name="lang">pl</string>
 
 </resources>
