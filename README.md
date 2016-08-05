@@ -2,29 +2,47 @@
 
 <img src="app/src/main/res/mipmap-xxhdpi/ic_launcher.png"/>
 
+Weather app using OpenWeatherMap API, Retrofit, gson, AndroidAnnotations and ActiveAndroid. 
 
-##About
-Practice weather app. Uses OpenWeatherMap API, retrofit, gson, AndroidAnnotations and ActiveAndroid. 
-
-Includes tests: unit tests written with JUnit and Robolectric frameworks and automated UI tests written in Espresso.
+Including unit tests written with JUnit and Robolectric frameworks and automated UI tests written in Espresso.
 
 Available in two languages: Polish and English.
 
-##Screenshots
-<img src="screenshots/device-2015-11-04-152556.png" height="500dp"/>
-<img src="screenshots/device-2015-11-04-152804.png" height="500dp"/>
+Screenshots
+------
+<img src="screenshots/device-2016-08-05-224222.png" height="450dp"/>
+<img src="screenshots/device-2016-08-05-224246.png" height="450dp"/>
+<img src="screenshots/device-2016-08-05-224307.png" height="450dp"/>
 
-## Build Instructions
- 
-- Clone the project from GitHub: 
-   ```
-   git clone piotrek1543/WeatherforPoznan.git
-   ```
-   or download the .zip [here](https://github.com/piotrek1543/WeatherforPoznan/archive/master.zip).
+Issues
+------
 
-- Import the project in Android Studio: **File > New > Import Project**.
-  Alternatively, from the Welcome screen, select **Import project**.
+Feel free to submit issues and enhancement requests.
 
-##Contributing
+Contributing
+------------
 
-Please, feel free to report any issue or make a pull request.
+Please refer to each project's style guidelines and guidelines for submitting patches and additions. In general, we follow the "fork-and-pull" Git workflow.
+
+ 1. **Fork** the repo on GitHub
+ 2. **Clone** the project to your own machine
+ 3. **Commit** changes to your own branch
+ 4. **Push** your work back up to your fork
+ 5. Submit a **Pull request** so that we can review your changes
+
+License
+-------
+
+    Copyright 2016 Piotr Ekert
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
