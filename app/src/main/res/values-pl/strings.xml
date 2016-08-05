@@ -35,6 +35,7 @@
     <string name="longitude_short">Szer: </string>
     <string name="geo_coord"/>
     <!--Settings Activity values-->
+    <string name="action_settings">Ustawienia</string>
     <string name="location">Lokalizacja</string>
     <string name="imperial">Fahrenheit</string>
     <string name="metric">Celcjusz</string>
