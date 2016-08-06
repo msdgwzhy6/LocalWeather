@@ -9,8 +9,11 @@ import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.util.Log;
 
+import com.activeandroid.query.Select;
 import com.piotr.weatherforpoznan.R;
+import com.piotr.weatherforpoznan.model.City;
 
 public class SettingsFragment extends PreferenceFragment implements
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -53,15 +56,23 @@ public class SettingsFragment extends PreferenceFragment implements
         if (key.equals(KEY_EDIT_TEXT_PREFERENCE)) {
             Preference preference = findPreference(key);
             if (preference instanceof EditTextPreference) {
-                if (cityEditTextPreference.getText().trim().length() > 0) {
-                    cityEditTextPreference.setSummary(getString(R.string
-                            .settings_location_city_summary,
-                            cityEditTextPreference.getText().toString()));
+                if ((cityEditTextPreference.getText() != null) && (cityEditTextPreference.getText
+                        ().trim().length() > 0)) {
+                    cityEditTextPreference.setSummary(
+                            getString(R.string.settings_location_city_summary,
+                                    cityEditTextPreference.getText().toString()));
                 } else {
-                    cityEditTextPreference.setSummary(R.string.settings_location_city_summary);
+                    try {
+                        City city = new Select().from(City.class).executeSingle();
+                        cityEditTextPreference.setSummary(getString(R.string
+                                .settings_location_city_summary, city.getName()));
+                    } catch (NullPointerException e) {
+                        Log.e(TAG, "updatePreference: ", e.getCause());
+                        cityEditTextPreference.setSummary(getString(R.string
+                                .settings_location_city_summary, getString(R.string.city_name)));
+                    }
                 }
             }
         }
     }
-
 }

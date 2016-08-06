@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.android.tools.build:gradle:1.5.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
         classpath 'io.fabric.tools:gradle:1.+'
     }
@@ -30,23 +30,9 @@ repositories {
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "24.0.0"
 
     useLibrary 'org.apache.http.legacy'
-
-    productFlavors {
-        // Define separate dev and prod product flavors.
-        dev {
-            // dev utilizes minSDKVersion = 21 to allow the Android gradle plugin
-            // to pre-dex each module and produce an APK that can be tested on
-            // Android Lollipop without time consuming dex merging processes.
-            minSdkVersion 21
-        }
-        prod {
-            // The actual minSdkVersion for the application.
-            minSdkVersion 15
-        }
-    }
 
     //For building with Travis CI
     lintOptions {
