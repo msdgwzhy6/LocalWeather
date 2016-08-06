@@ -40,8 +40,7 @@
     <string name="settings_summary_location">Get weather forecast for your actual location.</string>
     <string name="settings_location">Location</string>
     <string name="settings_location_city_header">Change city</string>
-    <string name="settings_location_city_summary">Enter the name of your current place of
-        residence</string>
+    <string name="settings_location_city_summary">Currently: %s</string>
     <!--Settings Activity values - OLD-->
     <string name="imperial">Imperial</string>
     <string name="metric">Metric</string>

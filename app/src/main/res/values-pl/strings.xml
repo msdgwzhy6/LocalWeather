@@ -41,8 +41,7 @@
         zamieszkania.</string>
     <string name="settings_location">Lokalizacja</string>
     <string name="settings_location_city_header">Zmień miasto</string>
-    <string name="settings_location_city_summary">Podaj nazwę miejsca, w którym obecnie
-        przebywasz.</string>
+    <string name="settings_location_city_summary">Aktualnie: %s</string>
 
 
     <!--Settings Activity values - OLD-->

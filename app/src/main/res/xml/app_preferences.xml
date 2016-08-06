@@ -9,10 +9,10 @@
         android:title="@string/settings_location">
 
         <EditTextPreference
-            android:id="@+id/settings_edit_city_name"
+            android:key="settings_edit_city_name"
             android:title="@string/settings_location_city_header"
-            android:summary="@string/settings_location_city_summary"/>
-
+            android:summary="@string/settings_location_city_summary"
+            android:singleLine="true"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
