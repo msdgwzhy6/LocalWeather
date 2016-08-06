@@ -2,6 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -11,10 +12,24 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="PreferenceThemeOverlay">
+        <item name="preferenceScreenStyle">@style/Preference.PreferenceScreen</item>
+        <item name="preferenceFragmentCompatStyle">@style/PreferenceFragment</item>
+        <item name="preferenceCategoryStyle">@style/Preference.Category</item>
+        <item name="preferenceStyle">@style/Preference</item>
+        <item name="preferenceInformationStyle">@style/Preference.Information</item>
+        <item name="checkBoxPreferenceStyle">@style/Preference.CheckBoxPreference</item>
+        <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat</item>
+        <item name="dialogPreferenceStyle">@style/Preference.DialogPreference</item>
+        <item name="editTextPreferenceStyle">@style/Preference.DialogPreference.EditTextPreference
+        </item>
+        <item name="preferenceFragmentListStyle">@style/PreferenceFragmentList</item>
+    </style>
 </resources>

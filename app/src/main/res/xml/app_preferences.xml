@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/settings_header_location"
+    app:title="@string/settings_header_location">
+
+    <PreferenceCategory
+        android:title="@string/settings_location">
+
+        <EditTextPreference
+            android:id="@+id/settings_edit_city_name"
+            android:title="@string/settings_location_city_header"
+            android:summary="@string/settings_location_city_summary"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

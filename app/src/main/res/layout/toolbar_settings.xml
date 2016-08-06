@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    tools:context=".view.SettingsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorPrimary"
+        android:minHeight="?actionBarSize"
+        app:navigationContentDescription="@string/abc_action_bar_up_description"
+        app:navigationIcon="?homeAsUpIndicator"
+        app:title="@string/action_settings"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+</android.support.design.widget.AppBarLayout>

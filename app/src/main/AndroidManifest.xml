@@ -38,6 +38,12 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".view.MainActivity_"/>
 
+        <activity
+            android:name=".view.SettingsActivity"
+            android:label="@string/action_settings"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".view.MainActivity_"/>
+
         <service
             android:name=".service.NotificationIntentService"
             android:enabled="true"

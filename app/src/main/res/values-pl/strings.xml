@@ -36,6 +36,16 @@
     <string name="geo_coord"/>
     <!--Settings Activity values-->
     <string name="action_settings">Ustawienia</string>
+    <string name="settings_header_location">Ustawienia lokalizacji</string>
+    <string name="settings_summary_location">Pobierz prognozę pogody dla twojego miejsca
+        zamieszkania.</string>
+    <string name="settings_location">Lokalizacja</string>
+    <string name="settings_location_city_header">Zmień miasto</string>
+    <string name="settings_location_city_summary">Podaj nazwę miejsca, w którym obecnie
+        przebywasz.</string>
+
+
+    <!--Settings Activity values - OLD-->
     <string name="location">Lokalizacja</string>
     <string name="imperial">Fahrenheit</string>
     <string name="metric">Celcjusz</string>
