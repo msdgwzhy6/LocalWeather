@@ -8,7 +8,6 @@ import com.piotr.weatherforpoznan.view.MainActivity_;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,18 +15,16 @@ import org.junit.runners.MethodSorters;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
 
 /**
- * @author Piotr on 17.10.15.
+ * @author piotr on 17.10.15.
  */
-@Ignore
+
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DetailsActivityTest {
@@ -112,27 +109,4 @@ public class DetailsActivityTest {
 
     }
 
-    @Test
-    public void checkIfSnackBarIsProperlyDisplayed() throws InterruptedException {
-        onView(withId(R.id.fab)).perform(click());
-        onView(withText(R.string.function_not_available)).check(matches(isDisplayed()));
-
-    }
-
-    @Test
-    public void clickOnFloatingActionButtonToShowSnackBar() {
-        onView(withId(R.id.fab)).perform(click());
-        onView(withId(R.id.snackbar_text))
-                .check(matches(withText(R.string.function_not_available)));
-
-    }
-
-    @Test
-    public void swipeRightToDismissDisplayedCommunique() {
-        onView(withId(R.id.fab)).perform(click());
-        onView(withId(R.id.snackbar_text))
-                .perform(swipeRight())
-                .check(matches(not(isCompletelyDisplayed())));
-
-    }
 }
