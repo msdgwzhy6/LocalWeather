@@ -8,7 +8,6 @@ import com.piotr.weatherforpoznan.view.MainActivity_;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +20,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
 
 /**
  * @author piotr on 17.10.15.
@@ -43,8 +43,6 @@ public class DetailsActivityTest {
             R.id.dTemperature,
             R.id.dHighTemp,
             R.id.dLowTemp,
-            R.id.dIconLayout,
-            R.id.dIcon,
             R.id.dDescriptionLayout,
             R.id.dDescription,
             R.id.dForecast,
@@ -90,7 +88,6 @@ public class DetailsActivityTest {
 
     }
 
-    @Ignore
     @Test
     public void checkIfAllDetailsActivityViewsAreDisplayed() throws InterruptedException {
         for (int id : allDetailsActivityViewsIdis) onView(withId(id)).check(matches(isDisplayed()));
@@ -98,8 +95,8 @@ public class DetailsActivityTest {
     }
 
     @Test
-    public void checkIfDetailsActivityImageHasNoDefaultImage() throws InterruptedException {
-        onView(withId(R.id.dIcon)).check(matches(not(withId(R.drawable.art_default))));
+    public void checkIfDetailsActivityIconHasAnImage() throws InterruptedException {
+        onView(withId(R.id.dIcon)).check(matches(notNullValue()));
 
     }
 

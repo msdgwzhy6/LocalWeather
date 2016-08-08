@@ -2,17 +2,24 @@
 
 <img src="app/src/main/res/mipmap-xxhdpi/ic_launcher.png"/>
 
-Weather app using OpenWeatherMap API, Retrofit, gson, AndroidAnnotations and ActiveAndroid. 
-
-Including unit tests written with JUnit and Robolectric frameworks and automated UI tests written in Espresso.
-
-Available in two languages: Polish and English.
+Android application using OpenWeatherMap API that shows current weather conditions.
 
 Screenshots
 ------
 <img src="screenshots/device-2016-08-05-224222.png" height="450dp"/>
 <img src="screenshots/device-2016-08-05-224246.png" height="450dp"/>
 <img src="screenshots/device-2016-08-05-224307.png" height="450dp"/>
+
+Libraries already used:
+-----
+- AndroidAnnotations
+- ActiveAndroid
+- Retrofit
+- Gson
+- Picasso
+- Espresso
+- Robolectric
+- Crashlytics
 
 Issues
 ------
@@ -46,3 +53,4 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
