@@ -16,10 +16,10 @@ import com.piotr.weatherforpoznan.model.Forecast;
 import com.piotr.weatherforpoznan.receiver.NotificationEventReceiver;
 import com.piotr.weatherforpoznan.repositories.WeatherDatabaseRepository;
 import com.piotr.weatherforpoznan.service.WeatherService;
+import com.piotr.weatherforpoznan.utils.ConnectionUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
 
@@ -72,9 +72,10 @@ public class MainActivityFragment extends Fragment {
                     }
                 }
         );
-        downloadForecastData(weatherAPI);
-        //FixMe: If offline, download data from database
-        downloadCityData(weatherAPI);
+        if (ConnectionUtils.haveNetworkConnection(getContext())) {
+            downloadForecastData(weatherAPI);
+            downloadCityData(weatherAPI);
+        }
     }
 
     public void openForecastDetailsActivity(int position) {
@@ -84,8 +85,7 @@ public class MainActivityFragment extends Fragment {
         startActivity(intent);
     }
 
-    @UiThread
-    protected void downloadForecastData(final WeatherService weatherAPI) {
+    private void downloadForecastData(final WeatherService weatherAPI) {
         weatherAPI.getForecast(3088171, "json", "metric", "hour", lang, API_ID, new
                 Callback<Forecast>() {
                     @Override
@@ -117,8 +117,7 @@ public class MainActivityFragment extends Fragment {
         );
     }
 
-    @UiThread
-    protected void downloadCityData(final WeatherService weatherAPI) {
+    private void downloadCityData(final WeatherService weatherAPI) {
         weatherAPI.getForecast(3088171, "json", "metric", "hour", lang, API_ID, new Callback<Forecast>() {
             @Override
             public void success(Forecast forecast, Response response) {
