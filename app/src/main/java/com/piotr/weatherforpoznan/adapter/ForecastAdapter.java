@@ -24,8 +24,13 @@ import java.util.List;
 
 public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
+    List<ForecastItem> mForecastItemList;
+    Context mContext;
+
     public ForecastAdapter(Context context, List<ForecastItem> objects) {
         super(context, R.layout.list_item_forecast, objects);
+        this.mForecastItemList = objects;
+        this.mContext = context;
     }
 
     private static String getFormattedDate(Date date) {
@@ -35,7 +40,6 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ForecastItem item = getItem(position);
         ViewHolder vHolder;
 
         if (convertView == null) {
@@ -46,7 +50,7 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
             vHolder = (ViewHolder) convertView.getTag();
         }
 
-        initConvertView(item, vHolder);
+        initConvertView(mForecastItemList.get(position), vHolder);
 
         return convertView;
     }
@@ -73,18 +77,14 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
     }
 
     private void initIconDrawable(ForecastItem item, ViewHolder vHolder) {
-        int iconName = item.getWeather().get(0).getWeatherId();
+        int iconName = item.getWeatherData().getWeatherId();
         int icon = ImageUtils.getIconResourceForWeatherCondition(iconName);
         Picasso.with(getContext()).load(icon).into(vHolder.forecastItemIcon);
     }
 
     private void initWeatherValue(ForecastItem item, ViewHolder vHolder) {
-        if (item.getWeather().size() > 0) {
-            String description = item.getWeather().get(0).getDescription();
+        String description = item.getWeatherData().getDescription();
             vHolder.forecastItemDescription.setText(StringUtils.capitalizeString(description));
-        } else {
-            vHolder.forecastItemDescription.setText(R.string.description_not_available);
-        }
     }
 
     static class ViewHolder {

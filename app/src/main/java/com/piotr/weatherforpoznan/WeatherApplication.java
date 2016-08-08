@@ -30,7 +30,7 @@ public class WeatherApplication extends Application {
 
     public static WeatherService weatherAPI;
 
-    public static List<Model> getObjectsList() {
+    public static List<ForecastItem> getObjectsList() {
         return new Select().from(ForecastItem.class).execute();
     }
 

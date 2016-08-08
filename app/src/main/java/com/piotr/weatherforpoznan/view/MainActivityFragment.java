@@ -13,6 +13,7 @@ import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.WeatherApplication;
 import com.piotr.weatherforpoznan.adapter.ForecastAdapter;
 import com.piotr.weatherforpoznan.model.Forecast;
+import com.piotr.weatherforpoznan.model.ForecastItem;
 import com.piotr.weatherforpoznan.receiver.NotificationEventReceiver;
 import com.piotr.weatherforpoznan.repositories.WeatherDatabaseRepository;
 import com.piotr.weatherforpoznan.service.WeatherService;
@@ -22,6 +23,8 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
+
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -46,14 +49,6 @@ public class MainActivityFragment extends Fragment {
     @ViewById
     SwipeRefreshLayout swipeRefresh;
 
-    public ForecastAdapter getForecastAdapter() {
-        return mForecastAdapter;
-    }
-
-    public void setForecastAdapter(ForecastAdapter forecastAdapter) {
-        mForecastAdapter = forecastAdapter;
-    }
-
     private ForecastAdapter mForecastAdapter;
 
     @AfterViews
@@ -75,6 +70,11 @@ public class MainActivityFragment extends Fragment {
         if (ConnectionUtils.haveNetworkConnection(getContext())) {
             downloadForecastData(weatherAPI);
             downloadCityData(weatherAPI);
+        } else {
+            List<ForecastItem> forecastItems = WeatherApplication.getObjectsList();
+            ForecastAdapter adapter = new ForecastAdapter(getActivity(), forecastItems);
+            mListView.setAdapter(adapter);
+            swipeRefresh.setRefreshing(false);
         }
     }
 
