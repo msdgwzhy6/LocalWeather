@@ -3,11 +3,8 @@ package com.piotr.weatherforpoznan.view;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,9 +34,9 @@ import static com.piotr.weatherforpoznan.utils.WeatherUtils.getFormattedWind;
 
 @SuppressLint("Registered")
 @EActivity(R.layout.activity_details)
-public class DetailsActivity extends AppCompatActivity {
+public class DetailsActivity extends BasicActivity {
 
-    private final String TAG = getClass().getSimpleName();
+    private final String TAG = DetailsActivity.class.getSimpleName();
     @ViewById
     public FloatingActionButton fab;
     @ViewById
@@ -135,8 +132,6 @@ public class DetailsActivity extends AppCompatActivity {
         day = StringUtils.capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = getFormattedDate(item.getDt_txt());
         city_name = city.getName();
-        //FIXME: Unable to get name of the city.
-        //NOTE: For development purposes I changed default city_name in strings.xml
         Main main = item.getMain();
         Wind wind = item.getWind();
         high_temp = Math.round(main.getTempMax()) + " °C";
@@ -157,16 +152,5 @@ public class DetailsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
