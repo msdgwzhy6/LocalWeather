@@ -63,4 +63,5 @@
     <string name="API_ID">cf28f00904e59e7ba0fc080879080861</string>
     <!-- Language of phone-->
     <string name="lang">en</string>
+    <string name="action_map">Map location</string>
 </resources>

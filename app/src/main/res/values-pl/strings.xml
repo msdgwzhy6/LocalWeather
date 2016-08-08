@@ -35,15 +35,12 @@
     <string name="longitude_short">Szer: </string>
     <string name="geo_coord"/>
     <!--Settings Activity values-->
-    <string name="action_settings">Ustawienia</string>
     <string name="settings_header_location">Ustawienia lokalizacji</string>
     <string name="settings_summary_location">Pobierz prognozę pogody dla twojego miejsca
         zamieszkania.</string>
     <string name="settings_location">Lokalizacja</string>
     <string name="settings_location_city_header">Zmień miasto</string>
     <string name="settings_location_city_summary">Aktualnie: %s</string>
-
-
     <!--Settings Activity values - OLD-->
     <string name="location">Lokalizacja</string>
     <string name="imperial">Fahrenheit</string>
@@ -65,5 +62,8 @@
     <string name="operation_successful">Operacja zakończona pomyślnie.</string>
     <!-- Language of phone-->
     <string name="lang">pl</string>
+    <!--Action bar values-->
+    <string name="action_map">Lokalizacja na mapie</string>
+    <string name="action_settings">Ustawienia</string>
 
 </resources>
