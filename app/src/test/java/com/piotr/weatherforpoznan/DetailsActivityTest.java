@@ -107,5 +107,4 @@ public class DetailsActivityTest {
         activity.dDescription.setText(StringUtils.capitalizeString(description));
         assertTrue(activity.dDescription.getText().equals(StringUtils.capitalizeString(description)));
     }
-    //TODO: Write more unit tests
 }

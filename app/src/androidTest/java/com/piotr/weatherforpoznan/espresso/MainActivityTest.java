@@ -32,8 +32,6 @@ import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
-    //TODO: Implement espresso-intents test cases.
-
     private static final int TEST_POSITION = 2;
 
     @Rule
