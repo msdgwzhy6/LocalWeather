@@ -8,6 +8,7 @@ import com.piotr.weatherforpoznan.view.MainActivity_;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +24,7 @@ import static org.hamcrest.Matchers.not;
 /**
  * @author piotr on 17.10.15.
  */
+@Ignore
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DetailsActivityTest {

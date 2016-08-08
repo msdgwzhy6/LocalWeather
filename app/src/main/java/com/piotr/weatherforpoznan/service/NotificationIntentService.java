@@ -31,14 +31,23 @@ import static com.piotr.weatherforpoznan.utils.ImageUtils.getIconResourceForWeat
  */
 public class NotificationIntentService extends IntentService {
 
-    private static final String TAG = "NotificationIntentService";
+    private static final String TAG = NotificationIntentService.class.getSimpleName();
 
     private static final int NOTIFICATION_ID = 1;
     private static final String ACTION_START = "ACTION_START";
     private static final String ACTION_DELETE = "ACTION_DELETE";
+    private static NotificationManager mNotificationManager;
+
+    private static int NOTIFICATION_NUMBER = 0;
+
+    private android.support.v7.app.NotificationCompat.Builder builder;
 
     public NotificationIntentService() {
         super(NotificationIntentService.class.getSimpleName());
+    }
+
+    public static NotificationManager getNotificationManager() {
+        return mNotificationManager;
     }
 
     public static Intent createIntentStartNotificationService(Context context) {
@@ -58,9 +67,12 @@ public class NotificationIntentService extends IntentService {
         Log.d(getClass().getSimpleName(), "onHandleIntent, started handling a notification event");
         try {
             String action = intent.getAction();
-            if (ACTION_START.equals(action) &&
-                    (WeatherRepository.getActualWeatherForecast()) != null) {
+            if (ACTION_START.equals(action) && (WeatherRepository.getActualWeatherForecast()) != null) {
                 processStartNotification(WeatherRepository.getActualWeatherForecast());
+                if (builder != null) {
+                    NotificationIntentService.getNotificationManager().notify(NOTIFICATION_ID,
+                            builder.build());
+                }
             }
             if (ACTION_DELETE.equals(action)) {
                 processDeleteNotification(intent);
@@ -76,6 +88,14 @@ public class NotificationIntentService extends IntentService {
     }
 
     private void processStartNotification(ForecastItem item) {
+        builder = new android.support.v7.app.NotificationCompat.Builder(this);
+
+        Notification notification = buildWeatherNotification(item);
+        mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(NOTIFICATION_ID, notification);
+    }
+
+    private Notification buildWeatherNotification(ForecastItem item) {
         Date date = item.getDt_txt();
         String description = item.getWeatherData().getDescription();
         double tempMax = Math.round(item.getMain().getTempMax());
@@ -83,29 +103,24 @@ public class NotificationIntentService extends IntentService {
         int iconId = item.getWeatherData().getWeatherId();
         int image = setImageResourceForWeatherNotification(iconId);
 
-        android.support.v7.app.NotificationCompat.Builder builder =
-                new android.support.v7.app.NotificationCompat.Builder(this);
-        builder.setAutoCancel(true)
+        Intent intent = new Intent(getBaseContext(), DetailsActivity_.class);
+        intent.putExtra("id", 0);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, NOTIFICATION_ID, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+       return builder.setAutoCancel(true)
+                .setOngoing(true)
                 .setSmallIcon(ImageUtils.getIconResourceForWeatherCondition((iconId)))
                 .setLargeIcon(BitmapFactory.convert(ContextCompat
                         .getDrawable(getBaseContext(), image)))
                 .setContentTitle(getBaseContext().getString(R.string.app_name))
                 .setContentText(DateUtils.getFormattedDate(date))
-                .setSubText(description + "\t" + tempMax + "°C");
-
-        //FIXME: Change putExtra to get correct notification forecastItem Id
-        Intent intent = new Intent(getBaseContext(), DetailsActivity_.class);
-        intent.putExtra("id", item.getId());
-
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, NOTIFICATION_ID, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(pendingIntent);
-        builder.setDeleteIntent(NotificationEventReceiver.getDeleteIntent(this));
-
-        Notification notification = builder.build();
-        NotificationManager mNotificationManager =
-                (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(NOTIFICATION_ID, notification);
+                .setSubText(description + "\t" + tempMax + "°C")
+                .setNumber(++NOTIFICATION_NUMBER)
+                .setContentIntent(pendingIntent)
+                .setDeleteIntent(NotificationEventReceiver.getDeleteIntent(this))
+                .build();
     }
 
     private int setImageResourceForWeatherNotification(int iconId) {
