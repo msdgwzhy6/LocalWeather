@@ -8,7 +8,6 @@ import com.piotr.weatherforpoznan.view.MainActivity_;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,16 +16,13 @@ import org.junit.runners.MethodSorters;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.notNullValue;
 
 /**
  * @author piotr on 17.10.15.
  */
-
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DetailsActivityTest {
@@ -34,6 +30,7 @@ public class DetailsActivityTest {
     @Rule
     public ActivityTestRule<MainActivity_> mRule = new ActivityTestRule<>(MainActivity_.class);
 
+    //TODO: Write tests to check if views are visible
     private final int[] allDetailsActivityViewsIdis = {
             R.id.dItem,
             R.id.dDayAndDate,
@@ -84,22 +81,9 @@ public class DetailsActivityTest {
     };
 
     @Before
+    //TODO: Rewrite this code using espresso-intents
     public void goToDetailsActivity() throws InterruptedException {
         onView(withId(R.id.mListView)).perform(click());
-
-    }
-
-    @Test
-    @Ignore
-    public void checkIfAllDetailsActivityViewsAreDisplayed() throws InterruptedException {
-        //FIXME: This tests suite need rewriting. It makes Travis build causes.
-        for (int id : allDetailsActivityViewsIdis) onView(withId(id)).check(matches(isDisplayed()));
-
-    }
-
-    @Test
-    public void checkIfDetailsActivityIconHasAnImage() throws InterruptedException {
-        onView(withId(R.id.dIcon)).check(matches(notNullValue()));
 
     }
 
