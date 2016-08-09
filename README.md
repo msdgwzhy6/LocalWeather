@@ -1,14 +1,17 @@
-# WeatherforPoznan [![Build Status](https://travis-ci.org/piotrek1543/WeatherforPoznan.svg)](https://travis-ci.org/piotrek1543/WeatherforPoznan) [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+# LocalWeather [![Build Status](https://travis-ci.org/piotrek1543/WeatherforPoznan.svg)](https://travis-ci.org/piotrek1543/WeatherforPoznan) [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 <img src="app/src/main/res/mipmap-xxhdpi/ic_launcher.png"/>
+
+Previously name: WeatherForPoznan
 
 Android application using OpenWeatherMap API that shows current weather conditions.
 
 Screenshots
 ------
-<img src="screenshots/device-2016-08-05-224222.png" height="450dp"/>
-<img src="screenshots/device-2016-08-05-224246.png" height="450dp"/>
-<img src="screenshots/device-2016-08-05-224307.png" height="450dp"/>
+<img src="screenshots/device-2016-08-09-172447.png" height="300dp"/>
+<img src="screenshots/device-2016-08-09-172520.png" height="300dp"/>
+<img src="screenshots/device-2016-08-09-172551.png" height="300dp"/>
+<img src="screenshots/device-2016-08-09-172635.png" height="300dp"/>
 
 Libraries already used:
 -----
@@ -20,6 +23,16 @@ Libraries already used:
 - Espresso
 - Robolectric
 - Crashlytics
+
+TODO:
+-----
+- [ ] Fix refreshing Notification data
+- [ ] Fix saving and loading City
+- [x] Add change city Settings option
+- [ ] Add turn on/off notifications Settings option
+- [ ] Add change temperature units Settings option
+- [ ] Try to add autocomplete to EditTextPreference
+- [ ] Rewrite existings Android tests
 
 Issues
 ------
