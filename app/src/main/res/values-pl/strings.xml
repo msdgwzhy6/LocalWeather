@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Pogoda dla Poznania</string>
     <!--Activities-->
     <string name="title_activity_details">Szczegóły</string>
     <string name="title_activity_settings">Ustawienia</string>

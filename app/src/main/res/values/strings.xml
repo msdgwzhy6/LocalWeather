@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Weather for Poznan</string>
+    <string name="app_name">LocalWeather</string>
     <!--Activities-->
     <string name="title_activity_details">Details</string>
     <string name="title_activity_settings">Settings</string>

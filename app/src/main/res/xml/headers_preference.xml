@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <header
-        android:fragment="com.piotr.weatherforpoznan.view.SettingsFragment"
+        android:fragment="com.piotr.localweather.view.SettingsFragment"
         android:title="@string/settings_header_location"
         android:summary="@string/settings_summary_location"/>
 

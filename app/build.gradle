@@ -18,7 +18,7 @@ buildscript {
 apt {
     arguments {
         androidManifestFile variant.outputs[0].processResources.manifestFile
-        resourcePackageName "com.piotr.weatherforpoznan"
+        resourcePackageName "com.piotr.localweather"
     }
 }
 
@@ -58,7 +58,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.piotr.weatherforpoznan"
+        applicationId "com.piotr.localweather"
         minSdkVersion 12
         targetSdkVersion 22
         versionCode 1
