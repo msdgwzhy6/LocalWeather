@@ -87,6 +87,7 @@ public class NotificationIntentService extends IntentService {
         Log.d(TAG, "processDeleteNotification() called with: " + "intent = [" + intent + "]");
     }
 
+
     private void processStartNotification(ForecastItem item) {
         builder = new android.support.v7.app.NotificationCompat.Builder(this);
 
@@ -104,7 +105,7 @@ public class NotificationIntentService extends IntentService {
         int image = setImageResourceForWeatherNotification(iconId);
 
         Intent intent = new Intent(getBaseContext(), DetailsActivity_.class);
-        intent.putExtra("id", 0);
+        intent.putExtra("id", item.getId());
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, NOTIFICATION_ID, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);

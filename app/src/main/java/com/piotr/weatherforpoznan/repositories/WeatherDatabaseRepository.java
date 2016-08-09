@@ -3,7 +3,9 @@ package com.piotr.weatherforpoznan.repositories;
 import android.util.Log;
 
 import com.activeandroid.ActiveAndroid;
+import com.activeandroid.query.Delete;
 import com.piotr.weatherforpoznan.WeatherApplication;
+import com.piotr.weatherforpoznan.model.City;
 import com.piotr.weatherforpoznan.model.Forecast;
 
 /**
@@ -28,6 +30,9 @@ public class WeatherDatabaseRepository {
     public void saveCityDataToDatabase(Forecast forecast) {
         ActiveAndroid.beginTransaction();
         try {
+            if (WeatherApplication.getCityList().size() > 0) {
+                new Delete().from(City.class).execute();
+            }
             forecast.getCity().getCoord().save();
             forecast.getCity().save();
             ActiveAndroid.setTransactionSuccessful();
