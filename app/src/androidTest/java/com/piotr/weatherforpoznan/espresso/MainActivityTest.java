@@ -11,6 +11,7 @@ import android.support.test.runner.AndroidJUnit4;
 import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.view.MainActivity_;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +31,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.not;
 
+@Ignore
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
     private static final int TEST_POSITION = 2;

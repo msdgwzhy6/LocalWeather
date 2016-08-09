@@ -19,13 +19,14 @@ public class SettingsFragment extends PreferenceFragment implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String TAG = "SettingsFragment";
-    private static final String KEY_EDIT_TEXT_PREFERENCE = "settings_edit_city_name";
+    private static String pref_location_key;
     private static EditTextPreference cityEditTextPreference;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.app_preferences);
+        pref_location_key = getString(R.string.pref_location_key);
         cityEditTextPreference = (EditTextPreference) findPreference("settings_edit_city_name");
     }
 
@@ -35,7 +36,7 @@ public class SettingsFragment extends PreferenceFragment implements
         // Set up a listener whenever a key changes
         getPreferenceScreen().getSharedPreferences()
                 .registerOnSharedPreferenceChangeListener(this);
-        updatePreference(KEY_EDIT_TEXT_PREFERENCE);
+        updatePreference(pref_location_key);
     }
 
     @Override
@@ -53,7 +54,7 @@ public class SettingsFragment extends PreferenceFragment implements
     }
 
     private void updatePreference(String key) {
-        if (key.equals(KEY_EDIT_TEXT_PREFERENCE)) {
+        if (key.equals(pref_location_key)) {
             Preference preference = findPreference(key);
             if (preference instanceof EditTextPreference) {
                 if ((cityEditTextPreference.getText() != null) && (cityEditTextPreference.getText
@@ -69,7 +70,7 @@ public class SettingsFragment extends PreferenceFragment implements
                     } catch (NullPointerException e) {
                         Log.e(TAG, "updatePreference: ", e.getCause());
                         cityEditTextPreference.setSummary(getString(R.string
-                                .settings_location_city_summary, getString(R.string.city_name)));
+                                .settings_location_city_summary, getString(R.string.pref_location_default)));
                     }
                 }
             }

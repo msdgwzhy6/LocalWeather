@@ -18,6 +18,7 @@ import com.piotr.weatherforpoznan.receiver.NotificationEventReceiver;
 import com.piotr.weatherforpoznan.repositories.WeatherDatabaseRepository;
 import com.piotr.weatherforpoznan.service.WeatherService;
 import com.piotr.weatherforpoznan.utils.ConnectionUtils;
+import com.piotr.weatherforpoznan.utils.LocationUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -36,19 +37,18 @@ import static com.piotr.weatherforpoznan.WeatherApplication.weatherAPI;
 public class MainActivityFragment extends Fragment {
 
     private final WeatherDatabaseRepository mDatabaseRepository = new WeatherDatabaseRepository();
-
+    private final String format = "json";
+    private final String units = "metric";
+    private final String type = "hour";
     @StringRes
     String API_ID;
-
     @StringRes
     String lang;
-
     @ViewById
     ListView mListView;
-
     @ViewById
     SwipeRefreshLayout swipeRefresh;
-
+    private String locationQuery;
     private ForecastAdapter mForecastAdapter;
 
     @AfterViews
@@ -69,7 +69,6 @@ public class MainActivityFragment extends Fragment {
         );
         if (ConnectionUtils.haveNetworkConnection(getContext())) {
             downloadForecastData(weatherAPI);
-            downloadCityData(weatherAPI);
         } else {
             List<ForecastItem> forecastItems = WeatherApplication.getObjectsList();
             ForecastAdapter adapter = new ForecastAdapter(getActivity(), forecastItems);
@@ -78,7 +77,7 @@ public class MainActivityFragment extends Fragment {
         }
     }
 
-    public void openForecastDetailsActivity(int position) {
+    private void openForecastDetailsActivity(int position) {
         long forecastItemId = mForecastAdapter.getItem(position).getId();
         Intent intent = new Intent(getContext(), DetailsActivity_.class);
         intent.putExtra("id", forecastItemId);
@@ -86,7 +85,8 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void downloadForecastData(final WeatherService weatherAPI) {
-        weatherAPI.getForecast("94043", "json", "metric", "hour", lang, API_ID, new
+        locationQuery = LocationUtils.getPreferredLocation(getContext());
+        weatherAPI.getForecast(locationQuery, format, units, type, lang, API_ID, new
                 Callback<Forecast>() {
                     @Override
                     public void success(Forecast forecast, Response response) {
@@ -98,6 +98,7 @@ public class MainActivityFragment extends Fragment {
 
                             //ActiveAndroid implementation
                             mDatabaseRepository.saveForecastItemToDatabase(forecast);
+                            mDatabaseRepository.saveCityDataToDatabase(forecast);
 
                             Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
                             Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
@@ -113,25 +114,7 @@ public class MainActivityFragment extends Fragment {
                         showErrorSnackbar(weatherAPI);
                     }
                 }
-
         );
-    }
-
-    private void downloadCityData(final WeatherService weatherAPI) {
-        weatherAPI.getForecast("94043", "json", "metric", "hour", lang, API_ID, new
-                Callback<Forecast>() {
-            @Override
-            public void success(Forecast forecast, Response response) {
-                mDatabaseRepository.saveCityDataToDatabase(forecast);
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d("Failure", "error: " + error);
-                swipeRefresh.setRefreshing(false);
-                showErrorSnackbar(weatherAPI);
-            }
-        });
     }
 
     private void showErrorSnackbar(final WeatherService weatherAPI) {

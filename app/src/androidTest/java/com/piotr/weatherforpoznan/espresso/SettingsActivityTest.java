@@ -7,6 +7,7 @@ import com.piotr.weatherforpoznan.R;
 import com.piotr.weatherforpoznan.view.SettingsActivity;
 
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 /**
  * @author piotr on 08.08.16.
  */
+
+@Ignore
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SettingsActivityTest {

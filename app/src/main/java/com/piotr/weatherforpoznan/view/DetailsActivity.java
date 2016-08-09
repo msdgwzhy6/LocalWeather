@@ -22,7 +22,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.IntegerRes;
 import org.androidannotations.annotations.res.StringRes;
@@ -85,6 +84,7 @@ public class DetailsActivity extends BasicActivity {
     long id;
 
     private ForecastItem item;
+    private City city;
 
     @Click(R.id.fab)
     public void onClick(View view) {
@@ -105,7 +105,7 @@ public class DetailsActivity extends BasicActivity {
     @AfterViews
     protected void initialize() {
         setDetailsActivityActionBar();
-        City city = new Select().from(City.class).executeSingle();
+        city = new Select().from(City.class).executeSingle();
         item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();
         if ((item != null) && (city != null)) {
             Log.d(TAG, item.toString());
@@ -114,11 +114,10 @@ public class DetailsActivity extends BasicActivity {
         }
     }
 
-    @UiThread
-    protected void setDetailActivityViewsValues() {
+    private void setDetailActivityViewsValues() {
         dDay.setText(day);
         dDate.setText(date);
-        dCity.setText(city_name);
+        dCity.setText(city.getName());
         dHighTemp.setText(high_temp);
         dLowTemp.setText(low_temp);
         dHumidityVal.setText(humidity_val);
@@ -128,10 +127,9 @@ public class DetailsActivity extends BasicActivity {
         dDescription.setText(StringUtils.capitalizeString(description));
     }
 
-    void getDetailActivityViewsValues(ForecastItem item, City city) {
+    private void getDetailActivityViewsValues(ForecastItem item, City city) {
         day = StringUtils.capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = getFormattedDate(item.getDt_txt());
-        city_name = city.getName();
         Main main = item.getMain();
         Wind wind = item.getWind();
         high_temp = Math.round(main.getTempMax()) + " °C";
@@ -145,8 +143,7 @@ public class DetailsActivity extends BasicActivity {
         description = item.getWeatherData().getDescription();
     }
 
-    @UiThread
-    protected void setDetailsActivityActionBar() {
+    private void setDetailsActivityActionBar() {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
