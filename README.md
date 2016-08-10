@@ -1,4 +1,4 @@
-# LocalWeather [![Build Status](https://travis-ci.org/piotrek1543/WeatherforPoznan.svg)](https://travis-ci.org/piotrek1543/WeatherforPoznan) [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+# LocalWeather  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-LocalWeather-green.svg?style=true)](https://android-arsenal.com/details/3/4113)  [![Build Status](https://travis-ci.org/piotrek1543/LocalWeather.svg)](https://travis-ci.org/piotrek1543/LocalWeather)   [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 <img src="app/src/main/res/mipmap-xxhdpi/ic_launcher.png"/>
 
