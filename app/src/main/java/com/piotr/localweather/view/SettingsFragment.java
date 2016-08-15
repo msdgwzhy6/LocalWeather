@@ -26,6 +26,11 @@ public class SettingsFragment extends PreferenceFragment implements
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.app_preferences);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         pref_location_key = getString(R.string.pref_location_key);
         cityEditTextPreference = (EditTextPreference) findPreference("settings_edit_city_name");
     }
