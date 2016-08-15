@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.android.tools.build:gradle:2.1.2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
         classpath 'io.fabric.tools:gradle:1.+'
     }
@@ -138,7 +138,7 @@ def var = dependencies {
         exclude module: 'support-annotations'
         exclude module: 'recyclerview-v7'
     }
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.1@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.2@aar') {
         transitive = true;
     }
     compile "junit:junit:${JUNIT_VERSION}"
