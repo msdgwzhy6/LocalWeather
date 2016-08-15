@@ -53,7 +53,7 @@
     <string name="share_message_choose"/>
     <!--If something goes wrong-->
     <string name="description_not_available">Description is not available</string>
-    <string name="function_not_available">This function is not available.</string>
+    <string name="error_function_not_available">Function is not already available.</string>
     <string name="error_download_data">Error caused when trying to download data!</string>
     <string name="error_again_message">Try again</string>
     <!--If something goes good-->

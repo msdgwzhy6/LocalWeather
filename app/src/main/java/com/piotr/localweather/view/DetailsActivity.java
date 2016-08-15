@@ -109,7 +109,7 @@ public class DetailsActivity extends BasicActivity {
         item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();
         if ((item != null) && (city != null)) {
             Log.d(TAG, item.toString());
-            getDetailActivityViewsValues(item, city);
+            getDetailActivityViewsValues(item);
             setDetailActivityViewsValues();
         }
     }
@@ -127,7 +127,7 @@ public class DetailsActivity extends BasicActivity {
         dDescription.setText(StringUtils.capitalizeString(description));
     }
 
-    private void getDetailActivityViewsValues(ForecastItem item, City city) {
+    private void getDetailActivityViewsValues(ForecastItem item) {
         day = StringUtils.capitalizeString(getDayName(getApplicationContext(), item.getDt_txt().getTime()));
         date = getFormattedDate(item.getDt_txt());
         Main main = item.getMain();

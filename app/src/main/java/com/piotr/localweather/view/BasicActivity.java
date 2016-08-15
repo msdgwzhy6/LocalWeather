@@ -1,8 +1,10 @@
 package com.piotr.localweather.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -49,15 +51,27 @@ public class BasicActivity extends AppCompatActivity {
 
     private void openPreferredLocationInMap() {
         // Using the URI scheme for showing a location found on a map.
-        City city = new Select().from(City.class).executeSingle();
-        Uri geoLocation = Uri.parse("geo:" + city.getCoord().getLat() + "," + city.getCoord().getLon());
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(geoLocation);
+        try {
+            City city = new Select().from(City.class).executeSingle();
+            Uri geoLocation = Uri.parse("geo:" + city.getCoord().getLat() + "," + city.getCoord().getLon());
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(geoLocation);
 
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        } else {
-            Log.d(TAG, "Couldn't call " + geoLocation.toString() + ", no receiving apps installed!");
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            } else {
+                Log.d(TAG, "Couldn't call " + geoLocation.toString() + ", no receiving apps installed!");
+            }
+        } catch (NullPointerException e) {
+            Log.e(TAG, "openPreferredLocationInMap: ", e);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+            builder.setMessage(R.string.error_function_not_available)
+                    .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
         }
     }
 }

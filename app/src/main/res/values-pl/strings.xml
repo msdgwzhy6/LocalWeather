@@ -54,7 +54,7 @@
     <string name="share_message_subject">Weather forecast, %s</string>
     <!--If something goes wrong-->
     <string name="description_not_available">Opis tymczasowo niedostępny</string>
-    <string name="function_not_available">Funkcja tymczasowo niedostępna</string>
+    <string name="error_function_not_available">Funkcja tymczasowo niedostępna</string>
     <string name="error_download_data">Błąd pobierania danych!</string>
     <string name="error_again_message">Ponów próbę</string>
     <!--If something goes good-->
