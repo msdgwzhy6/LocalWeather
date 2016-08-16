@@ -56,7 +56,10 @@ public class MainActivityFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openForecastDetailsActivity(position);
+                long forecastItemId = WeatherApplication.getObjectsList().get(position).getId();
+                Intent intent = new Intent(getContext(), DetailsActivity_.class);
+                intent.putExtra("id", forecastItemId);
+                startActivity(intent);
             }
         });
         swipeRefresh.setOnRefreshListener(
@@ -75,13 +78,6 @@ public class MainActivityFragment extends Fragment {
             mListView.setAdapter(adapter);
             swipeRefresh.setRefreshing(false);
         }
-    }
-
-    private void openForecastDetailsActivity(int position) {
-        long forecastItemId = mForecastAdapter.getItem(position).getId();
-        Intent intent = new Intent(getContext(), DetailsActivity_.class);
-        intent.putExtra("id", forecastItemId);
-        startActivity(intent);
     }
 
     private void downloadForecastData(final WeatherService weatherAPI) {
