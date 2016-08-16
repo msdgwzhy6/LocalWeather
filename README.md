@@ -26,9 +26,13 @@ Libraries already used:
 
 TODO:
 -----
+- [ ] Change DetailsActivity to DetailsFragment
 - [ ] Fix refreshing Notification data
-- [ ] Fix saving and loading City
+- [x] Fix saving and loading City
 - [x] Add change city Settings option
+- [ ] Add 'Report an issue' item to ContextMenu
+- [ ] Add 'Licences' item to OptionsMenu
+- [x] Add ShareIntent in DetailsActivity
 - [ ] Add turn on/off notifications Settings option
 - [ ] Add change temperature units Settings option
 - [ ] Try to add autocomplete to EditTextPreference
