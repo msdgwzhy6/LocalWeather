@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.android.tools.build:gradle:2.2.3'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
         classpath 'io.fabric.tools:gradle:1.+'
     }
@@ -29,8 +29,8 @@ repositories {
 }
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     useLibrary 'org.apache.http.legacy'
 
@@ -78,7 +78,7 @@ android {
 def var = dependencies {
     ext.JUNIT_VERSION = '4.12'
     ext.AA_VERSION = '4.0.0'
-    ext.SUPPORT_VERSION = '24.1.1'
+    ext.SUPPORT_VERSION = '25.2.0'
     ext.ESPRESSO_VERSION = '2.2.2'
 
     //TODO: Update Retrofit to 2.x version - it requires code changes
@@ -112,6 +112,7 @@ def var = dependencies {
     compile "com.android.support:recyclerview-v7:$SUPPORT_VERSION"
     compile "com.android.support:preference-v7:$SUPPORT_VERSION"
 
+    //Remove ActiveAndroid. Use Realm instead
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
 
     compile 'com.squareup.retrofit:retrofit:1.9.0'
