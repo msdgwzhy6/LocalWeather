@@ -77,14 +77,14 @@ public class ForecastAdapter extends ArrayAdapter<ForecastItem> {
     }
 
     private void initIconDrawable(ForecastItem item, ViewHolder vHolder) {
-        int iconName = item.getWeatherData().getWeatherId();
+        int iconName = item.getWeather().get(0).getWeatherId();
         int icon = ImageUtils.getIconResourceForWeatherCondition(iconName);
         Picasso.with(getContext()).load(icon).into(vHolder.forecastItemIcon);
     }
 
     private void initWeatherValue(ForecastItem item, ViewHolder vHolder) {
-        String description = item.getWeatherData().getDescription();
-            vHolder.forecastItemDescription.setText(StringUtils.capitalizeString(description));
+        String description = item.getWeather().get(0).getDescription();
+        vHolder.forecastItemDescription.setText(StringUtils.capitalizeString(description));
     }
 
     static class ViewHolder {

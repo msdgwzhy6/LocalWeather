@@ -27,9 +27,9 @@ import org.androidannotations.annotations.res.StringRes;
 
 import java.util.List;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.piotr.localweather.WeatherApplication.weatherAPI;
 
@@ -82,35 +82,41 @@ public class MainActivityFragment extends Fragment {
 
     private void downloadForecastData(final WeatherService weatherAPI) {
         locationQuery = LocationUtils.getPreferredLocation(getContext());
-        weatherAPI.getForecast(locationQuery, format, units, type, lang, API_ID, new
-                Callback<Forecast>() {
-                    @Override
-                    public void success(Forecast forecast, Response response) {
-                        if (getActivity() != null) {
+
+        Call<Forecast> call = weatherAPI.getForecast(locationQuery, format, units, type, lang, API_ID);
+        call.enqueue(new Callback<Forecast>() {
+            @Override
+            public void onResponse(Call<Forecast> call, Response<Forecast> response) {
+                if (getActivity() != null) {
+                    final Forecast forecast = response.body();
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
                             mForecastAdapter = new ForecastAdapter(getActivity(),
                                     forecast.getForecastList());
                             mListView.setAdapter(mForecastAdapter);
                             swipeRefresh.setRefreshing(false);
-
-                            //ActiveAndroid implementation
-                            mDatabaseRepository.saveForecastItemToDatabase(forecast);
-                            mDatabaseRepository.saveCityDataToDatabase(forecast);
-
-                            Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
-                            Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
-
-                            NotificationEventReceiver.setupAlarm(getContext());
                         }
-                    }
+                    });
 
-                    @Override
-                    public void failure(RetrofitError error) {
-                        Log.d("Failure", "error: " + error);
-                        swipeRefresh.setRefreshing(false);
-                        showErrorSnackbar(weatherAPI);
-                    }
+                    //ActiveAndroid implementation
+                    mDatabaseRepository.saveForecastItemToDatabase(forecast);
+                    mDatabaseRepository.saveCityDataToDatabase(forecast);
+
+                    Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
+                    Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
+
+                    NotificationEventReceiver.setupAlarm(getContext());
                 }
-        );
+            }
+
+            @Override
+            public void onFailure(Call<Forecast> call, Throwable t) {
+                Log.d("Failure", "error: " + t.getLocalizedMessage());
+                swipeRefresh.setRefreshing(false);
+                showErrorSnackbar(weatherAPI);
+            }
+        });
     }
 
     private void showErrorSnackbar(final WeatherService weatherAPI) {

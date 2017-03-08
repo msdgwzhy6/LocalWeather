@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
         classpath 'io.fabric.tools:gradle:1.+'
     }
@@ -77,11 +77,9 @@ android {
 
 def var = dependencies {
     ext.JUNIT_VERSION = '4.12'
-    ext.AA_VERSION = '4.0.0'
+    ext.AA_VERSION = '4.2.0'
     ext.SUPPORT_VERSION = '25.2.0'
     ext.ESPRESSO_VERSION = '2.2.2'
-
-    //TODO: Update Retrofit to 2.x version - it requires code changes
 
     apt "org.androidannotations:androidannotations:$AA_VERSION"
     compile "org.androidannotations:androidannotations-api:$AA_VERSION"
@@ -112,12 +110,21 @@ def var = dependencies {
     compile "com.android.support:recyclerview-v7:$SUPPORT_VERSION"
     compile "com.android.support:preference-v7:$SUPPORT_VERSION"
 
-    //Remove ActiveAndroid. Use Realm instead
+    //TODO: Remove ActiveAndroid. Use Realm instead
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
 
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
-    compile 'com.google.code.gson:gson:2.4'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    //Okhttp
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+
+    //Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+
+    //Gson
+    compile 'com.google.code.gson:gson:2.7'
+
+    //Picasso
+    compile 'com.squareup.picasso:picasso:2.6.0-SNAPSHOT'
 
     androidTestCompile "com.android.support:support-annotations:$SUPPORT_VERSION"
     androidTestCompile "com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION"
@@ -139,7 +146,7 @@ def var = dependencies {
         exclude module: 'support-annotations'
         exclude module: 'recyclerview-v7'
     }
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.2@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
         transitive = true;
     }
     compile "junit:junit:${JUNIT_VERSION}"
