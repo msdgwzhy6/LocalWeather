@@ -10,7 +10,6 @@ buildscript {
         classpath "io.realm:realm-gradle-plugin:3.0.0"
         classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'me.tatarka:gradle-retrolambda:3.6.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -19,20 +18,15 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url 'https://maven.fabric.io/public' }
     }
 }
 
-repositories {
-    mavenCentral()
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-    maven { url 'https://maven.fabric.io/public' }
-}
-
 ext {
-    JUNIT_VERSION = '4.12'
     AA_VERSION = '4.2.0'
     SUPPORT_VERSION = '25.2.0'
-    ESPRESSO_VERSION = '2.2.2'
 }
 
 task clean(type: Delete) {
