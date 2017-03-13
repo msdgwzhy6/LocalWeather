@@ -13,7 +13,6 @@ import com.piotr.localweather.R;
  * @author piotr on 08.08.16.
  */
 public class BasicActivity extends AppCompatActivity {
-
     private static final String TAG = BasicActivity.class.getSimpleName();
 
     @Override
@@ -38,9 +37,18 @@ public class BasicActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_map:
-                Toast.makeText(this, R.string.error_function_not_available, Toast.LENGTH_LONG).show();
+                openPreferredLocationInMap();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openPreferredLocationInMap() {
+        showErrorToast();
+        // FIXME: 13.03.17 Reimplement this feature
+    }
+
+    private void showErrorToast() {
+        Toast.makeText(this, R.string.error_function_not_available, Toast.LENGTH_SHORT).show();
     }
 }

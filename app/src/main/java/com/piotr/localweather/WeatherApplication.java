@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.piotr.localweather.service.WeatherService;
+import com.piotr.localweather.api.WeatherService;
 
 import java.lang.reflect.Modifier;
 

@@ -7,9 +7,14 @@
     android:layout_gravity="center_horizontal"
     tools:context=".view.MainActivity">
 
-    <ListView
-        android:id="@+id/mListView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:scrollbars="none"/>
+
 
 </android.support.v4.widget.SwipeRefreshLayout>

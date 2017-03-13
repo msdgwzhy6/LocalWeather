@@ -1,18 +1,17 @@
 package com.piotr.localweather.view;
 
-import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.piotr.localweather.R;
-import com.piotr.localweather.adapter.ForecastAdapter;
-import com.piotr.localweather.model.Forecast;
-import com.piotr.localweather.service.WeatherService;
+import com.piotr.localweather.adapter.WeatherDataAdapter;
+import com.piotr.localweather.api.WeatherService;
+import com.piotr.localweather.api.model.WeatherData;
 import com.piotr.localweather.utils.ConnectionUtils;
 import com.piotr.localweather.utils.LocationUtils;
 
@@ -33,27 +32,20 @@ public class MainActivityFragment extends Fragment {
     private final String format = "json";
     private final String units = "metric";
     private final String type = "hour";
+    // FIXME: 13.03.17 Extract hardcoded values to xml
     @StringRes
     String API_ID;
     @StringRes
     String lang;
-    @ViewById
-    ListView mListView;
+    @ViewById(R.id.recycler_view)
+    RecyclerView mRecyclerView;
     @ViewById
     SwipeRefreshLayout swipeRefresh;
     private String locationQuery;
-    private ForecastAdapter mForecastAdapter;
+    private WeatherDataAdapter mWeatherDataAdapter;
 
     @AfterViews
     public void onCreateMainActivityFragment() {
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), DetailsActivity_.class);
-                //// FIXME: 13.03.17 Fix missing extra
-                startActivity(intent);
-            }
-        });
         swipeRefresh.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
@@ -67,33 +59,31 @@ public class MainActivityFragment extends Fragment {
         } else {
             Snackbar.make(getView(), R.string.no_internet_connection, Snackbar.LENGTH_LONG).show();
         }
+        initRecyclerView();
     }
 
     private void downloadForecastData(final WeatherService weatherAPI) {
         locationQuery = LocationUtils.getPreferredLocation(getContext());
 
-        Call<Forecast> call = weatherAPI.getForecast(locationQuery, format, units, type, lang, API_ID);
-        call.enqueue(new Callback<Forecast>() {
+        Call<WeatherData> call = weatherAPI.getForecast(locationQuery, format, units, type, lang, API_ID);
+        call.enqueue(new Callback<WeatherData>() {
             @Override
-            public void onResponse(Call<Forecast> call, Response<Forecast> response) {
+            public void onResponse(Call<WeatherData> call, Response<WeatherData> response) {
                 if (getActivity() != null) {
-                    final Forecast forecast = response.body();
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mForecastAdapter = new ForecastAdapter(getActivity(),
-                                    forecast.getForecastList());
-                            mListView.setAdapter(mForecastAdapter);
                             swipeRefresh.setRefreshing(false);
+                            mWeatherDataAdapter =
+                                    new WeatherDataAdapter(response.body(), getActivity());
+                            mRecyclerView.setAdapter(mWeatherDataAdapter);
                         }
                     });
-
-                    Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
                 }
             }
 
             @Override
-            public void onFailure(Call<Forecast> call, Throwable t) {
+            public void onFailure(Call<WeatherData> call, Throwable t) {
                 Log.d("Failure", "error: " + t.getLocalizedMessage());
                 swipeRefresh.setRefreshing(false);
                 showErrorSnackbar(weatherAPI);
@@ -111,5 +101,12 @@ public class MainActivityFragment extends Fragment {
                         }
                     }).show();
         }
+    }
+
+    private void initRecyclerView() {
+        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(layoutManager);
     }
 }
