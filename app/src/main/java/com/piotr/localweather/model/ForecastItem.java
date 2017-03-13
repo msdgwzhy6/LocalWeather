@@ -1,9 +1,6 @@
 package com.piotr.localweather.model;
 
-import com.activeandroid.Model;
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Column.ForeignKeyAction;
-import com.activeandroid.annotation.Table;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -13,29 +10,28 @@ import java.util.List;
  * @author piotr on 15-10-01.
  */
 
-@Table(name = "ForecastItem")
-public class ForecastItem extends Model {
-    @Column(name = "dt_txt", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
+public class ForecastItem {
+    @Expose
     @SerializedName("dt_txt")
     private
     Date dt_txt;
 
-    @Column(name = "main", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
+    @Expose
     @SerializedName("main")
     private
     Main main;
 
-    @Column(name = "weather", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
+    @Expose
     @SerializedName("weather")
     private
     List<Weather> weather;
 
-    @Column(name = "weatherData", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
+    @Expose
     private
     Weather weatherData;
 
 
-    @Column(name = "wind", onUpdate = ForeignKeyAction.CASCADE, onDelete = ForeignKeyAction.CASCADE)
+    @Expose
     @SerializedName("wind")
     private
     Wind wind;
@@ -50,22 +46,6 @@ public class ForecastItem extends Model {
         this.main = main;
         this.wind = wind;
         this.weather = weather;
-    }
-
-
-    public Long saveItemToDatabase() {
-        getMain().save();
-        for (int k = 0; k < getWeather().size(); k++) {
-            getWeather().get(k).save();
-        }
-
-        if (getWeather() != null && getWeather().size() >= 1) {
-            weatherData = getWeather().get(0);
-            weatherData.save();
-        }
-
-        getWind().save();
-        return save();
     }
 
     public Weather getWeatherData() {

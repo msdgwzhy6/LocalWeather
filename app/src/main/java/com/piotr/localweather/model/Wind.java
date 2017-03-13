@@ -1,24 +1,19 @@
 package com.piotr.localweather.model;
 
-import com.activeandroid.Model;
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.io.Serializable;
 
 /**
  * @author piotr on 15-10-01.
  */
 
-@Table(name = "Wind")
-public class Wind extends Model implements Serializable {
-    @Column
+public class Wind {
+    @Expose
     @SerializedName("speed")
     private
     Double speed;
 
-    @Column
+    @Expose
     @SerializedName("deg")
     private
     float deg;

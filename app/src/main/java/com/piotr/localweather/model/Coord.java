@@ -1,22 +1,17 @@
 package com.piotr.localweather.model;
 
-import com.activeandroid.Model;
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.io.Serializable;
 
 /**
  * @author piotr on 13.10.2015.
  */
-@Table(name = "Coord")
-public class Coord extends Model implements Serializable {
-    @Column
+public class Coord {
+    @Expose
     @SerializedName("lon")
     private Double lon;
 
-    @Column
+    @Expose
     @SerializedName("lat")
     private Double lat;
 

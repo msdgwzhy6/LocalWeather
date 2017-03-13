@@ -1,20 +1,14 @@
 package com.piotr.localweather;
 
+import android.app.Application;
 import android.os.AsyncTask;
 
-import com.activeandroid.ActiveAndroid;
-import com.activeandroid.Model;
-import com.activeandroid.app.Application;
-import com.activeandroid.query.Select;
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.piotr.localweather.model.City;
-import com.piotr.localweather.model.ForecastItem;
 import com.piotr.localweather.service.WeatherService;
 
 import java.lang.reflect.Modifier;
-import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
 import okhttp3.OkHttpClient;
@@ -30,19 +24,10 @@ public class WeatherApplication extends Application {
 
     public static WeatherService weatherAPI;
 
-    public static List<ForecastItem> getObjectsList() {
-        return new Select().from(ForecastItem.class).execute();
-    }
-
-    public static List<Model> getCityList() {
-        return new Select().from(City.class).execute();
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
-        ActiveAndroid.initialize(this);
 
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC)

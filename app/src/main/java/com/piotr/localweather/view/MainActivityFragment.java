@@ -10,11 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.piotr.localweather.R;
-import com.piotr.localweather.WeatherApplication;
 import com.piotr.localweather.adapter.ForecastAdapter;
 import com.piotr.localweather.model.Forecast;
-import com.piotr.localweather.model.ForecastItem;
-import com.piotr.localweather.repositories.WeatherDatabaseRepository;
 import com.piotr.localweather.service.WeatherService;
 import com.piotr.localweather.utils.ConnectionUtils;
 import com.piotr.localweather.utils.LocationUtils;
@@ -23,8 +20,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,7 +30,6 @@ import static com.piotr.localweather.WeatherApplication.weatherAPI;
 @EFragment(R.layout.fragment_main)
 public class MainActivityFragment extends Fragment {
 
-    private final WeatherDatabaseRepository mDatabaseRepository = new WeatherDatabaseRepository();
     private final String format = "json";
     private final String units = "metric";
     private final String type = "hour";
@@ -55,9 +49,8 @@ public class MainActivityFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                long forecastItemId = WeatherApplication.getObjectsList().get(position).getId();
                 Intent intent = new Intent(getContext(), DetailsActivity_.class);
-                intent.putExtra("id", forecastItemId);
+                //// FIXME: 13.03.17 Fix missing extra
                 startActivity(intent);
             }
         });
@@ -72,10 +65,7 @@ public class MainActivityFragment extends Fragment {
         if (ConnectionUtils.haveNetworkConnection(getContext())) {
             downloadForecastData(weatherAPI);
         } else {
-            List<ForecastItem> forecastItems = WeatherApplication.getObjectsList();
-            ForecastAdapter adapter = new ForecastAdapter(getActivity(), forecastItems);
-            mListView.setAdapter(adapter);
-            swipeRefresh.setRefreshing(false);
+            Snackbar.make(getView(), R.string.no_internet_connection, Snackbar.LENGTH_LONG).show();
         }
     }
 
@@ -98,13 +88,7 @@ public class MainActivityFragment extends Fragment {
                         }
                     });
 
-                    //ActiveAndroid implementation
-                    mDatabaseRepository.saveForecastItemToDatabase(forecast);
-                    mDatabaseRepository.saveCityDataToDatabase(forecast);
-
                     Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
-                    Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
-
                 }
             }
 

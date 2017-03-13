@@ -11,9 +11,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.util.Log;
 
-import com.activeandroid.query.Select;
 import com.piotr.localweather.R;
-import com.piotr.localweather.model.City;
 
 public class SettingsFragment extends PreferenceFragment implements
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -69,9 +67,10 @@ public class SettingsFragment extends PreferenceFragment implements
                                     cityEditTextPreference.getText().toString()));
                 } else {
                     try {
-                        City city = new Select().from(City.class).executeSingle();
-                        cityEditTextPreference.setSummary(getString(R.string
-                                .settings_location_city_summary, city.getName()));
+                        cityEditTextPreference.setSummary(
+                                getString(R.string.settings_location_city_summary,
+                                        getActivity().getString(R.string.city_name)));
+                        // FIXME: 13.03.17 Remove default name
                     } catch (NullPointerException e) {
                         Log.e(TAG, "updatePreference: ", e.getCause());
                         cityEditTextPreference.setSummary(getString(R.string

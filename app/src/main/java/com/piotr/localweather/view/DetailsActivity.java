@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.activeandroid.query.Select;
 import com.piotr.localweather.R;
 import com.piotr.localweather.model.City;
 import com.piotr.localweather.model.ForecastItem;
@@ -105,8 +104,8 @@ public class DetailsActivity extends BasicActivity {
     @AfterViews
     protected void initialize() {
         setDetailsActivityActionBar();
-        city = new Select().from(City.class).executeSingle();
-        item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();
+/*        city = new Select().from(City.class).executeSingle();
+        item = new Select().from(ForecastItem.class).where("id = ?", id).executeSingle();*/
         if ((item != null) && (city != null)) {
             Log.d(TAG, item.toString());
             getDetailActivityViewsValues(item);

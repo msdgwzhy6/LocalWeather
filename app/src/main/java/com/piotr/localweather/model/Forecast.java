@@ -1,5 +1,6 @@
 package com.piotr.localweather.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -9,9 +10,11 @@ import java.util.List;
  */
 
 public class Forecast {
+    @Expose
     @SerializedName("list")
     private java.util.List<ForecastItem> forecastList;
 
+    @Expose
     @SerializedName("city")
     private City city;
 

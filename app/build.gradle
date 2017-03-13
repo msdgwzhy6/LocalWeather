@@ -115,9 +115,6 @@ def var = dependencies {
     //Picasso
     compile 'com.squareup.picasso:picasso:2.6.0-SNAPSHOT'
 
-    //TODO: Remove ActiveAndroid. Use Realm instead
-    compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
-
     compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
         transitive = true;
     }

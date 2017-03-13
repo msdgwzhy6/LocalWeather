@@ -1,39 +1,34 @@
 package com.piotr.localweather.model;
 
-import com.activeandroid.Model;
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.io.Serializable;
 
 /**
  * @author piotr on 15-10-01.
  */
 
-@Table(name = "Main")
-public class Main extends Model implements Serializable {
-    @Column
+public class Main {
+    @Expose
     @SerializedName("temp")
     private
     Double temp;
 
-    @Column
+    @Expose
     @SerializedName("temp_min")
     private
     Double temp_min;
 
-    @Column
+    @Expose
     @SerializedName("temp_max")
     private
     Double temp_max;
 
-    @Column
+    @Expose
     @SerializedName("pressure")
     private
     Double pressure;
 
-    @Column
+    @Expose
     @SerializedName("humidity")
     private
     Double humidity;
