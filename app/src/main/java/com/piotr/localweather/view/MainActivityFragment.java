@@ -14,7 +14,6 @@ import com.piotr.localweather.WeatherApplication;
 import com.piotr.localweather.adapter.ForecastAdapter;
 import com.piotr.localweather.model.Forecast;
 import com.piotr.localweather.model.ForecastItem;
-import com.piotr.localweather.receiver.NotificationEventReceiver;
 import com.piotr.localweather.repositories.WeatherDatabaseRepository;
 import com.piotr.localweather.service.WeatherService;
 import com.piotr.localweather.utils.ConnectionUtils;
@@ -106,7 +105,6 @@ public class MainActivityFragment extends Fragment {
                     Log.d("WeatherApplication", "Forecast: " + forecast.getForecastList());
                     Log.d("DATABASE", "WeatherApplication: " + WeatherApplication.getObjectsList());
 
-                    NotificationEventReceiver.setupAlarm(getContext());
                 }
             }
 

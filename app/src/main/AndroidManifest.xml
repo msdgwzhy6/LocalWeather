@@ -35,28 +35,14 @@
         <activity
             android:name="com.piotr.localweather.view.DetailsActivity_"
             android:label="@string/title_activity_details"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName="com.piotr.localweather.view.MainActivity_"/>
+            android:parentActivityName="com.piotr.localweather.view.MainActivity_"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name="com.piotr.localweather.view.SettingsActivity"
             android:label="@string/action_settings"
-            android:theme="@style/AppTheme"
-            android:parentActivityName="com.piotr.localweather.view.MainActivity_"/>
-
-        <service
-            android:name="com.piotr.localweather.service.NotificationIntentService"
-            android:enabled="true"
-            android:exported="false"/>
-
-        <receiver android:name="com.piotr.localweather.receiver.NotificationEventReceiver"/>
-        <receiver android:name="com.piotr.localweather.receiver.NotificationServiceStarterReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
-                <action android:name="android.intent.action.TIME_SET"/>
-            </intent-filter>
-        </receiver>
+            android:parentActivityName="com.piotr.localweather.view.MainActivity_"
+            android:theme="@style/AppTheme"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
