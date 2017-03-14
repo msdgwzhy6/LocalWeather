@@ -7,6 +7,7 @@ package com.piotr.localweather.view;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
 import com.piotr.localweather.R;
@@ -49,9 +50,24 @@ public class SettingsFragment extends PreferenceFragment implements
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-                                          String key) {
-        // TODO: 13.03.17 Implement method
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        updatePreference(key);
     }
 
+    private void updatePreference(String key) {
+        if (key.equals(pref_location_key)) {
+            Preference preference = findPreference(key);
+            if (preference instanceof EditTextPreference) {
+                if ((cityEditTextPreference.getText() != null) && (cityEditTextPreference.getText
+                        ().trim().length() > 0)) {
+                    cityEditTextPreference.setSummary(
+                            getString(R.string.settings_location_city_summary,
+                                    cityEditTextPreference.getText().toString()));
+                } else {
+                    cityEditTextPreference.setSummary(getString(R.string
+                            .settings_location_city_summary, getString(R.string.pref_location_default)));
+                }
+            }
+        }
+    }
 }
