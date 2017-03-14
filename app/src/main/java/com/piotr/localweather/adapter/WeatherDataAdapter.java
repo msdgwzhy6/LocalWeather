@@ -1,7 +1,6 @@
 package com.piotr.localweather.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import com.piotr.localweather.api.model.List;
 import com.piotr.localweather.api.model.WeatherData;
 import com.piotr.localweather.utils.ImageUtils;
 import com.piotr.localweather.utils.StringUtils;
-import com.piotr.localweather.view.DetailsActivity_;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -100,8 +98,7 @@ public class WeatherDataAdapter extends RecyclerView.Adapter<WeatherDataAdapter.
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(mContext, DetailsActivity_.class);
-            mContext.startActivity(intent);
+            // TODO: 14.03.17 Implement new DetailActivity
         }
     }
 }
