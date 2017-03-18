@@ -2,16 +2,9 @@
 
 <img src="app/src/main/res/mipmap-xxhdpi/ic_launcher.png"/>
 
-Previously name: WeatherForPoznan
+Previous name: WeatherForPoznan
 
 Android application using OpenWeatherMap API that shows current weather conditions.
-
-Screenshots
-------
-<img src="screenshots/device-2016-08-09-172447.png" height="300dp"/>
-<img src="screenshots/device-2016-08-09-172520.png" height="300dp"/>
-<img src="screenshots/device-2016-08-09-172551.png" height="300dp"/>
-<img src="screenshots/device-2016-08-09-172635.png" height="300dp"/>
 
 Libraries already used:
 -----
@@ -19,24 +12,11 @@ Libraries already used:
 - ActiveAndroid
 - Retrofit
 - Gson
+- RxJava2
+- RxAndroid
 - Picasso
 - Espresso
 - Robolectric
-- Crashlytics
-
-TODO:
------
-- [ ] Change DetailsActivity to DetailsFragment
-- [ ] Fix refreshing Notification data
-- [x] Fix saving and loading City
-- [x] Add change city Settings option
-- [ ] Add 'Report an issue' item to ContextMenu
-- [ ] Add 'Licences' item to OptionsMenu
-- [x] Add ShareIntent in DetailsActivity
-- [ ] Add turn on/off notifications Settings option
-- [ ] Add change temperature units Settings option
-- [ ] Try to add autocomplete to EditTextPreference
-- [ ] Rewrite existings Android tests
 
 Issues
 ------
